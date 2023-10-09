@@ -1,0 +1,38 @@
+nav{
+    background: rgb(40,41,42);
+    background: -moz-linear-gradient(90deg, rgba(40,41,42,0.8855917366946778) 0%, rgba(31,29,29,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(40,41,42,0.8855917366946778) 0%, rgba(31,29,29,1) 100%);
+    background: linear-gradient(90deg, rgba(40,41,42,0.8855917366946778) 0%, rgba(31,29,29,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#28292a",endColorstr="#1f1d1d",GradientType=1);
+    display: flex;
+    height: 15vh;
+    width: 100%;
+}
+nav div{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20%;
+}
+nav div button{
+    align-items: flex-start;
+    background: rgb(255,255,255);
+    background: -moz-radial-gradient(circle, rgba(255,255,255,0.8855917366946778) 0%, rgba(238,235,235,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(255,255,255,0.8855917366946778) 0%, rgba(238,235,235,1) 100%);
+    background: radial-gradient(circle, rgba(255,255,255,0.8855917366946778) 0%, rgba(238,235,235,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#eeebeb",GradientType=1);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    height: 50%;
+    font-family: 'Teko', sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    width: 100%;
+}
+.iconNav{
+    color: rgb(204, 204, 204);
+    font-size: 50px;
+    text-align: center;
+}

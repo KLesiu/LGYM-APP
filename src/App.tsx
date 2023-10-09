@@ -1,6 +1,7 @@
 import React from "react";
 import Preload from "./Components/Preload";
 import Login from "./Components/Login";
+import Home from "./Components/Home";
 import { BrowserRouter,Route,Routes } from "react-router-dom";
 import './index.css'
 import Register from "./Components/Register";
@@ -18,9 +19,10 @@ const App:React.FC=()=>{
         }></Route>
         <Route path="/register" element={
           <Register />
-        }>
-
-        </Route>
+        }></Route>
+        <Route path="/home" element={
+          <Home />
+        }></Route>
       </Routes>
       </BrowserRouter>
     </div>

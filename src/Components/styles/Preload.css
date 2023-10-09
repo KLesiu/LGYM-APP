@@ -9,9 +9,11 @@
 }
 @keyframes appearance {
     from{
+        font-size: 1px;
         opacity: 0;
     }
     to{
+        font-size: 20px;
         opacity: 1;
     }
 }
@@ -77,12 +79,13 @@ a:hover{
 p{
     color: white;
     font-family: 'Caveat', cursive;
-    font-size: 20px;
+    font-size: 1px;
     animation-name: appearance;
-    animation-duration: 5s;
+    animation-duration: 2s;
     animation-delay:3s;
     animation-fill-mode: forwards;
     opacity: 0;
+    text-align: center;
     width: 70%;
 }
 .rotate{
