@@ -1,7 +1,7 @@
 import './styles/Login.css'
 const Login:React.FC=()=>{
     return(
-        <form>
+        <form id='login'>
             <h1>LOG IN TO LGYM APP</h1>
             <label htmlFor="username">Username</label>
             <input type="text" name="username"></input>

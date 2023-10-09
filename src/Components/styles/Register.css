@@ -1,11 +1,4 @@
-#login h1{
-    background:none;
-    font-size: 50px;
-    margin-top: 10vh;
-    width: 80%;
-    
-}
-#login{
+#register{
     align-items: center;
     background: rgb(56,61,66);
     background: -moz-radial-gradient(circle, rgba(56,61,66,0.8995973389355743) 0%, rgba(13,14,14,1) 100%);
@@ -17,18 +10,25 @@
     height: 100vh;
     justify-content: flex-start;
 }
-#login label{
+#register h1{
+    background:none;
+    font-size: 50px;
+    margin-top: 10vh;
+    width: 80%;
+    
+}
+#register label{
     color: rgb(185, 177, 162);
     font-size: 40px;
     font-family: 'Teko', sans-serif;
     margin-top: 20px;
 }
-#login input{
+#register input{
     border-radius: 10px;
     height: 5vh;
     font-size: 20px;
 }
-#login button{
+#register button{
     background: rgb(170,180,189);
     background: -moz-radial-gradient(circle, rgba(170,180,189,0.8855917366946778) 0%, rgba(71,74,77,1) 100%);
     background: -webkit-radial-gradient(circle, rgba(170,180,189,0.8855917366946778) 0%, rgba(71,74,77,1) 100%);
@@ -40,14 +40,4 @@
     font-family: 'Teko', sans-serif;
     margin-top: 5vh;
     width: 60%;
-}
-#login a{
-    background: none;
-    color: rgb(235, 233, 230);
-    font-size: 20px;
-    font-family: 'Teko', sans-serif;
-    font-weight: 700;
-    margin-top: 5vh;
-    text-shadow: 2px 2px 1px grey;
-    text-decoration: none;
 }

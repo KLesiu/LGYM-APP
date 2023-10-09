@@ -3,6 +3,7 @@ import Preload from "./Components/Preload";
 import Login from "./Components/Login";
 import { BrowserRouter,Route,Routes } from "react-router-dom";
 import './index.css'
+import Register from "./Components/Register";
 
 const App:React.FC=()=>{
   return(
@@ -15,6 +16,11 @@ const App:React.FC=()=>{
         <Route path="/login" element={
           <Login/>
         }></Route>
+        <Route path="/register" element={
+          <Register />
+        }>
+
+        </Route>
       </Routes>
       </BrowserRouter>
     </div>

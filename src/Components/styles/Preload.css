@@ -1,3 +1,20 @@
+@keyframes rotate {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+    
+}
+@keyframes appearance {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 #preLoadDiv{
     background: url('../img/arnoldPreLoad.jpg');
     height: 100vh;
@@ -5,7 +22,7 @@
 }
 #preLoadContainer{
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.404);
+    background-color: rgba(0, 0, 0, 0.829);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -13,7 +30,7 @@
     width: 100%;
 }
 h1{
-background-color: rgba(0, 0, 0, 0.425);
+
 font-family: 'Foldit', cursive;
 font-size: 60px;
 margin: 0;
@@ -48,4 +65,29 @@ width: 100%;
 }
 a:hover{
     opacity: 1;
+}
+.icon-dumbell{
+    color: rgb(190, 190, 190);
+    cursor: pointer;
+    font-size: 40px;
+}
+.icon-dumbell:hover{
+    color: rgb(255, 255, 255);
+}
+p{
+    color: white;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    animation-name: appearance;
+    animation-duration: 5s;
+    animation-delay:3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    width: 70%;
+}
+.rotate{
+    
+    animation-duration: 3s;
+    animation-name: rotate;
+    
 }
