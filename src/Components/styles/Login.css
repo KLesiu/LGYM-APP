@@ -1,0 +1,53 @@
+form h1{
+    background:none;
+    font-size: 50px;
+    margin-top: 10vh;
+    width: 80%;
+    
+}
+form{
+    align-items: center;
+    background: rgb(56,61,66);
+    background: -moz-radial-gradient(circle, rgba(56,61,66,0.8995973389355743) 0%, rgba(13,14,14,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(56,61,66,0.8995973389355743) 0%, rgba(13,14,14,1) 100%);
+    background: radial-gradient(circle, rgba(56,61,66,0.8995973389355743) 0%, rgba(13,14,14,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#383d42",endColorstr="#0d0e0e",GradientType=1);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: flex-start;
+}
+form label{
+    color: rgb(185, 177, 162);
+    font-size: 40px;
+    font-family: 'Teko', sans-serif;
+    margin-top: 20px;
+}
+form input{
+    border-radius: 10px;
+    height: 5vh;
+    font-size: 20px;
+}
+form button{
+    background: rgb(170,180,189);
+    background: -moz-radial-gradient(circle, rgba(170,180,189,0.8855917366946778) 0%, rgba(71,74,77,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(170,180,189,0.8855917366946778) 0%, rgba(71,74,77,1) 100%);
+    background: radial-gradient(circle, rgba(170,180,189,0.8855917366946778) 0%, rgba(71,74,77,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#aab4bd",endColorstr="#474a4d",GradientType=1);
+    border-radius: 10px;
+    height: 5vh;
+    font-size: 30px;
+    font-family: 'Teko', sans-serif;
+    margin-top: 5vh;
+    width: 60%;
+}
+form a{
+    background: none;
+    color: rgb(235, 233, 230);
+    font-size: 20px;
+    font-family: 'Teko', sans-serif;
+    font-weight: 700;
+    margin-top: 5vh;
+    text-shadow: 2px 2px 1px grey;
+    text-decoration: none;
+}
