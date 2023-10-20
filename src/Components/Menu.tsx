@@ -1,5 +1,9 @@
 import './styles/Menu.css'
-const Menu:React.FC=()=>{
+interface MenuProps{
+    viewChange:(view:any)=>any
+}
+
+const Menu=({viewChange}:MenuProps)=>{
     return(
         <nav>
             <div>

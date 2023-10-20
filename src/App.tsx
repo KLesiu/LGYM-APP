@@ -18,7 +18,7 @@ const App:React.FC=()=>{
           <Login/>
         }></Route>
         <Route path="/register" element={
-          <Register />
+          <Register  />
         }></Route>
         <Route path="/home" element={
           <Home />
