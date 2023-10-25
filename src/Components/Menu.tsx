@@ -1,6 +1,8 @@
 import './styles/Menu.css'
 import TrainingPlan from './TrainingPlan'
 import Records from './Records'
+import Profile from './Profile'
+import History from './History'
 interface MenuProps{
     viewChange:(view:any)=>void
 }
@@ -14,6 +16,8 @@ const Menu:React.FC<MenuProps>=(props)=>{
         
         if(viewName=== 'Training plan') props.viewChange(<TrainingPlan/>)
         else if(viewName==='Records') props.viewChange(<Records/>)
+        else if(viewName==='Profile') props.viewChange(<Profile/>)
+        else if(viewName==='History') props.viewChange(<History/>)
             
             
           
@@ -33,7 +37,7 @@ const Menu:React.FC<MenuProps>=(props)=>{
             <span className="iconNav material-symbols-outlined">
             calendar_month
             </span>
-                <button>Calendar</button>
+                <button onClick={changeView}>History</button>
             </div>
             <div>
             <span className="iconNav material-symbols-outlined">
@@ -51,7 +55,7 @@ const Menu:React.FC<MenuProps>=(props)=>{
             <span className="iconNav material-symbols-outlined">
             account_circle
             </span>
-                <button>Profile</button>
+                <button onClick={changeView}>Profile</button>
             </div>
             
             

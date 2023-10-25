@@ -1,0 +1,58 @@
+#profileContainer{
+    align-items: center;
+    background: rgb(255,255,255);
+    background: -moz-linear-gradient(90deg, rgba(255,255,255,0.8407738095238095) 0%, rgba(238,235,235,0.9192051820728291) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(255,255,255,0.8407738095238095) 0%, rgba(238,235,235,0.9192051820728291) 100%);
+    background: linear-gradient(90deg, rgba(255,255,255,0.8407738095238095) 0%, rgba(238,235,235,0.9192051820728291) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#eeebeb",GradientType=1);
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    width: 90%;
+}
+#profileContainer h1{
+    background: none;
+    font-family: 'Teko', sans-serif;
+    border-bottom: 10px solid rgb(117, 117, 117);
+    border-radius: 20px;
+    margin: 0;
+    text-shadow: 3px 3px 2px grey;
+}
+#profileContainer h2{
+    border: 2px solid grey;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0px black;
+    font-size: 30px;
+    font-family: 'Teko', sans-serif;
+    padding: 5px;
+    width: 80%;
+}
+#profileContainer h3{
+    border: 2px solid grey;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0px black;
+    font-size: 25px;
+    font-family: 'Teko', sans-serif;
+    padding: 5px;
+    width: 80%;
+}
+#logout{
+    background-color: rgba(189, 18, 18, 0.884);
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 grey;
+    color: rgb(218, 218, 218);
+    cursor: pointer;
+    height: 7%;
+    font-size: 25px;
+    font-family: 'Teko', sans-serif;
+    width: 50%;
+
+}
+#logout:hover{
+    opacity: 0.8;
+}
