@@ -3,6 +3,7 @@ import TrainingPlan from './TrainingPlan'
 import Records from './Records'
 import Profile from './Profile'
 import History from './History'
+import AddTraining from './AddTraining'
 interface MenuProps{
     viewChange:(view:any)=>void
 }
@@ -18,6 +19,7 @@ const Menu:React.FC<MenuProps>=(props)=>{
         else if(viewName==='Records') props.viewChange(<Records/>)
         else if(viewName==='Profile') props.viewChange(<Profile/>)
         else if(viewName==='History') props.viewChange(<History/>)
+        else if(viewName==='Add training') props.viewChange(<AddTraining/>)
             
             
           
@@ -43,7 +45,7 @@ const Menu:React.FC<MenuProps>=(props)=>{
             <span className="iconNav material-symbols-outlined">
             add_box
             </span>
-                <button>Add training</button>
+                <button onClick={changeView}>Add training</button>
             </div>
             <div>
             <span className="iconNav material-symbols-outlined">
