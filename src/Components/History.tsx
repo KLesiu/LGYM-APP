@@ -13,7 +13,8 @@ const History:React.FC=()=>{
         }],
         notes: ''
     }
-    const [sessions,setSessions]=useState([sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema])
+    const [sessions,setSessions]=useState([sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema])
+    const [currentSessions,setCurrentSessions]=useState(3)
     useEffect(()=>{
         const sessionsContainer = document.querySelectorAll(".session")
         for(let i=0;i<sessions.length;i++){
@@ -23,6 +24,15 @@ const History:React.FC=()=>{
 
         }
     },[])
+    const showNextSessions=()=>{
+        const allSessions = document.querySelectorAll('.session')
+        for(let i =0;i<sessions.length;i++){
+            if(i>currentSessions && i<=currentSessions+4)  allSessions[i].classList.remove('hidden')
+            else allSessions[i].classList.add('hidden')
+        }
+        setCurrentSessions(currentSessions+4)
+        
+    }
     
     return(
         <section id='historyContainer'>
@@ -37,6 +47,7 @@ const History:React.FC=()=>{
                     </div>
                 )
             })}
+            <button onClick={showNextSessions}>Next</button>
         </section>
     )
 }
