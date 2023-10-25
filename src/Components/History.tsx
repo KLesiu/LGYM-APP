@@ -1,25 +1,29 @@
 import './styles/History.css'
 import { useState,useEffect } from 'react'
+type Session={
+    symbol:string,
+    date:string,
+    time:string,
+    exercises:Exercise[],
+    notes: string
+}
+type Exercise={
+    name:string,
+    series:number,
+    rep:number,
+    weight:string
+}
 const History:React.FC=()=>{
-    const sessionSchema={
-        symbol:'',
-        date:'',
-        time:'',
-        exercises:[{
-            name:'',
-            series:'',
-            rep:'',
-            weight:''
-        }],
-        notes: ''
-    }
-    const [sessions,setSessions]=useState([sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema,sessionSchema])
-    const [currentSessions,setCurrentSessions]=useState(3)
+    const [sessions,setSessions]=useState<Session[]>([])
+    const [currentSessions,setCurrentSessions]=useState<number>(3)
     useEffect(()=>{
-        const sessionsContainer = document.querySelectorAll(".session")
-        for(let i=0;i<sessions.length;i++){
-            if(i<4) sessionsContainer[i].classList.remove('hidden')
-            else return
+        if(sessions.length>0){
+            const sessionsContainer = document.querySelectorAll(".session")
+            for(let i=0;i<sessions.length;i++){
+                if(i<4) sessionsContainer[i].classList.remove('hidden')
+                else return
+        }
+       
             
 
         }
@@ -37,7 +41,7 @@ const History:React.FC=()=>{
     return(
         <section id='historyContainer'>
             <h1>Training History</h1>
-            {sessions.map(ele=>{
+            {sessions.length>0? sessions.map(ele=>{
                 return(
                     <div className='session hidden'>
                         <h2>Training symbol: {ele.symbol} </h2>
@@ -46,8 +50,8 @@ const History:React.FC=()=>{
                         <p>Notes: {ele.notes} </p>
                     </div>
                 )
-            })}
-            <button onClick={showNextSessions}>Next</button>
+            }):''}
+            {sessions.length>0?<button onClick={showNextSessions}>Next</button>:''}
         </section>
     )
 }
