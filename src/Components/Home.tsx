@@ -7,14 +7,14 @@ import {  useState } from 'react'
 
 
 const Home:React.FC=()=>{
-    const [view,setView]=useState(<Records />)
+    const [view,setView]=useState(<TrainingPlan/>)
     const changeView=(view:any)=>{
-        setView(view)
+       setView(view)
     }
     return(
         <main>
             <h1>LGYM APP</h1>
-            {view || <TrainingPlan/>}
+            {view}
             <Menu viewChange={changeView}  />
         </main>
     )
