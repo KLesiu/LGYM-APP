@@ -11,15 +11,13 @@
     height: 80vh;
     display: flex;
     flex-direction: column;
-    
     width: 98%;
 }
-#historyContainer h1{
+
+#historyContainer h2{
     background: none;
-    font-family: 'Teko', sans-serif;
-    border-bottom: 10px solid rgb(117, 117, 117);
-    border-radius: 20px;
-    margin: 0;
+    font-family:'Young Serif', serif;;
+    
     text-shadow: 3px 3px 2px grey;
 }
 .session{
@@ -35,7 +33,7 @@
     padding: 2px;
     width: 90%;
 }
-.session h2{
+.session h3{
     font-size: 20px;
     margin: 0;
 }

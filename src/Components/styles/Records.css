@@ -49,18 +49,7 @@
     margin-right: 10px;
     width: 32px;
 }
-#muscleHeart{
-    background: url('../img/muscle.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    margin-top: 2%;
-    height: 40px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    transform: rotate(-20deg);
-    width: 40px;
-}
+
 #strengthScale{
     align-items: center;
     display: flex;

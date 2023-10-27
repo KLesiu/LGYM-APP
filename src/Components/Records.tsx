@@ -7,7 +7,7 @@ const Records:React.FC=()=>{
     const [total,setTotal]=useState<number>(0)
     return(
         <section id="recordsSection">
-            <h2><div id="muscleHeart"></div>Records in powerlifting:</h2>
+            <h2>Records in powerlifting:</h2>
             <h3><div id="deadLiftIcon"></div>  Dead Lift:</h3>
             <span>{deadLift || "No data"}</span>
             <h3><div id="squatIcon"></div>Squat:</h3>

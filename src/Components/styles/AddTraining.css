@@ -19,12 +19,17 @@
 }
 #addTrainingContainer button{
     align-items: center;
-    background: rgb(179,179,179);
+    background: rgba(255, 255, 255, 0.918);
     background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
     color: rgb(0, 0, 0);
+    border-radius: 5px;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid rgb(80, 80, 80);
+    border-left: 2px solid rgb(78, 78, 78);
     display: flex;
     font-family: 'Young Serif', serif;
     font-size: 15px;

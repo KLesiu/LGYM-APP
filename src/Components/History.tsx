@@ -14,7 +14,14 @@ type Exercise={
     weight:string
 }
 const History:React.FC=()=>{
-    const [sessions,setSessions]=useState<Session[]>([])
+    const ses={
+        symbol:"A",
+        date: '21-02-2022',
+        time:'2,5',
+        exercises:[],
+        notes:'Kozak'
+    }
+    const [sessions,setSessions]=useState<Session[]>([ses,ses,ses,ses,ses])
     const [currentSessions,setCurrentSessions]=useState<number>(3)
     useEffect(()=>{
         if(sessions.length>0){
@@ -40,11 +47,11 @@ const History:React.FC=()=>{
     
     return(
         <section id='historyContainer'>
-            <h1>Training History</h1>
+            <h2>Training History</h2>
             {sessions.length>0? sessions.map(ele=>{
                 return(
                     <div className='session hidden'>
-                        <h2>Training symbol: {ele.symbol} </h2>
+                        <h3>Training symbol: {ele.symbol} </h3>
                         <p>Date: {ele.date} </p>
                         <p>Time: {ele.time} </p>
                         <p>Notes: {ele.notes} </p>
