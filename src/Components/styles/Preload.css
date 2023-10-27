@@ -59,7 +59,7 @@ width: 100%;
     background: -webkit-linear-gradient(0deg, rgba(27,27,27,0.8239670868347339) 10%, rgba(154,154,154,1) 90%);
     background: linear-gradient(0deg, rgba(27,27,27,0.8239670868347339) 10%, rgba(154,154,154,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1b1b1b",endColorstr="#9a9a9a",GradientType=1);
-    color: rgba(0, 0, 0, 0.959);
+    color: rgba(255, 255, 255, 0.959);
     display: flex;
     font-family: 'Teko', sans-serif;
     font-size: 40px;
