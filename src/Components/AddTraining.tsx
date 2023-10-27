@@ -5,7 +5,7 @@ const AddTraining=()=>{
     return(
         <section id='addTrainingContainer'>
             <h2>You cant add training!</h2>
-            {plan===''? <button>You have to create plan first!</button>:plan}
+            {plan===''? <button><span>You have to create plan first!</span></button>:plan}
         </section>
     )
 }

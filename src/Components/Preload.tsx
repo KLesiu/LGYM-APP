@@ -14,14 +14,16 @@ const Preload:React.FC=()=>{
             <div id='preLoadContainer'>
                 <h1>LGYM APP</h1>
                 <div id='loginAndRegisterPreLoadContainer'>
-                    <a href='/login'>LOGIN</a>
-                    <a href='/register'>REGISTER</a>
+                    <a href='/login'><span>LOGIN</span></a>
+                    <a href='/register'><span>REGISTER</span></a>
                 </div>
-                
+                <div id='quoteContainer'>
                 <span onClick={handleChange} className="icon-dumbell material-symbols-outlined">
                 exercise
                 </span>
                 <p id='quote'>{quote===true?`'Strength does not come from winning. Your struggles develop your strengths. When you go through hardships and decide not to surrender, that is strength. When you make an impasse passable, that is strength. But you must have ego, the kind of ego which makes you think of yourself in terms of superlatives. You must want to be the greatest. We are all starved for compliments. So we do things that get positive feedback.' (Arnold Schwarzenegger, 1982)`:""}</p>
+                </div>
+                
                 
             </div>
             

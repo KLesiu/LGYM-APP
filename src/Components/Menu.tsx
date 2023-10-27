@@ -15,11 +15,11 @@ const Menu:React.FC<MenuProps>=(props)=>{
         const currentEvent:any = e.target
         const viewName:string = currentEvent.textContent
         
-        if(viewName=== 'Training plan') props.viewChange(<TrainingPlan/>)
-        else if(viewName==='Records') props.viewChange(<Records/>)
-        else if(viewName==='Profile') props.viewChange(<Profile/>)
-        else if(viewName==='History') props.viewChange(<History/>)
-        else if(viewName==='Add training') props.viewChange(<AddTraining/>)
+        if(viewName=== 'note') props.viewChange(<TrainingPlan/>)
+        else if(viewName==='trophy') props.viewChange(<Records/>)
+        else if(viewName==='account_circle') props.viewChange(<Profile/>)
+        else if(viewName==='calendar_month') props.viewChange(<History/>)
+        else if(viewName==='add_box') props.viewChange(<AddTraining/>)
             
             
           
@@ -30,34 +30,34 @@ const Menu:React.FC<MenuProps>=(props)=>{
     return(
         <nav>
             <div>
-            <span className=" iconNav material-symbols-outlined">
+            
+                <button onClick={changeView}><span className=" iconNav material-symbols-outlined">
             note
-            </span>
-                <button onClick={changeView}>Training plan</button>
+            </span></button>
             </div>
             <div>
-            <span className="iconNav material-symbols-outlined">
+            
+                <button onClick={changeView}><span className="iconNav material-symbols-outlined">
             calendar_month
-            </span>
-                <button onClick={changeView}>History</button>
+            </span></button>
             </div>
             <div>
-            <span className="iconNav material-symbols-outlined">
+            
+                <button onClick={changeView}><span className="iconNav material-symbols-outlined">
             add_box
-            </span>
-                <button onClick={changeView}>Add training</button>
+            </span></button>
             </div>
             <div>
-            <span className="iconNav material-symbols-outlined">
+            
+                <button onClick={changeView} ><span className="iconNav material-symbols-outlined">
             trophy
-            </span>
-                <button onClick={changeView} >Records</button>
+            </span></button>
             </div>
             <div>
-            <span className="iconNav material-symbols-outlined">
+            
+                <button onClick={changeView}><span className="iconNav material-symbols-outlined">
             account_circle
-            </span>
-                <button onClick={changeView}>Profile</button>
+            </span></button>
             </div>
             
             
