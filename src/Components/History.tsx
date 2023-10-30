@@ -1,5 +1,6 @@
 import './styles/History.css'
 import { useState,useEffect } from 'react'
+import uniqid from 'uniqid'
 type Session={
     symbol:string,
     date:string,
@@ -21,36 +22,106 @@ const History:React.FC=()=>{
         exercises:[],
         notes:'Kozak'
     }
-    const [sessions,setSessions]=useState<Session[]>([ses,ses,ses,ses,ses])
-    const [currentSessions,setCurrentSessions]=useState<number>(3)
+    const ses1={
+        symbol:"B",
+        date: '21-02-2022',
+        time:'2,5',
+        exercises:[],
+        notes:'Kozak'
+    }
+    const ses2={
+        symbol:"C",
+        date: '21-02-2022',
+        time:'2,5',
+        exercises:[],
+        notes:'Kozak'
+    }
+    const ses3={
+        symbol:"D",
+        date: '21-02-2022',
+        time:'2,5',
+        exercises:[],
+        notes:'Kozak'
+    }
+    const ses4={
+        symbol:"E",
+        date: '21-02-2022',
+        time:'2,5',
+        exercises:[],
+        notes:'Kozak'
+    }
+    const ses5={
+        symbol:"F",
+        date: '21-02-2022',
+        time:'2,5',
+        exercises:[],
+        notes:'Kozak'
+    }
+    const ses6={
+        symbol:"G",
+        date: '21-02-2022',
+        time:'2,5',
+        exercises:[],
+        notes:'Kozak'
+    }
+    const ses7={
+        symbol:"H",
+        date: '21-02-2022',
+        time:'2,5',
+        exercises:[],
+        notes:'Kozak'
+    }
+    const ses8={
+        symbol:"I",
+        date: '21-02-2022',
+        time:'2,5',
+        exercises:[],
+        notes:'Kozak'
+    }
+    const [sessions,setSessions]=useState<Session[]>([ses,ses1,ses2,ses3,ses4,ses5,ses6,ses7,ses8])
+    const [currentSessionsNumber,setcurrentSessionsNumber]=useState<number>(3)
+    const [currentSessions,setCurrentSessions]=useState<Session[]>([])
     useEffect(()=>{
         if(sessions.length>0){
-            const sessionsContainer = document.querySelectorAll(".session")
-            for(let i=0;i<sessions.length;i++){
-                if(i<4) sessionsContainer[i].classList.remove('hidden')
-                else return
+            if(sessions.length>3){
+                const arr = []
+                for(let i =0;i<4;i++){
+                    arr.push(sessions[i])
+                }
+                return setCurrentSessions(arr)
+            }else{
+                const arr = []
+                for(let i = 0;i<sessions.length;i++){
+                    arr.push(sessions[i])
+                }
+                return setCurrentSessions(arr)
+            }
         }
-       
-            
-
-        }
-    },[])
+     },[])
+    const showPrevSessions=()=>{
+        if(currentSessionsNumber===3) return
+        const arr = sessions.slice(currentSessionsNumber-7,currentSessionsNumber-3)
+        
+        setcurrentSessionsNumber(currentSessionsNumber-4)
+        setCurrentSessions(arr)
+    }
     const showNextSessions=()=>{
-        const allSessions = document.querySelectorAll('.session')
-        for(let i =0;i<sessions.length;i++){
-            if(i>currentSessions && i<=currentSessions+4)  allSessions[i].classList.remove('hidden')
-            else allSessions[i].classList.add('hidden')
+        if(currentSessionsNumber>=sessions.length) return
+        const arr = []
+        for(let i=0;i<sessions.length;i++){
+            if(i>currentSessionsNumber && i<=currentSessionsNumber+4) arr.push(sessions[i])
         }
-        setCurrentSessions(currentSessions+4)
+    setcurrentSessionsNumber(currentSessionsNumber+4)
+    setCurrentSessions(arr)
         
     }
     
     return(
         <section id='historyContainer'>
             <h2>Training History</h2>
-            {sessions.length>0? sessions.map(ele=>{
+            {currentSessions.length>0? currentSessions.map(ele=>{
                 return(
-                    <div className='session hidden'>
+                    <div className='session'>
                         <h3>Training symbol: {ele.symbol} </h3>
                         <p>Date: {ele.date} </p>
                         <p>Time: {ele.time} </p>
@@ -58,7 +129,18 @@ const History:React.FC=()=>{
                     </div>
                 )
             }):''}
-            {sessions.length>0?<button onClick={showNextSessions}>Next</button>:''}
+            {sessions.length>0?
+            <div id='buttonHistoryContainer'>
+                <button onClick={showPrevSessions} id='prevHistory'>
+                <span className="material-symbols-outlined">
+chevron_left
+</span>
+                </button>
+                <button id='nextHistory' onClick={showNextSessions}><span className="material-symbols-outlined">
+chevron_right
+</span></button>
+            </div>
+            :''}
         </section>
     )
 }

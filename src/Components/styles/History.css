@@ -29,7 +29,7 @@
     flex-direction: column;
     font-family: 'Teko', sans-serif;
     justify-content: flex-start;
-    margin-top: 5px;
+    margin-top: 20px;
     padding: 2px;
     width: 90%;
 }
@@ -46,6 +46,21 @@
     text-align: left;
     width: 100%;
 }
+
+#buttonHistoryContainer{
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    height: 10%;
+    width: 100%;
+
+}
+
+#nextHistory,#prevHistory{
+    background-color: grey;
+    border-radius: 10px;
+}
+
 .hidden{
     display: none;
 }
