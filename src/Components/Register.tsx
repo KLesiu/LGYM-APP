@@ -32,7 +32,7 @@ const Register:React.FC=()=>{
           .catch(res=>
             res) 
           .then(res=>{
-             if(res.msg==="User created successfully!"){
+             if(res.msg == `${process.env.REACT_APP_MSG_REGISTER_CREATE}`){
                     setErrors([])
                     return window.location.href="/login"
                 }
