@@ -1,6 +1,7 @@
 import './styles/Register.css'
-import { useState,useEffect } from 'react'
+import { useState} from 'react'
 import React from 'react'
+import uniqid from "uniqid"
 
 type Error={
     msg:string
@@ -38,10 +39,7 @@ const Register:React.FC=()=>{
                 }
              else return res
             })
-      
-        
-            
-            return setErrors(response.errors)
+        return setErrors(response.errors)
          
     }
     return(
@@ -57,7 +55,7 @@ const Register:React.FC=()=>{
             <input type="password" name="rpassword"  />
             <button type='submit'>REGISTER</button>
             <ul>{errors?errors.map((ele:Error)=>{
-                return <li>{ele.msg}</li>
+                return <li key={uniqid()}>{ele.msg}</li>
             }):''}</ul>
            
         </form>
