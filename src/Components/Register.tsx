@@ -31,16 +31,18 @@ const Register:React.FC=()=>{
             res.json())
           .catch(res=>
             res) 
-          .then(res=>
-            res)
-        if(response.ok){
-            setErrors([])
-            return window.location.href="/login"
-        }
-        else{
+          .then(res=>{
+             if(res.msg==="User created successfully!"){
+                    setErrors([])
+                    return window.location.href="/login"
+                }
+             else return res
+            })
+      
+        
             
             return setErrors(response.errors)
-        } 
+         
     }
     return(
         <form id="register" onSubmit={register}>
@@ -54,7 +56,7 @@ const Register:React.FC=()=>{
             <label htmlFor="rpassword">Repeat password</label>
             <input type="password" name="rpassword"  />
             <button type='submit'>REGISTER</button>
-            <ul>{errors.length > 0?errors.map((ele:Error)=>{
+            <ul>{errors?errors.map((ele:Error)=>{
                 return <li>{ele.msg}</li>
             }):''}</ul>
            
