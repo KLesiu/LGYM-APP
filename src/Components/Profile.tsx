@@ -11,6 +11,10 @@ const Profile:React.FC=()=>{
         localStorage.removeItem('email')
         localStorage.removeItem('id')
         localStorage.removeItem('token')
+        localStorage.removeItem('rank')
+        localStorage.removeItem('dl')
+        localStorage.removeItem('sq')
+        localStorage.removeItem('bp')
         window.location.href='/'
     }
     const checkUserRank=async()=>{
