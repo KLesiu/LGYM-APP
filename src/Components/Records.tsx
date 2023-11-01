@@ -1,19 +1,38 @@
 import { useState, useEffect } from "react"
 import './styles/Records.css'
-import juniorRank from './img/juniorRank.png'
+import JuniorRank from './img/juniorRank.png'
+import IntermediateRank from './img/intermediateRank.png'
+import AdvancedRank from './img/advanedRank.png'
+import GIGACHADRank from './img/chadRank.png'
+import ARNOLDRank from './img/arnoldRank.png'
 const Records:React.FC=()=>{
     const [deadLift,setDeadLift]=useState<number>(+localStorage.getItem("dl")!)
     const [squat,setSquat]=useState<number>(+localStorage.getItem("sq")!)
     const [benchPress,setBenchPress]=useState<number>(+localStorage.getItem("bp")!)
     const [total,setTotal]=useState<number>(deadLift+squat+benchPress)
-
+    const [rankImg,setRankImg]=useState<string>()
     const changeRank =async()=>{
         let rank:string 
-        if(total>200 && total < 350) rank='Intermediate'
-        else if(total>350 && total < 450) rank='Advanced'
-        else if(total>450 && total<500) rank ='GIGACHAD'
-        else if(total>500) rank ='ARNOLD'
-        else rank='Junior'
+        if(total>200 && total < 350){
+            setRankImg(IntermediateRank)
+            rank='Intermediate'
+        } 
+        else if(total>350 && total < 450){
+            setRankImg(AdvancedRank)
+            rank='Advanced'
+        } 
+        else if(total>450 && total<500){
+            setRankImg(GIGACHADRank)
+            rank ='GIGACHAD'
+        } 
+        else if(total>500){
+            setRankImg(ARNOLDRank)
+            rank ='ARNOLD'
+        } 
+        else{
+            setRankImg(JuniorRank)
+            rank='Junior'
+        } 
         await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}/rank`,{
             method:"POST",
             headers:{
@@ -23,6 +42,8 @@ const Records:React.FC=()=>{
                 rank: rank
             })
         })
+        
+        
         
     }
     useEffect(()=>{
@@ -60,7 +81,7 @@ const Records:React.FC=()=>{
                 <span id="scaleAdvanced">{'Advanced (350-450)'}</span>
                 <span id="scaleGiga">{'GIGACHAD (450-500)'}</span>
                 <span id="scaleArnold">{'ARNOLD (>500)'}</span> */}
-                <img id="juniorRank" src={juniorRank} alt="" />
+                <img id="juniorRank" src={rankImg} alt="" />
             </div>
         </section>
     )
