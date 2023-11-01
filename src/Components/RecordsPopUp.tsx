@@ -35,7 +35,12 @@ const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
                     })
         
                 }).then(res=>res.json()).catch(err=>err).then(res=>res.msg)
-                if(response === 'Updated') props.offPopUp()
+                if(response === 'Updated'){
+                    localStorage.setItem('dl',`${DeadLifRecord}`)
+                    localStorage.setItem('sq',`${SquatRecord}`)
+                    localStorage.setItem('bp',`${BenchPressRecord}`)
+                    props.offPopUp()
+                } 
                 
             }
             

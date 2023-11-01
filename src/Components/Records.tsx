@@ -1,10 +1,10 @@
 import { useState, useEffect,useCallback } from "react"
 import './styles/Records.css'
 const Records:React.FC=()=>{
-    const [deadLift,setDeadLift]=useState<number>(0)
-    const [squat,setSquat]=useState<number>(0)
-    const [benchPress,setBenchPress]=useState<number>(0)
-    const [total,setTotal]=useState<number>(0)
+    const [deadLift,setDeadLift]=useState<number>(+localStorage.getItem("dl")!)
+    const [squat,setSquat]=useState<number>(+localStorage.getItem("sq")!)
+    const [benchPress,setBenchPress]=useState<number>(+localStorage.getItem("bp")!)
+    const [total,setTotal]=useState<number>(deadLift+squat+benchPress)
 
     const changeRank =async()=>{
         let rank:string 
@@ -22,7 +22,7 @@ const Records:React.FC=()=>{
                 rank: rank
             })
         })
-        localStorage.setItem("rank",rank)
+        
     }
     useEffect(()=>{
         setSquat(():any=>+localStorage.getItem("sq")!)
@@ -37,7 +37,7 @@ const Records:React.FC=()=>{
     })
     useEffect(()=>{
         changeRank()
-    })
+    },)
 
 
     return(
