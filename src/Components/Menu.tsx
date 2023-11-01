@@ -36,7 +36,12 @@ const Menu:React.FC<MenuProps>=(props)=>{
     const checkUserRecords=async()=>{
         const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).then(res=>res)
         if(response !== "Didnt find"){
-            if(response.Bp && response.Dl && response.Sq ) setPopUp(true)
+            if(response.Bp && response.Dl && response.Sq ){
+                localStorage.setItem('dl',response.Dl)
+                localStorage.setItem('sq',response.Sq)
+                localStorage.setItem('bp',response.Bp)
+                setPopUp(true)
+            } 
         }
     }
     useEffect(()=>{

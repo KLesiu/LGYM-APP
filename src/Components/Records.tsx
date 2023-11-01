@@ -1,19 +1,25 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './styles/Records.css'
 const Records:React.FC=()=>{
-    const [deadLift,setDeadLift]=useState<string>('')
-    const [squat,setSquat]=useState<string>('')
-    const [benchPress,setBenchPress]=useState<string>('')
+    useEffect(()=>{
+        setSquat(():any=>+localStorage.getItem("sq")!)
+        setDeadLift(():any=>+localStorage.getItem('dl')!)
+        setBenchPress(():any=>+localStorage.getItem('bp')!)
+    },[])
+
+    const [deadLift,setDeadLift]=useState<number>(0)
+    const [squat,setSquat]=useState<number>(0)
+    const [benchPress,setBenchPress]=useState<number>(0)
     const [total,setTotal]=useState<number>(0)
     return(
         <section id="recordsSection">
             <h2>Records in powerlifting:</h2>
             <h3><div id="deadLiftIcon"></div>  Dead Lift:</h3>
-            <span>{deadLift || "No data"}</span>
+            <span>{deadLift + ' kg' || "No data"}</span>
             <h3><div id="squatIcon"></div>Squat:</h3>
-            <span>{squat || 'No data'}</span>
+            <span>{squat + ' kg' || 'No data'}</span>
             <h3><div id="benchPIcon"></div>Bench press:</h3>
-            <span>{benchPress || 'No data'}</span>
+            <span>{benchPress + ' kg' || 'No data'}</span>
             <h2>Your total is: {total}kg</h2>
             
             <div id="strengthScale">
