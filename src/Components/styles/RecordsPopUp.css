@@ -1,0 +1,38 @@
+#recordsPopUp{
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.856);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    font-family: 'Teko', sans-serif;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+}
+#recordsPopUp h2{
+    font-size: 40px;
+    
+
+}
+#recordsPopUp input{
+    width: 60%;
+    height: 5%;
+}
+#recordsPopUp label{
+    font-size: 30px;
+}
+#recordsPopUp button{
+    color: black;
+    font-size: 25px;
+    font-weight: 700;
+    margin-top: 20px;
+    height: 5%;
+    width: 20%;
+}
+
+
+.hidden{
+    display: none;
+}

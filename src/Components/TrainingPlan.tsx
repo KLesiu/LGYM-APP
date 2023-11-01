@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import './styles/TrainingPlan.css'
 
 export interface Plan{
@@ -20,6 +21,7 @@ const TrainingPlan:React.FC=()=>{
     return(
         <section>
             {yourPlan}
+            
         </section>
     )
 }

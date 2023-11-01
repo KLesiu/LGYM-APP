@@ -15,70 +15,70 @@ type Exercise={
     weight:string
 }
 const History:React.FC=()=>{
-    const ses={
-        symbol:"A",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses1={
-        symbol:"B",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses2={
-        symbol:"C",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses3={
-        symbol:"D",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses4={
-        symbol:"E",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses5={
-        symbol:"F",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses6={
-        symbol:"G",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses7={
-        symbol:"H",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses8={
-        symbol:"I",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const [sessions,setSessions]=useState<Session[]>([ses,ses1,ses2,ses3,ses4,ses5,ses6,ses7,ses8])
+    // const ses={
+    //     symbol:"A",
+    //     date: '21-02-2022',
+    //     time:'2,5',
+    //     exercises:[],
+    //     notes:'Kozak'
+    // }
+    // const ses1={
+    //     symbol:"B",
+    //     date: '21-02-2022',
+    //     time:'2,5',
+    //     exercises:[],
+    //     notes:'Kozak'
+    // }
+    // const ses2={
+    //     symbol:"C",
+    //     date: '21-02-2022',
+    //     time:'2,5',
+    //     exercises:[],
+    //     notes:'Kozak'
+    // }
+    // const ses3={
+    //     symbol:"D",
+    //     date: '21-02-2022',
+    //     time:'2,5',
+    //     exercises:[],
+    //     notes:'Kozak'
+    // }
+    // const ses4={
+    //     symbol:"E",
+    //     date: '21-02-2022',
+    //     time:'2,5',
+    //     exercises:[],
+    //     notes:'Kozak'
+    // }
+    // const ses5={
+    //     symbol:"F",
+    //     date: '21-02-2022',
+    //     time:'2,5',
+    //     exercises:[],
+    //     notes:'Kozak'
+    // }
+    // const ses6={
+    //     symbol:"G",
+    //     date: '21-02-2022',
+    //     time:'2,5',
+    //     exercises:[],
+    //     notes:'Kozak'
+    // }
+    // const ses7={
+    //     symbol:"H",
+    //     date: '21-02-2022',
+    //     time:'2,5',
+    //     exercises:[],
+    //     notes:'Kozak'
+    // }
+    // const ses8={
+    //     symbol:"I",
+    //     date: '21-02-2022',
+    //     time:'2,5',
+    //     exercises:[],
+    //     notes:'Kozak'
+    // }
+    const [sessions,setSessions]=useState<Session[]>([])
     const [currentSessionsNumber,setcurrentSessionsNumber]=useState<number>(3)
     const [currentSessions,setCurrentSessions]=useState<Session[]>([])
     useEffect(()=>{
