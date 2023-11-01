@@ -22,12 +22,13 @@ const Records:React.FC=()=>{
                 rank: rank
             })
         })
+        localStorage.setItem("rank",rank)
     }
     useEffect(()=>{
         setSquat(():any=>+localStorage.getItem("sq")!)
         setDeadLift(():any=>+localStorage.getItem('dl')!)
         setBenchPress(():any=>+localStorage.getItem('bp')!)
-    },[])
+    })
     useEffect(()=>{
         setTotal(():number=>{
             const sum = deadLift + squat + benchPress
@@ -36,7 +37,7 @@ const Records:React.FC=()=>{
     })
     useEffect(()=>{
         changeRank()
-    },[total])
+    })
 
 
     return(

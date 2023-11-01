@@ -35,7 +35,6 @@ const Login:React.FC=()=>{
             localStorage.setItem('id',data.req._id)
             localStorage.setItem("token",token)
             localStorage.setItem('email',data.req.email)
-            localStorage.setItem('rank',data.req.rank)
             return 'Authorized'
             
         }).catch(err=>err)
