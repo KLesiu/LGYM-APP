@@ -6,6 +6,12 @@ const Records:React.FC=()=>{
         setDeadLift(():any=>+localStorage.getItem('dl')!)
         setBenchPress(():any=>+localStorage.getItem('bp')!)
     },[])
+    useEffect(()=>{
+        setTotal(():number=>{
+            const sum = deadLift + squat + benchPress
+            return sum
+        })
+    })
 
     const [deadLift,setDeadLift]=useState<number>(0)
     const [squat,setSquat]=useState<number>(0)
@@ -20,7 +26,7 @@ const Records:React.FC=()=>{
             <span>{squat + ' kg' || 'No data'}</span>
             <h3><div id="benchPIcon"></div>Bench press:</h3>
             <span>{benchPress + ' kg' || 'No data'}</span>
-            <h2>Your total is: {total}kg</h2>
+            <h2>Your total is: {total} kg</h2>
             
             <div id="strengthScale">
                 <h3>STRENGTH SCALE:</h3>
