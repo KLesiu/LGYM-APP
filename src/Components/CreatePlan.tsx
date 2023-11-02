@@ -1,8 +1,12 @@
 import './styles/CreatePlan.css'
 
-const CreatePlan:React.FC = ()=>{
+interface CreatePlanProps{
+    setDayAndName:(event:React.FormEvent)=>any
+}
+
+const CreatePlan:React.FC<CreatePlanProps> = (props)=>{
     return(
-        <form id="createPlan" action="">
+        <form id="createPlan" onSubmit={props.setDayAndName} action="">
             <h2>PLAN CONFIG</h2>
             <label htmlFor="name">Plan name:</label>
             <input type="text" name="name" />
