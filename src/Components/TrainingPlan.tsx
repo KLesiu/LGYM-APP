@@ -1,4 +1,4 @@
-import { FormHTMLAttributes, useState } from 'react'
+import {useState } from 'react'
 import CreateConfigPlan from './CreateConfigPlan';
 import CreatePlan from './CreatePlan';
 import CreateCurrentDay from './CreateCurrentDay';
@@ -15,8 +15,9 @@ export interface PlanDay{
 export interface Exercise{
     name:string;
     series:number,
-    rep:string
+    reps:string
 }
+
 const TrainingPlan:React.FC=()=>{
     const [plan,setPlan]=useState<Plan>()
     const [yourPlan,setYourPlan]=useState(<div id='withoutPlanContainer'>
@@ -29,6 +30,13 @@ const TrainingPlan:React.FC=()=>{
     const [formElements,setFormElements]=useState(<form></form>)
     const [currentDayCreateSection,setCurrentDayCreateSection]= useState<boolean>(false)
     const [currentDay,setCurrentDay]=useState<string>('')
+    const [planACurrent,setPlanACurrent]=useState<Array<Exercise>>()
+    const [planBCurrent,setPlanBCurrent]=useState<Array<Exercise>>()
+    const [planCCurrent,setPlanCCurrent]=useState<Array<Exercise>>()
+    const [planDCurrent,setPlanDCurrent]=useState<Array<Exercise>>()
+    const [planECurrent,setPlanECurrent]=useState<Array<Exercise>>()
+    const [planFCurrent,setPlanFCurrent]=useState<Array<Exercise>>()
+    const [planGCurrent,setPlanGCurrent]=useState<Array<Exercise>>()
     const setDayAndName:any = async(event:React.FormEvent)=>{
         event.preventDefault()
         const name = document.querySelector<HTMLInputElement>("input[name='name']")?.value
@@ -89,8 +97,32 @@ const TrainingPlan:React.FC=()=>{
 
     }
  
-    const setCurrentPlanDay=async(day:string)=>{
-
+    const setCurrentPlanDay:any=async(e:any)=>{
+        const elementsName:any = document.querySelectorAll(`.${currentDay}-name`)
+        const elementsSeries:any = document.querySelectorAll(`.${currentDay}-series`)
+        const elementReps:any = document.querySelectorAll(`.${currentDay}-reps`)
+        const arr:Array<Exercise> = []
+        const day =e.target.parentElement.children[0].textContent
+        
+        for(let i=0;i<elementsName.length;i++){
+                if(elementsName[i].value !== '' && elementReps[i].value !=="" && elementsSeries[i].value !== "0" && elementsName[i].value !== undefined && elementReps[i].value !== undefined && elementsSeries[i].value > 0) {
+                    arr.push({
+                        name:elementsName[i].value,
+                        reps:elementReps[i].value,
+                        series:parseInt(elementsSeries[i].value) 
+                    })
+                }}
+       const currentInput:any = document.querySelector<HTMLInputElement>(`input[name='${day}']`)
+       currentInput.value= 'Completed'
+       if(day==='planA') setPlanACurrent(arr)
+       else if(day==='planB') setPlanBCurrent(arr)
+       else if(day==='planC') setPlanCCurrent(arr)
+       else if(day==='planD') setPlanDCurrent(arr)
+       else if(day==='planE') setPlanECurrent(arr)
+       else if(day==='planF') setPlanFCurrent(arr)
+       else if(day==='planG') setPlanGCurrent(arr)
+       setCurrentDayCreateSection(false)
+        
     }
     const submitPlan:any = async(e:Event)=>{
         e.preventDefault()
@@ -101,7 +133,7 @@ const TrainingPlan:React.FC=()=>{
             {yourPlan}
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}
             {planCreateSection?<CreatePlan formElements={formElements}/>:''}
-            {currentDayCreateSection?<CreateCurrentDay day={currentDay} />:''}
+            {currentDayCreateSection?<CreateCurrentDay setCurrentPlanDay ={setCurrentPlanDay} day={currentDay} planA={planACurrent || null} planB={planBCurrent || null} planC={planCCurrent || null} planD={planDCurrent || null} planE={planECurrent || null} planF={planFCurrent || null} planG={planGCurrent || null} />:''}
             
         </section>
     )
