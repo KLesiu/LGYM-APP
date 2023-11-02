@@ -1,0 +1,35 @@
+#createCurrentDaySection{
+    background-color: rgba(0, 0, 0, 0.925);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+#createCurrentDaySection h2{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+}
+#addExerciseCurrentDayButton{
+    margin-left: 45%;
+    margin-top: 20px;
+    width: 10%;
+}
+#createCurrentDaySection input{
+    margin-top:10px;
+    width: 25%;
+}
+.deleteCurrent{
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.exerciseConfig{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

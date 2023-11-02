@@ -48,24 +48,61 @@
 }
 
 #formPlanCreate{
-    align-items: center;
+    align-items: flex-start;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.795);
     color: white;
     font-family: 'Young Serif', serif;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     position: absolute;
     top: 0;
     width: 100%;
 }
+#formPlanCreate h2{
+    border-bottom: 4px solid whitesmoke;
+    margin: 0;
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+    width: 95%;
+    
+}
 #formPlanCreate div{
+    align-items: center;
     display: flex;
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
     flex-direction: column;
     margin-top: 20px;
+    width: 40%;
 }
-
+#formPlanCreate div button{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    border-radius: 5px;
+    height: 40px;
+    width: 90%;
+}
+#formPlanCreate div input{
+    width: 80%;
+}
+#formPlanCreate div label{
+    font-size: 15px;
+}
+#formPlanCreate button{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    border-radius: 10px;
+    height: 50px;
+    width: 70%;
+}

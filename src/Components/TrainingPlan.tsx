@@ -1,6 +1,7 @@
 import { FormHTMLAttributes, useState } from 'react'
 import CreateConfigPlan from './CreateConfigPlan';
 import CreatePlan from './CreatePlan';
+import CreateCurrentDay from './CreateCurrentDay';
 import './styles/TrainingPlan.css'
 
 export interface Plan{
@@ -25,6 +26,9 @@ const TrainingPlan:React.FC=()=>{
     const [namePlan,setNamePlan]=useState<string>()
     const [planConfigSection,setplanConfigSection]=useState<boolean>(false)
     const [planCreateSection , setplanCreateSection ]= useState<boolean>(false)
+    const [formElements,setFormElements]=useState(<form></form>)
+    const [currentDayCreateSection,setCurrentDayCreateSection]= useState<boolean>(false)
+    const [currentDay,setCurrentDay]=useState<string>('')
     const setDayAndName:any = async(event:React.FormEvent)=>{
         event.preventDefault()
         const name = document.querySelector<HTMLInputElement>("input[name='name']")?.value
@@ -40,13 +44,14 @@ const TrainingPlan:React.FC=()=>{
             })
         }).then(res=>res.json()).catch(err=>err).then(res=>res.msg)
         if(response === 'Created'){
+            setNamePlan(name)
             setplanConfigSection(false)
             setplanCreateSection (true)
             getPlanInfo()
         } 
 
     }
-    const [formElements,setFormElements]=useState(<form></form>)
+    
     const getPlanInfo = async()=>{
         const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`).then(res=>res.json()).catch(err=>err).then(res=>res.count)
         
@@ -58,17 +63,24 @@ const TrainingPlan:React.FC=()=>{
         setFormElements(()=>{
             
             return(
-                <form id='formPlanCreate'>
+                <form id='formPlanCreate' onSubmit={submitPlan}>
+                    <h2>Plan creator</h2>
+                    
                 {planDays.map(ele=>{
                     return(
                         <div>
                             <label htmlFor={ele}>{ele}: </label>
                             <input type="text" disabled value={[]} name={ele} />
-                            <button>Set training: {ele}</button>
+                            <button onClick={()=>{
+                                setCurrentDayCreateSection(true)
+                                setCurrentDay(ele)
+
+                            }}>Set training: <span id={ele}>{ele}</span></button>
                         </div>
 
                     )
                 })}
+                <button>CREATE</button>
             </form>
             )
         }
@@ -76,12 +88,20 @@ const TrainingPlan:React.FC=()=>{
         )
 
     }
+ 
+    const setCurrentPlanDay=async(day:string)=>{
+
+    }
+    const submitPlan:any = async(e:Event)=>{
+        e.preventDefault()
+    }
     
     return(
         <section id='trainingPlanSection'>
             {yourPlan}
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}
             {planCreateSection?<CreatePlan formElements={formElements}/>:''}
+            {currentDayCreateSection?<CreateCurrentDay day={currentDay} />:''}
             
         </section>
     )
