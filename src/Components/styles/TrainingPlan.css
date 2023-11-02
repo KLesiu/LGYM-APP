@@ -11,6 +11,8 @@
     background: linear-gradient(90deg, rgba(255,255,255,0.8407738095238095) 0%, rgba(238,235,235,0.9192051820728291) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#eeebeb",GradientType=1);
     border-radius: 10px;
+    border-bottom-right-radius: 0px ;
+    border-bottom-left-radius:  0px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
