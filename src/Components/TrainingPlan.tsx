@@ -19,6 +19,7 @@ export interface Exercise{
 }
 
 const TrainingPlan:React.FC=()=>{
+    
     const [plan,setPlan]=useState<Plan>()
     const [yourPlan,setYourPlan]=useState(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
@@ -132,8 +133,18 @@ const TrainingPlan:React.FC=()=>{
 
                     )
                 })}
-                    
-                    <button onClick={()=>setIsPlanSet(true)}>CREATE</button>
+                   
+                    <button onClick={()=>{
+                        const inputs = document.querySelectorAll('input')
+                        let auth=true
+                        inputs.forEach(ele=>{
+                            if(ele.value==='Uncompleted' || !ele.value) auth=false
+                            
+                        })
+                        if(auth) setIsPlanSet(true)
+                        else return alert('Complete all fields')
+                        
+                    }}>CREATE</button>
                 </section>
             )
         }
@@ -159,6 +170,8 @@ const TrainingPlan:React.FC=()=>{
                 }}
        const currentInput:any = document.querySelector<HTMLInputElement>(`input[name='${day}']`)
        currentInput.value= 'Completed'
+       if(arr.length < 1) currentInput.value = "Uncompleted"
+       
        if(day==='planA') setPlanACurrent(arr)
        else if(day==='planB') setPlanBCurrent(arr)
        else if(day==='planC') setPlanCCurrent(arr)
