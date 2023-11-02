@@ -23,6 +23,7 @@ nav div button{
     background: linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#595959",endColorstr="#404040",GradientType=1);
     cursor: pointer;
+    border: none;
     display: flex;
     height: 100%;
     font-family: 'Teko', sans-serif;
