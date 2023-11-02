@@ -1,4 +1,4 @@
-import {useState } from 'react'
+import {useEffect, useState } from 'react'
 import CreateConfigPlan from './CreateConfigPlan';
 import CreatePlan from './CreatePlan';
 import CreateCurrentDay from './CreateCurrentDay';
@@ -37,6 +37,7 @@ const TrainingPlan:React.FC=()=>{
     const [planECurrent,setPlanECurrent]=useState<Array<Exercise>>()
     const [planFCurrent,setPlanFCurrent]=useState<Array<Exercise>>()
     const [planGCurrent,setPlanGCurrent]=useState<Array<Exercise>>()
+    const [isPlanSet,setIsPlanSet]=useState<boolean>(false)
     const setDayAndName:any = async(event:React.FormEvent)=>{
         event.preventDefault()
         const name = document.querySelector<HTMLInputElement>("input[name='name']")?.value
@@ -59,7 +60,50 @@ const TrainingPlan:React.FC=()=>{
         } 
 
     }
+    const submitPlan:any = async()=>{
+       
+  
+        const countDivs = document.querySelectorAll('#formPlanCreate div')
+        if(countDivs.length === 1) setPlan({days:[
+            {trainingDay:'planA',exercises:planACurrent!}
+        ]})
+        else if(countDivs.length === 2) setPlan({days:[
+            {trainingDay:'planA',exercises:planACurrent!},{trainingDay:'planB',exercises:planBCurrent!}
+        ]})
+        else if(countDivs.length === 3) setPlan({days:[
+            {trainingDay:'planA',exercises:planACurrent!},{trainingDay:'planB',exercises:planBCurrent!},{trainingDay:'planC',exercises:planCCurrent!}]})
+        else if(countDivs.length === 4) setPlan({days:[
+            {trainingDay:'planA',exercises:planACurrent!},
+            {trainingDay:'planB',exercises:planBCurrent!},
+            {trainingDay:'planC',exercises:planCCurrent!},
+            {trainingDay:'planD',exercises:planDCurrent!}
+        ]})
+        else if(countDivs.length === 5) setPlan({days:[
+        {trainingDay:'planA',exercises:planACurrent!},
+        {trainingDay:'planB',exercises:planBCurrent!},
+        {trainingDay:'planC',exercises:planCCurrent!},
+        {trainingDay:'planD',exercises:planDCurrent!},
+        {trainingDay:'planE',exercises:planECurrent!}
+    ]})        
+        else if(countDivs.length === 6) setPlan({days:[
+        {trainingDay:'planA',exercises:planACurrent!},
+        {trainingDay:'planB',exercises:planBCurrent!},
+        {trainingDay:'planC',exercises:planCCurrent!},
+        {trainingDay:'planD',exercises:planDCurrent!},
+        {trainingDay:'planE',exercises:planECurrent!},
+        {trainingDay:'planF',exercises:planFCurrent!}
+    ]})
+        else if(countDivs.length === 7) setPlan({days:[
+        {trainingDay:'planA',exercises:planACurrent!},
+        {trainingDay:'planB',exercises:planBCurrent!},
+        {trainingDay:'planC',exercises:planCCurrent!},
+        {trainingDay:'planD',exercises:planDCurrent!},
+        {trainingDay:'planE',exercises:planECurrent!},
+        {trainingDay:'planF',exercises:planFCurrent!},
+        {trainingDay:'planG',exercises:planGCurrent!}
+    ]})
     
+    }
     const getPlanInfo = async()=>{
         const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`).then(res=>res.json()).catch(err=>err).then(res=>res.count)
         
@@ -71,9 +115,9 @@ const TrainingPlan:React.FC=()=>{
         setFormElements(()=>{
             
             return(
-                <form id='formPlanCreate' onSubmit={submitPlan}>
+                <section id='formPlanCreate' onSubmit={submitPlan} >
                     <h2>Plan creator</h2>
-                    
+         
                 {planDays.map(ele=>{
                     return(
                         <div>
@@ -88,8 +132,9 @@ const TrainingPlan:React.FC=()=>{
 
                     )
                 })}
-                <button>CREATE</button>
-            </form>
+                    
+                    <button onClick={()=>setIsPlanSet(true)}>CREATE</button>
+                </section>
             )
         }
             
@@ -124,10 +169,14 @@ const TrainingPlan:React.FC=()=>{
        setCurrentDayCreateSection(false)
         
     }
-    const submitPlan:any = async(e:Event)=>{
-        e.preventDefault()
-    }
-    
+
+    useEffect(()=>{
+        submitPlan()
+        
+    },[isPlanSet])
+    useEffect(()=>{
+        console.log(plan)
+    },[plan])
     return(
         <section id='trainingPlanSection'>
             {yourPlan}
