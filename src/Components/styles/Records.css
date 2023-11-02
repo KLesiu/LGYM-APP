@@ -55,8 +55,6 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin-top: 3%;
-    
     width: 100%;
 }
 #strengthScale span{
@@ -97,6 +95,7 @@
 }
 #juniorRank{
     border-radius: 20px;
-    height: 70%;
-    width: 60%;
+    height: 50%;
+    
+    width: 40%;
 }

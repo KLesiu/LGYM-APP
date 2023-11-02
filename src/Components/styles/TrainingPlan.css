@@ -46,3 +46,26 @@
     letter-spacing: 4px;
     width: 60%;
 }
+
+#formPlanCreate{
+    align-items: center;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.795);
+    color: white;
+    font-family: 'Young Serif', serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+#formPlanCreate div{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
