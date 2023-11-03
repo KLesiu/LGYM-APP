@@ -28,6 +28,8 @@ const TrainingPlan:React.FC=()=>{
     const [namePlan,setNamePlan]=useState<string>()
     const [planConfigSection,setplanConfigSection]=useState<boolean>(false)
     const [planCreateSection , setplanCreateSection ]= useState<boolean>(false)
+    const [showedPlanDay,setShowedPlanDay]=useState<number>(0)
+    const [arrows,setArrows]=useState<boolean>(true)
     const [formElements,setFormElements]=useState(<form></form>)
     const [currentDayCreateSection,setCurrentDayCreateSection]= useState<boolean>(false)
     const [currentDay,setCurrentDay]=useState<string>('')
@@ -182,21 +184,168 @@ const TrainingPlan:React.FC=()=>{
        setCurrentDayCreateSection(false)
         
     }
+    const setCurrentPlan=async()=>{
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/setPlan`,{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify({
+                days:plan
+            })
+
+        }).then(res=>res.json()).catch(err=>err).then(res=>res)
+        if(response.msg === 'Updated'){
+            setplanCreateSection(false)
+        }
+    }
+    const showOnlyFirstPlanDay:VoidFunction=()=>{
+        const elements = document.querySelectorAll('.containerForAllExercises')
+        
+        for(let i=1;i<elements.length;i++){
+            elements[i].classList.add('hidden')
+        }
+    }
+    const getUserPlan = async()=>{
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPlan`).then(res=>res.json()).catch(err=>err).then(res=>res)
+        if(response.data === 'Didnt find') setYourPlan(<div id='withoutPlanContainer'>
+        <h2>You dont have any plans!</h2>
+        <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
+    </div>)
+        else{
+            const data = response.data
+            
+            const planA = data.planA.length > 0? data.planA.map((element:Exercise)=>(
+                <div className="exercisesContainer">
+                    <p>{element.name}</p>
+                    <p>{element.series} x {element.reps}</p>
+                </div>
+            )): ''
+            const planB= data.planB.length >0? data.planB.map((element:Exercise)=>(
+                <div className="exercisesContainer">
+                    <p>{element.name}</p>
+                    <p>{element.series} x {element.reps}</p>
+                </div>
+            )):''
+            const planC= data.planC.length >0? data.planC.map((element:Exercise)=>(
+                <div className="exercisesContainer">
+                    <p>{element.name}</p>
+                    <p>{element.series} x {element.reps}</p>
+                </div>
+            )):''
+            const planD= data.planD.length >0? data.planD.map((element:Exercise)=>(
+                <div className="exercisesContainer">
+                    <p>{element.name}</p>
+                    <p>{element.series} x {element.reps}</p>
+                </div>
+            )):''
+            const planE= data.planE.length >0? data.planE.map((element:Exercise)=>(
+                <div className="exercisesContainer">
+                    <p>{element.name}</p>
+                    <p>{element.series} x {element.reps}</p>
+                </div>
+            )):''
+            const planF= data.planF.length >0? data.planF.map((element:Exercise)=>(
+                <div className="exercisesContainer">
+                    <p>{element.name}</p>
+                    <p>{element.series} x {element.reps}</p>
+                </div>
+            )):''
+            const planG= data.planG.length >0? data.planG.map((element:Exercise)=>(
+                <div className="exercisesContainer">
+                    <p>{element.name}</p>
+                    <p>{element.series} x {element.reps}</p>
+                </div>
+            )):''
+            
+            setYourPlan(()=>{
+                return(
+                    <section id='planSection'>
+                        {planA?<div className="containerForAllExercises">
+                            <h3>Plan A</h3>
+                            {planA}
+                        </div>:''}
+                        {planB?<div className="containerForAllExercises">
+                            <h3>Plan B</h3>
+                            {planB}
+                        </div>:''}
+                        {planC?<div className="containerForAllExercises">
+                            <h3>Plan C</h3>
+                            {planC}
+                        </div>:''}
+                        {planD?<div className="containerForAllExercises">
+                            <h3>Plan D</h3>
+                            {planD}
+                        </div>:''}
+                        {planE?<div className="containerForAllExercises">
+                            <h3>Plan E</h3>
+                            {planE}
+                        </div>:''}
+                        {planF?<div className="containerForAllExercises">
+                            <h3>Plan F</h3>
+                            {planF}
+                        </div>:''}
+                        {planG?<div className="containerForAllExercises">
+                            <h3>Plan G</h3>
+                            {planG}
+                        </div>:''}
+                       
+                       
+                    </section>
+                )
+            })
+            showOnlyFirstPlanDay()
+
+            
+        
+        }
+    }
+    const showNextPlanDay:VoidFunction=()=>{
+
+        if(showedPlanDay === document.querySelectorAll(".containerForAllExercises").length-1) return alert('You dont have more plan days!')
+        setShowedPlanDay(showedPlanDay+1)
+    }
+    const showPrevPlanDay:VoidFunction=()=>{
+        if(showedPlanDay===0) return alert('You are looking at the first plan day')
+        console.log(showedPlanDay)
+        setShowedPlanDay(showedPlanDay-1)
+    }
+    const showCurrentPlanDay=(showedPlanDay:number)=>{
+        const elements = document.querySelectorAll('.containerForAllExercises')
+        
+        for(let i=0;i<elements.length;i++){
+            if(i===showedPlanDay)  elements[i].classList.remove('hidden')
+            else elements[i].classList.add('hidden')
+
+        }
+    }
 
     useEffect(()=>{
         submitPlan()
         
     },[isPlanSet])
     useEffect(()=>{
-        console.log(plan)
+       if(plan) setCurrentPlan()
     },[plan])
+    useEffect(()=>{
+        getUserPlan()
+    },[])
+   
+    useEffect(()=>{
+        showCurrentPlanDay(showedPlanDay)
+    },[showedPlanDay])
     return(
         <section id='trainingPlanSection'>
             {yourPlan}
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}
             {planCreateSection?<CreatePlan formElements={formElements}/>:''}
             {currentDayCreateSection?<CreateCurrentDay setCurrentPlanDay ={setCurrentPlanDay} day={currentDay} planA={planACurrent || null} planB={planBCurrent || null} planC={planCCurrent || null} planD={planDCurrent || null} planE={planECurrent || null} planF={planFCurrent || null} planG={planGCurrent || null} />:''}
-            
+            {arrows?<section className='buttonsSection'> <button onClick={showPrevPlanDay} id='prevDays'>
+                                <span className="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button id='nextDays' onClick={showNextPlanDay} >
+                                <span className="material-symbols-outlined">chevron_right</span>
+                        </button></section>:''}
         </section>
     )
 }

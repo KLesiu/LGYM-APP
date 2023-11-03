@@ -6,6 +6,8 @@ nav{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#28292a",endColorstr="#1f1d1d",GradientType=1);
     display: flex;
     height: 10vh;
+    position: sticky;
+    top: 0;
     width: 100%;
 }
 nav div{
