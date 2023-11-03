@@ -208,10 +208,13 @@ const TrainingPlan:React.FC=()=>{
     }
     const getUserPlan = async()=>{
         const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPlan`).then(res=>res.json()).catch(err=>err).then(res=>res)
-        if(response.data === 'Didnt find') setYourPlan(<div id='withoutPlanContainer'>
+        if(response.data === 'Didnt find'){
+            setYourPlan(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
     </div>)
+            setArrows(false)
+        } 
         else{
             const data = response.data
             
@@ -307,7 +310,6 @@ const TrainingPlan:React.FC=()=>{
     }
     const showPrevPlanDay:VoidFunction=()=>{
         if(showedPlanDay===0) return alert('You are looking at the first plan day')
-        console.log(showedPlanDay)
         setShowedPlanDay(showedPlanDay-1)
     }
     const showCurrentPlanDay=(showedPlanDay:number)=>{
