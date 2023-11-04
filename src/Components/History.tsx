@@ -78,7 +78,7 @@ const History:React.FC=()=>{
         exercises:[],
         notes:'Kozak'
     }
-    const [sessions,setSessions]=useState<Session[]>([ses,ses1,ses2])
+    const [sessions,setSessions]=useState<Session[]>([ses,ses1,ses2,ses3,ses4,ses5])
     const [currentSessionsNumber,setcurrentSessionsNumber]=useState<number>(3)
     const [currentSessions,setCurrentSessions]=useState<Session[]>([])
     useEffect(()=>{
@@ -121,7 +121,7 @@ const History:React.FC=()=>{
             <h2>Training History</h2>
             {currentSessions.length>0? currentSessions.map(ele=>{
                 return(
-                    <div className='session'>
+                    <div className='session' key={uniqid()}>
                         <h3>Training symbol: {ele.symbol} </h3>
                         <p>Date: {ele.date} </p>
                         <p>Time: {ele.time} </p>

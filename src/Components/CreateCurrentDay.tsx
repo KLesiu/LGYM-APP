@@ -1,6 +1,7 @@
 import './styles/CreateCurrentDay.css'
 import {useState,useEffect} from 'react'
 import { Exercise } from './TrainingPlan'
+import uniqid from 'uniqid'
 
 interface CreateCurrentDayProps{
     day:string
@@ -38,7 +39,7 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
         </div>
         const arr = []
         if(day === 'planA'){
-            if(props.planA) props.planA.map(ele=>arr.push(<div className='exerciseConfig'>
+            if(props.planA) props.planA.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
                  <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
             <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
             <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
@@ -46,7 +47,7 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
             </div>))
         }
         else if(day === 'planB'){
-            if(props.planB) props.planB.map(ele=>arr.push(<div className='exerciseConfig'>
+            if(props.planB) props.planB.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
        <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
        <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
@@ -54,7 +55,7 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
        </div>))
         }
         else if(day === 'planC'){
-            if(props.planC) props.planC.map(ele=>arr.push(<div className='exerciseConfig'>
+            if(props.planC) props.planC.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
        <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
        <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
@@ -62,7 +63,7 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
        </div>))
         }
         else if(day === 'planD'){
-            if(props.planD) props.planD.map(ele=>arr.push(<div className='exerciseConfig'>
+            if(props.planD) props.planD.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
        <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
        <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
@@ -70,7 +71,7 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
        </div>))
         }
         else if(day === 'planE'){
-            if(props.planE) props.planE.map(ele=>arr.push(<div className='exerciseConfig'>
+            if(props.planE) props.planE.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
        <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
        <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
@@ -78,7 +79,7 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
        </div>))
         }
         else if(day === 'planF'){
-            if(props.planF) props.planF.map(ele=>arr.push(<div className='exerciseConfig'>
+            if(props.planF) props.planF.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
        <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
        <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
@@ -86,7 +87,7 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
        </div>))
         }
         else if(day === 'planG'){
-            if(props.planG) props.planG.map(ele=>arr.push(<div className='exerciseConfig'>
+            if(props.planG) props.planG.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
        <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
        <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />

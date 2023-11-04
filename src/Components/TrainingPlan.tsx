@@ -2,6 +2,7 @@ import {useEffect, useState } from 'react'
 import CreateConfigPlan from './CreateConfigPlan';
 import CreatePlan from './CreatePlan';
 import CreateCurrentDay from './CreateCurrentDay';
+import uniqid from 'uniqid'
 import './styles/TrainingPlan.css'
 
 export interface Plan{
@@ -123,7 +124,7 @@ const TrainingPlan:React.FC=()=>{
          
                 {planDays.map(ele=>{
                     return(
-                        <div>
+                        <div key={uniqid()}>
                             <label htmlFor={ele}>{ele}: </label>
                             <input type="text" disabled value={[]} name={ele} />
                             <button onClick={()=>{
@@ -219,76 +220,76 @@ const TrainingPlan:React.FC=()=>{
             const data = response.data
             
             const planA = data.planA.length > 0? data.planA.map((element:Exercise)=>(
-                <div className="exercisesContainer">
-                    <p>{element.name}</p>
-                    <p>{element.series} x {element.reps}</p>
+                <div className="exercisesContainer" key={uniqid()}>
+                    <p key={uniqid()}>{element.name}</p>
+                    <p key={uniqid()}>{element.series} x {element.reps}</p>
                 </div>
             )): ''
             const planB= data.planB.length >0? data.planB.map((element:Exercise)=>(
-                <div className="exercisesContainer">
-                    <p>{element.name}</p>
-                    <p>{element.series} x {element.reps}</p>
+                <div className="exercisesContainer" key={uniqid()}>
+                    <p key={uniqid()}>{element.name}</p>
+                    <p key={uniqid()}>{element.series} x {element.reps}</p>
                 </div>
             )):''
             const planC= data.planC.length >0? data.planC.map((element:Exercise)=>(
-                <div className="exercisesContainer">
-                    <p>{element.name}</p>
-                    <p>{element.series} x {element.reps}</p>
+                <div className="exercisesContainer" key={uniqid()}>
+                    <p key={uniqid()}>{element.name}</p>
+                    <p key={uniqid()}>{element.series} x {element.reps}</p>
                 </div>
             )):''
             const planD= data.planD.length >0? data.planD.map((element:Exercise)=>(
-                <div className="exercisesContainer">
-                    <p>{element.name}</p>
-                    <p>{element.series} x {element.reps}</p>
+                <div className="exercisesContainer" key={uniqid()}>
+                    <p key={uniqid()}>{element.name}</p>
+                    <p key={uniqid()}>{element.series} x {element.reps}</p>
                 </div>
             )):''
             const planE= data.planE.length >0? data.planE.map((element:Exercise)=>(
-                <div className="exercisesContainer">
-                    <p>{element.name}</p>
-                    <p>{element.series} x {element.reps}</p>
+                <div className="exercisesContainer" key={uniqid()}>
+                    <p key={uniqid()}>{element.name}</p>
+                    <p key={uniqid()}>{element.series} x {element.reps}</p>
                 </div>
             )):''
             const planF= data.planF.length >0? data.planF.map((element:Exercise)=>(
-                <div className="exercisesContainer">
-                    <p>{element.name}</p>
-                    <p>{element.series} x {element.reps}</p>
+                <div className="exercisesContainer" key={uniqid()}>
+                    <p key={uniqid()}>{element.name}</p>
+                    <p key={uniqid()}>{element.series} x {element.reps}</p>
                 </div>
             )):''
             const planG= data.planG.length >0? data.planG.map((element:Exercise)=>(
-                <div className="exercisesContainer">
-                    <p>{element.name}</p>
-                    <p>{element.series} x {element.reps}</p>
+                <div className="exercisesContainer" key={uniqid()}>
+                    <p key={uniqid()}>{element.name}</p>
+                    <p key={uniqid()}>{element.series} x {element.reps}</p>
                 </div>
             )):''
             
             setYourPlan(()=>{
                 return(
                     <section id='planSection'>
-                        {planA?<div className="containerForAllExercises">
+                        {planA?<div key={uniqid()} className=" containerForAllExercises">
                             <h3>Plan A</h3>
                             {planA}
                         </div>:''}
-                        {planB?<div className="containerForAllExercises">
+                        {planB?<div key={uniqid()} className="hidden containerForAllExercises">
                             <h3>Plan B</h3>
                             {planB}
                         </div>:''}
-                        {planC?<div className="containerForAllExercises">
+                        {planC?<div key={uniqid()} className="hidden containerForAllExercises">
                             <h3>Plan C</h3>
                             {planC}
                         </div>:''}
-                        {planD?<div className="containerForAllExercises">
+                        {planD?<div key={uniqid()} className="hidden containerForAllExercises">
                             <h3>Plan D</h3>
                             {planD}
                         </div>:''}
-                        {planE?<div className="containerForAllExercises">
+                        {planE?<div key={uniqid()} className="hidden containerForAllExercises">
                             <h3>Plan E</h3>
                             {planE}
                         </div>:''}
-                        {planF?<div className="containerForAllExercises">
+                        {planF?<div key={uniqid()} className="hidden containerForAllExercises">
                             <h3>Plan F</h3>
                             {planF}
                         </div>:''}
-                        {planG?<div className="containerForAllExercises">
+                        {planG?<div key={uniqid()} className="hidden containerForAllExercises">
                             <h3>Plan G</h3>
                             {planG}
                         </div>:''}
