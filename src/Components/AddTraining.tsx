@@ -2,6 +2,10 @@ import { useState,useEffect } from 'react'
 import './styles/AddTraining.css'
 import uniqid from 'uniqid'
 
+export interface ExerciseTraining{
+    field:string,
+    score:string
+}
 export interface Exercise{
     name:string;
     series:number,
@@ -14,6 +18,10 @@ const AddTraining=()=>{
     const [daySection,setDaySection]=useState(<div></div>)
     const [showExercise,setShowExercise]=useState<boolean>()
     const [showedCurrentExerciseNumber,setShowedCurrentExerciseNumber]=useState<number>(0)
+    const [popUp,setPopUp]=useState(<div className='fromLeft popUpAddTraining'><span className="appear donePopUp material-symbols-outlined">
+    done
+    </span></div>)
+    const [isPopUpShowed,setIsPopUpShowed]=useState<boolean>(false)
     const getInformationsAboutPlanDays = async()=>{
         const trainingDays = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`).then(res=>res.json()).catch(err=>err).then(res=>res.count)
         const helpsArray= ["A","B","C","D","E","F","G"]
@@ -47,7 +55,7 @@ const AddTraining=()=>{
     const setCurrentDaySection=(exercises:any,day:string)=>{
         
         setDaySection(<div id='daySection'>
-            <h2>Training {day}</h2>
+            <h2 >Training <span className='currentDayOfTraining'>{day}</span> </h2>
             {exercises.map((ele:Exercise)=>{
                 let helpsArray = []
                 for(let i=1;i<+ele.series+1;i++){
@@ -98,6 +106,52 @@ const AddTraining=()=>{
             elements[showedCurrentExerciseNumber].classList.remove('hidden')
         }
     }
+    const submitYourTraining=()=>{
+        const inputs = document.querySelectorAll("input")
+        const labels = document.querySelectorAll('label')
+        const day = document.querySelector(".currentDayOfTraining")?.textContent!
+        let completed = false
+        inputs.forEach(ele=>{
+            if(ele.value){
+                completed = true
+            }
+            else{
+                completed = false
+            }
+        })
+        if(!completed) return alert('Complete all fields!')
+        let array:Array<ExerciseTraining>=[]
+        for(let i=0;i<inputs.length;i++){
+            array.push({field:labels[i].textContent!,score:inputs[i].value})
+        }
+        
+        addYourTrainingToDataBase(day,array)
+    }
+    const addYourTrainingToDataBase=async(day:string,training:Array<ExerciseTraining>)=>{
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/addTraining`,{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify({
+                day: day,
+                training:training,
+                createdAt:new Date().getTime(),
+            })
+        }).then(res=>res.json()).catch(err=>err).then(res=>res)
+        if(response.msg="Training added"){
+            setChooseDay(<div></div>)
+            setDaySection(<div></div>)
+            setShowExercise(false)
+            setShowedCurrentExerciseNumber(0)
+            setIsPopUpShowed(true)
+            popUpTurnOn()
+            
+        }
+    }
+    const popUpTurnOn=()=>{
+        setTimeout(()=>setIsPopUpShowed(false),7000)
+    }
     useEffect(()=>{
         if(showExercise) showFirstExercise()
     },[showExercise])
@@ -129,12 +183,14 @@ const AddTraining=()=>{
                                     navigate_before
                                 </span>
                         </button>
+                        <button onClick={submitYourTraining} id='addCurrentTrainingButton'>ADD TRAINING</button>
                         <button onClick={showNextExercise}>
                                 <span  className="material-symbols-outlined">
                                     navigate_next
                                 </span>
                         </button>
                     </div>:''}
+                    {isPopUpShowed?popUp:''}
             </div>:''}
             
             

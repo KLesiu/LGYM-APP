@@ -1,3 +1,20 @@
+@keyframes appearDone {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes fromLeftToRight {
+    from{
+        left: -60%;
+    }
+    to{
+        left: 25%;
+    }
+}
+
 #addTrainingContainer{
     align-items: center;
     background: rgb(255,255,255);
@@ -87,6 +104,8 @@
     background-color: rgba(0, 0, 0, 0.884);
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 10px;
     height: 100%;
     position: absolute;
     width: 100%;
@@ -161,6 +180,39 @@
    border: none;
     font-weight: bold;
     font-family: 'Teko', sans-serif;
+}
+#addCurrentTrainingButton{
+    font-size: 25px;
+}
+.popUpAddTraining{
+    align-items: center;
+    background-color: green;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    top: 30%;
+    height: 30%;
+    width: 50%;
+    position: absolute;
+}
+.donePopUp{
+    font-size: 150px;
+    font-weight: bolder;
+    opacity: 0;
+}
+.appear{
+    animation-name: appearDone;
+    animation-delay: 3s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    
+}
+.fromLeft{
+    animation-name: fromLeftToRight;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    
 }
 .hidden{
     display: none;
