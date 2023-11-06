@@ -1,11 +1,143 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import './styles/AddTraining.css'
+import uniqid from 'uniqid'
+
+export interface Exercise{
+    name:string;
+    series:number,
+    reps:string
+}
+
 const AddTraining=()=>{
-    const [plan,setPlan]=useState('')
+    const [plan,setPlan]=useState(localStorage.getItem('plan')?localStorage.getItem('plan'):'')
+    const [chooseDay,setChooseDay]=useState(<div></div>)
+    const [daySection,setDaySection]=useState(<div></div>)
+    const [showExercise,setShowExercise]=useState<boolean>()
+    const [showedCurrentExerciseNumber,setShowedCurrentExerciseNumber]=useState<number>(0)
+    const getInformationsAboutPlanDays = async()=>{
+        const trainingDays = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`).then(res=>res.json()).catch(err=>err).then(res=>res.count)
+        const helpsArray= ["A","B","C","D","E","F","G"]
+        const daysArray = []
+        for(let i=0;i<trainingDays;i++){
+            daysArray.push(helpsArray[i])
+        }
+        
+        setChooseDay(<div id='chooseDaySection'>
+            <h2>Choose training day</h2>
+            {daysArray.map(ele=><button onClick={showDaySection} className='chooseDaySectionButton' key={uniqid()}>{ele}</button>)}
+        </div>)
+    }
+    const showDaySection:any=async(e:any)=>{
+        const day = e.target.textContent
+        const planOfTheDay:Array<Exercise> = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPlan`).then(res=>res.json()).catch(err=>err).then(res=>{
+            const data=res.data
+            if(day=== 'A') return data.planA
+            else if(day=== 'B') return data.planB
+            else if(day=== 'C') return data.planC
+            else if(day=== 'D') return data.planD
+            else if(day=== 'E') return data.planE
+            else if(day=== 'F') return data.planF
+            else if(day ==='G') return data.planG
+        })
+        setCurrentDaySection(planOfTheDay,day)
+        setChooseDay(<div></div>)
+
+        
+    }
+    const setCurrentDaySection=(exercises:any,day:string)=>{
+        
+        setDaySection(<div id='daySection'>
+            <h2>Training {day}</h2>
+            {exercises.map((ele:Exercise)=>{
+                let helpsArray = []
+                for(let i=1;i<+ele.series+1;i++){
+                    helpsArray.push(`Series: ${i}`)
+                }
+                return(
+                    <div key={uniqid()} className='hidden exerciseCurrentDiv'>
+                        <h3>{ele.name}</h3>
+                        {helpsArray.map(s=>{
+                            return(
+                                <div className='exerciseSeriesDiv' key={uniqid()}>
+                                    <label htmlFor={`${ele.name}-${s}-rep`}>{ele.name} {s}: Rep</label>
+                                    <input type="number" name={`${ele.name}-${s}-rep`} />
+                                    <label htmlFor={`${ele.name}-${s}-weight`}>{ele.name} {s}: Weight (kg)</label>
+                                    <input type="number" name={`${ele.name}-${s}-weigt`} />
+                                </div>
+                            )
+                        })}
+                    </div>
+                )
+               
+               
+            })}
+        </div>)
+        setShowExercise(true)
+        
+    }
+    const showFirstExercise=()=>{
+        const exercise = document.querySelectorAll('.exerciseCurrentDiv')
+        exercise[0].classList.remove('hidden')
+        setShowedCurrentExerciseNumber(0)
+    }
+    const showNextExercise=()=>{
+        if(showedCurrentExerciseNumber===document.querySelectorAll('.exerciseCurrentDiv').length-1) return alert('You are looking at the last exercise of your plan!')
+        setShowedCurrentExerciseNumber(showedCurrentExerciseNumber+1)
+    }
+    const showPrevExercise=()=>{
+        if(showedCurrentExerciseNumber===0) return alert('You are looking at first exercise of your plan!')
+        setShowedCurrentExerciseNumber(showedCurrentExerciseNumber-1)
+    }
+    const showCurrentExercise=()=>{
+        if(showedCurrentExerciseNumber===0) showFirstExercise()
+        else{
+            const elements = document.querySelectorAll('.exerciseCurrentDiv')
+            for(let i=0;i<elements.length;i++){
+                elements[i].classList.add('hidden')
+            }
+            elements[showedCurrentExerciseNumber].classList.remove('hidden')
+        }
+    }
+    useEffect(()=>{
+        if(showExercise) showFirstExercise()
+    },[showExercise])
+
+    useEffect(()=>{
+        if(showExercise) showCurrentExercise()
+    },[showedCurrentExerciseNumber])
+   
+
+    
     return(
         <section id='addTrainingContainer'>
+            {plan===''?<div>
             <h2>You cant add training!</h2>
-            {plan===''? <button><span>You have to create plan first!</span></button>:plan}
+            <button className='addPlanTrainigSection'><span>You have to create plan first!</span></button>
+            </div>:''}
+            {plan ==='completed'?<div id='addTrainingSection'>
+                    <h2>Add Training!</h2>
+                    <button onClick={getInformationsAboutPlanDays} id='addTrainingButton'>
+                        <span className="plusTraining material-symbols-outlined">
+                            add
+                        </span>
+                    </button>
+                    {chooseDay}
+                    {daySection}
+                    {showExercise?<div id='buttonsTrainingDiv'>
+                        <button onClick={showPrevExercise}>
+                                <span className="material-symbols-outlined">
+                                    navigate_before
+                                </span>
+                        </button>
+                        <button onClick={showNextExercise}>
+                                <span  className="material-symbols-outlined">
+                                    navigate_next
+                                </span>
+                        </button>
+                    </div>:''}
+            </div>:''}
+            
+            
         </section>
     )
 }

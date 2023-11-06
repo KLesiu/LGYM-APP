@@ -299,7 +299,7 @@ const TrainingPlan:React.FC=()=>{
                 )
             })
             showOnlyFirstPlanDay()
-
+            localStorage.setItem('plan','completed')
             
         
         }

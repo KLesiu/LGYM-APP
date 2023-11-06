@@ -19,7 +19,10 @@
 #addTrainingContainer h2{
     font-family: 'Young Serif', serif;
 }
-#addTrainingContainer button{
+
+
+
+.addPlanTrainigSection{
     align-items: center;
     background: rgba(255, 255, 255, 0.918);
     background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
@@ -41,4 +44,124 @@
     text-shadow: 1px 1px 1px rgba(34, 34, 34, 0.89);
     letter-spacing: 4px;
     width: 60%;
+}
+
+#addTrainingSection{
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+}
+#addTrainingSection h2{
+    text-align: center;
+    font-size: 30px;
+    width: 100%;
+}
+
+
+#addTrainingButton{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    height: 10%;
+    width: 40%;
+}
+.plusTraining{
+    align-items: center;
+    font-size: 60px;
+    font-weight: bold;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+#chooseDaySection{
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.884);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+#chooseDaySection h2{
+    color: white;
+}
+.chooseDaySectionButton{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Teko', sans-serif;
+    height: 10%;
+    width: 50%;
+}
+#daySection{
+    background-color: rgba(0, 0, 0, 0.842);
+    color: white;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.exerciseCurrentDiv{
+    height: 85%;
+}
+.exerciseCurrentDiv h3{
+    background-color: rgba(255, 255, 255, 0.151);
+    text-align: center;
+   font-size: 25px;
+   width: 100%;
+}
+.exerciseSeriesDiv{
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.527);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: 5%;
+}
+.exerciseSeriesDiv label{
+    
+    font-size: 20px;
+    width: 80%;
+}
+.exerciseSeriesDiv input{
+    margin-top: 1%;
+    width: 10%;
+}
+#buttonsTrainingDiv{
+    background:none;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    bottom: 2%;
+}
+#buttonsTrainingDiv button{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+   border-radius: 10%;
+   border: none;
+    font-weight: bold;
+    font-family: 'Teko', sans-serif;
+}
+.hidden{
+    display: none;
 }
