@@ -15,6 +15,7 @@ const Profile:React.FC=()=>{
         localStorage.removeItem('dl')
         localStorage.removeItem('sq')
         localStorage.removeItem('bp')
+        localStorage.removeItem('plan')
         window.location.href='/'
     }
     const checkUserRank=async()=>{

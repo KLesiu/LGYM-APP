@@ -164,7 +164,7 @@ const AddTraining=()=>{
     
     return(
         <section id='addTrainingContainer'>
-            {plan===''?<div>
+            {plan===''?<div id='withoutPlanTrainingDiv'>
             <h2>You cant add training!</h2>
             <button className='addPlanTrainigSection'><span>You have to create plan first!</span></button>
             </div>:''}
