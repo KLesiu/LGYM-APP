@@ -43,7 +43,7 @@ const History:React.FC=()=>{
             
         }
     }
-    
+
     useEffect(()=>{
         getTrainingHistory()
     },[])
@@ -76,6 +76,11 @@ const History:React.FC=()=>{
                         <p>Notes: {ele.notes} </p>
                         <p>Series:{ele.exercises.length}</p>
                         <p>TrainingId: {ele.id}</p>
+                        <button className='trainingHistorySessionButton'>
+                            <span className="read_more material-symbols-outlined">
+                                read_more
+                            </span>
+                        </button>
                     </div>
                 )
             }):''}

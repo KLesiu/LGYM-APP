@@ -13,6 +13,7 @@
     height: 80vh;
     display: flex;
     flex-direction: column;
+    position: relative;
     width: 98%;
 }
 
@@ -31,6 +32,7 @@
     flex-direction: column;
     font-family: 'Teko', sans-serif;
     justify-content: flex-start;
+    position: relative;
     margin-top: 20px;
     padding: 2px;
     width: 90%;
@@ -50,17 +52,39 @@
 }
 
 #buttonHistoryContainer{
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
-    height: 10%;
-    width: 100%;
+    bottom: 0%;
+    left: 10%;
+    width: 80%;
+    position: absolute;
 
 }
 
 #nextHistory,#prevHistory{
-    background-color: grey;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    margin: 15px;
+    width: 40%;
+    
+}
+
+.trainingHistorySessionButton{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    position: absolute;
+    border-radius: 10%;
+    height: 30%;
+    width: 15%;
+    right: 10%;
+    bottom: 10%;
+}
+.read_more{
+    font-size: 30px;
 }
 
 .hidden{
