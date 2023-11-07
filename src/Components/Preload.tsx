@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './styles/Preload.css'
 const Preload:React.FC=()=>{
     const [quote,setQuote]=useState<boolean>(false)
-    const handleChange=()=>setQuote(true)
+    const handleChange:VoidFunction=():void=>setQuote(true)
     useEffect(()=>{
         if(quote===true){
             document.querySelector(".icon-dumbell")?.classList.add("rotate")
