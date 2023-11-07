@@ -4,50 +4,7 @@ import uniqid from 'uniqid'
 import Session from './types/SessionType'
 
 const History:React.FC=()=>{
-    const ses={
-        symbol:"A",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses1={
-        symbol:"B",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses2={
-        symbol:"C",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses3={
-        symbol:"D",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses4={
-        symbol:"E",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses5={
-        symbol:"F",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-
-    const [sessions,setSessions]=useState<Session[]>([ses,ses1,ses2,ses3,ses4,ses5])
+    const [sessions,setSessions]=useState<Session[]>([])
     const [currentSessionsNumber,setcurrentSessionsNumber]=useState<number>(3)
     const [currentSessions,setCurrentSessions]=useState<Session[]>([])
     useEffect(()=>{
@@ -67,16 +24,16 @@ const History:React.FC=()=>{
             }
         }
      },[])
-    const showPrevSessions=()=>{
+    const showPrevSessions:VoidFunction=():void=>{
         if(currentSessionsNumber===3) return
-        const arr = sessions.slice(currentSessionsNumber-7,currentSessionsNumber-3)
+        const arr:Array<Session> = sessions.slice(currentSessionsNumber-7,currentSessionsNumber-3)
         
         setcurrentSessionsNumber(currentSessionsNumber-4)
         setCurrentSessions(arr)
     }
-    const showNextSessions=()=>{
+    const showNextSessions:VoidFunction=():void=>{
         if(currentSessionsNumber>=sessions.length) return
-        const arr = []
+        const arr:Array<Session> = []
         for(let i=0;i<sessions.length;i++){
             if(i>currentSessionsNumber && i<=currentSessionsNumber+4) arr.push(sessions[i])
         }
