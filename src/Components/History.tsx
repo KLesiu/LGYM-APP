@@ -113,7 +113,7 @@ chevron_left
 chevron_right
 </span></button>
             </div>
-            :''}
+            :<button id='youDontHaveTrainingsButton'>You dont have trainings!<br/> Let's add</button>}
             {currentHistoryTrainingSession}
         </section>
     )

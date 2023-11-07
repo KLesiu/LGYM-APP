@@ -86,7 +86,21 @@
 .read_more{
     font-size: 30px;
 }
-
+#youDontHaveTrainingsButton{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    border: none;
+    border-radius: 10px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    font-family: 'Teko', sans-serif;
+    font-size: 25px;
+    height: 10%;
+    width: 60%;
+}
 .hidden{
     display: none;
 }
