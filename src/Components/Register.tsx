@@ -3,10 +3,11 @@ import { useState} from 'react'
 import React from 'react'
 import uniqid from "uniqid"
 import ErrorMsg from './types/ErrorType'
+import ErrorRegister from './interfaces/ErrorRegisterInterface'
 
 const Register:React.FC=()=>{
-    const [errors,setErrors]:any= useState<ErrorMsg[]>([])
-    const register:any = async(event:Event)=>{
+    const [errors,setErrors]= useState<ErrorMsg[]>([])
+    const register = async(event:React.FormEvent<HTMLFormElement>):Promise<void>=>{
         event.preventDefault()
         const name:string|undefined=document.querySelector<HTMLInputElement>("input[name='username']")?.value
         const email:string|undefined=document.querySelector<HTMLInputElement>("input[name='email']")?.value
@@ -15,7 +16,7 @@ const Register:React.FC=()=>{
        
         if(password !== repeatPassword) return setErrors([{msg:"Both passwords need to be same"}])
 
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/register`,{
+        const response:ErrorRegister | any  = await fetch(`${process.env.REACT_APP_BACKEND}/api/register`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
@@ -37,6 +38,7 @@ const Register:React.FC=()=>{
                 }
              else return res
             })
+        
         return setErrors(response.errors)
          
     }
