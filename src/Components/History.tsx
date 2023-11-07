@@ -3,11 +3,16 @@ import { useState,useEffect } from 'react'
 import uniqid from 'uniqid'
 import Session from './types/SessionType'
 import TrainingHistory from './interfaces/TrainingHistoryInterface'
+import CurrentTrainingHistorySession from './CurrentTrainingHistorySession'
+import ErrorMsg from './types/ErrorType'
+import Training from './interfaces/TrainingInterface'
+
 
 const History:React.FC=()=>{
     const [sessions,setSessions]=useState<Session[]>([])
     const [currentSessionsNumber,setcurrentSessionsNumber]=useState<number>(3)
     const [currentSessions,setCurrentSessions]=useState<Session[]>([])
+    const [currentHistoryTrainingSession,setCurrentHistoryTrainingSession]=useState<JSX.Element>()
 
     const showPrevSessions:VoidFunction=():void=>{
         if(currentSessionsNumber===3) return
@@ -43,6 +48,19 @@ const History:React.FC=()=>{
             
         }
     }
+    const showCurrentTrainingHistorySession=(e:React.MouseEvent<HTMLButtonElement>):void=>{
+       const sessionId:string= (e.target as HTMLButtonElement).parentElement?.parentElement?.children[3].children[0].textContent!
+       const date:string=(e.target as HTMLButtonElement).parentElement?.parentElement?.children[1].children[0].textContent!
+       if(sessionId=== 'chevron_left') return
+       setCurrentHistoryTrainingSession(<CurrentTrainingHistorySession getInformationAboutHistorySession={getInformationAboutHistorySession} id={sessionId} date={date}/>)
+       
+    }
+    const getInformationAboutHistorySession=async(id:string):Promise<Training|string>=>{
+        
+        const response:ErrorMsg|{training:Training}= await fetch(`${process.env.REACT_APP_BACKEND}/api/${id}/getTrainingSession`).then(res=>res.json()).catch(err=>err).then(res=>res)
+        if('msg' in response) return response.msg
+        else return response.training
+    }
 
     useEffect(()=>{
         getTrainingHistory()
@@ -72,11 +90,11 @@ const History:React.FC=()=>{
                 return(
                     <div className='session' key={uniqid()}>
                         <h3>Training symbol: {ele.symbol} </h3>
-                        <p>Date: {ele.date} </p>
-                        <p>Notes: {ele.notes} </p>
-                        <p>Series:{ele.exercises.length}</p>
-                        <p>TrainingId: {ele.id}</p>
-                        <button className='trainingHistorySessionButton'>
+                        <p>Date: <span>{ele.date}</span>  </p>
+                        <p>Series: {ele.exercises.length}</p>
+                        <p>Id: <span>{ele.id}</span></p>
+                        {/* <p>Notes: {ele.notes || 'none'} </p> */}
+                        <button onClick={showCurrentTrainingHistorySession} className='trainingHistorySessionButton'>
                             <span className="read_more material-symbols-outlined">
                                 read_more
                             </span>
@@ -96,6 +114,7 @@ chevron_right
 </span></button>
             </div>
             :''}
+            {currentHistoryTrainingSession}
         </section>
     )
 }
