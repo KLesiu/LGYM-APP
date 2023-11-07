@@ -1,7 +1,7 @@
 import './styles/Login.css'
 import {useState} from 'react'
 import uniqid from "uniqid"
-import ErrorMsg from './types&interfaces/ErrorType'
+import ErrorMsg from './types/ErrorType'
 
 const Login:React.FC=()=>{
     const [errors,setErrors]:any= useState<ErrorMsg[]>([])

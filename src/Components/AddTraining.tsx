@@ -1,22 +1,26 @@
 import { useState,useEffect } from 'react'
 import './styles/AddTraining.css'
 import uniqid from 'uniqid'
-import Exercise from './types&interfaces/ExerciseInterface'
-import ExerciseTraining from './types&interfaces/ExerciseTrainingInterface'
+import Exercise from './interfaces/ExerciseInterface'
+import ExerciseTraining from './interfaces/ExerciseTrainingInterface'
+import {MouseEvent} from 'react'
+import Data from './interfaces/DataPlansArraysInterface'
+import addTrainingFetchType from './types/AddTrainingFetchResType'
+
 
 
 const AddTraining=()=>{
-    const [plan,setPlan]=useState(localStorage.getItem('plan')?localStorage.getItem('plan'):'')
-    const [chooseDay,setChooseDay]=useState(<div></div>)
-    const [daySection,setDaySection]=useState(<div></div>)
+    const [plan,setPlan]=useState<string | null>(localStorage.getItem('plan')?localStorage.getItem('plan'):'')
+    const [chooseDay,setChooseDay]=useState<JSX.Element>(<div></div>)
+    const [daySection,setDaySection]=useState<JSX.Element>(<div></div>)
     const [showExercise,setShowExercise]=useState<boolean>()
     const [showedCurrentExerciseNumber,setShowedCurrentExerciseNumber]=useState<number>(0)
-    const [popUp,setPopUp]=useState(<div className='fromLeft popUpAddTraining'><span className="appear donePopUp material-symbols-outlined">
+    const [popUp,setPopUp]=useState<JSX.Element>(<div className='fromLeft popUpAddTraining'><span className="appear donePopUp material-symbols-outlined">
     done
     </span></div>)
     const [isPopUpShowed,setIsPopUpShowed]=useState<boolean>(false)
-    const getInformationsAboutPlanDays = async()=>{
-        const trainingDays = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`).then(res=>res.json()).catch(err=>err).then(res=>res.count)
+    const getInformationsAboutPlanDays:VoidFunction = async():Promise<void>=>{
+        const trainingDays:number = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`).then(res=>res.json()).catch(err=>err).then(res=>res.count)
         const helpsArray= ["A","B","C","D","E","F","G"]
         const daysArray = []
         for(let i=0;i<trainingDays;i++){
@@ -28,10 +32,10 @@ const AddTraining=()=>{
             {daysArray.map(ele=><button onClick={showDaySection} className='chooseDaySectionButton' key={uniqid()}>{ele}</button>)}
         </div>)
     }
-    const showDaySection:any=async(e:any)=>{
-        const day = e.target.textContent
-        const planOfTheDay:Array<Exercise> = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPlan`).then(res=>res.json()).catch(err=>err).then(res=>{
-            const data=res.data
+    const showDaySection=async(e:MouseEvent<HTMLButtonElement>):Promise<void>=>{        
+        const day:string = (e.target as HTMLButtonElement).textContent!
+        const planOfTheDay:Array<Exercise> | undefined = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPlan`).then(res=>res.json()).catch(err=>err).then(res=>{
+            const data:Data=res.data
             if(day=== 'A') return data.planA
             else if(day=== 'B') return data.planB
             else if(day=== 'C') return data.planC
@@ -40,17 +44,17 @@ const AddTraining=()=>{
             else if(day=== 'F') return data.planF
             else if(day ==='G') return data.planG
         })
-        setCurrentDaySection(planOfTheDay,day)
+        setCurrentDaySection(planOfTheDay!,day)
         setChooseDay(<div></div>)
 
         
     }
-    const setCurrentDaySection=(exercises:any,day:string)=>{
+    const setCurrentDaySection=(exercises:Array<Exercise>,day:string):void=>{
         
         setDaySection(<div id='daySection'>
             <h2 >Training <span className='currentDayOfTraining'>{day}</span> </h2>
             {exercises.map((ele:Exercise)=>{
-                let helpsArray = []
+                let helpsArray:Array<string> = []
                 for(let i=1;i<+ele.series+1;i++){
                     helpsArray.push(`Series: ${i}`)
                 }
@@ -76,20 +80,20 @@ const AddTraining=()=>{
         setShowExercise(true)
         
     }
-    const showFirstExercise=()=>{
-        const exercise = document.querySelectorAll('.exerciseCurrentDiv')
+    const showFirstExercise:VoidFunction=():void=>{
+        const exercise: NodeListOf<Element> = document.querySelectorAll('.exerciseCurrentDiv')
         exercise[0].classList.remove('hidden')
         setShowedCurrentExerciseNumber(0)
     }
-    const showNextExercise=()=>{
+    const showNextExercise:VoidFunction=():void=>{
         if(showedCurrentExerciseNumber===document.querySelectorAll('.exerciseCurrentDiv').length-1) return alert('You are looking at the last exercise of your plan!')
         setShowedCurrentExerciseNumber(showedCurrentExerciseNumber+1)
     }
-    const showPrevExercise=()=>{
+    const showPrevExercise:VoidFunction=():void=>{
         if(showedCurrentExerciseNumber===0) return alert('You are looking at first exercise of your plan!')
         setShowedCurrentExerciseNumber(showedCurrentExerciseNumber-1)
     }
-    const showCurrentExercise=()=>{
+    const showCurrentExercise:VoidFunction=():void=>{
         if(showedCurrentExerciseNumber===0) showFirstExercise()
         else{
             const elements = document.querySelectorAll('.exerciseCurrentDiv')
@@ -99,7 +103,7 @@ const AddTraining=()=>{
             elements[showedCurrentExerciseNumber].classList.remove('hidden')
         }
     }
-    const submitYourTraining=()=>{
+    const submitYourTraining:VoidFunction=():void=>{
         const inputs = document.querySelectorAll("input")
         const labels = document.querySelectorAll('label')
         const day = document.querySelector(".currentDayOfTraining")?.textContent!
@@ -120,8 +124,8 @@ const AddTraining=()=>{
         
         addYourTrainingToDataBase(day,array)
     }
-    const addYourTrainingToDataBase=async(day:string,training:Array<ExerciseTraining>)=>{
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/addTraining`,{
+    const addYourTrainingToDataBase=async(day:string,training:Array<ExerciseTraining>):Promise<void>=>{
+        const response:addTrainingFetchType = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/addTraining`,{
             method:"POST",
             headers:{
                 "content-type":"application/json"
@@ -142,7 +146,7 @@ const AddTraining=()=>{
             
         }
     }
-    const popUpTurnOn=()=>{
+    const popUpTurnOn:VoidFunction=():void=>{
         setTimeout(()=>setIsPopUpShowed(false),7000)
     }
     useEffect(()=>{

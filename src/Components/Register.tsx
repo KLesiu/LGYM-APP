@@ -2,7 +2,7 @@ import './styles/Register.css'
 import { useState} from 'react'
 import React from 'react'
 import uniqid from "uniqid"
-import ErrorMsg from './types&interfaces/ErrorType'
+import ErrorMsg from './types/ErrorType'
 
 const Register:React.FC=()=>{
     const [errors,setErrors]:any= useState<ErrorMsg[]>([])

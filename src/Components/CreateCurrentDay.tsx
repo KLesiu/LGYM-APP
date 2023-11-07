@@ -1,7 +1,7 @@
 import './styles/CreateCurrentDay.css'
 import {useState,useEffect} from 'react'
 import uniqid from 'uniqid'
-import CreateCurrentDayProps from './types&interfaces/CreateCurrentDayPropsInterface'
+import CreateCurrentDayProps from './interfaces/CreateCurrentDayPropsInterface'
 
 
 

@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import './styles/RecordsPopUp.css'
-import RecordsPopUpProps from './types&interfaces/RecordsPopUpProps'
+import RecordsPopUpProps from './interfaces/RecordsPopUpPropsInterface'
 
 const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
     const [error,setError]= useState('')

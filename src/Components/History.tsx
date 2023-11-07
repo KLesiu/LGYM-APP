@@ -1,7 +1,7 @@
 import './styles/History.css'
 import { useState,useEffect } from 'react'
 import uniqid from 'uniqid'
-import Session from './types&interfaces/SessionType'
+import Session from './types/SessionType'
 
 const History:React.FC=()=>{
     const ses={

@@ -6,7 +6,7 @@ import History from './History'
 import AddTraining from './AddTraining'
 import RecordsPopUp from './RecordsPopUp';
 import {useState,useEffect} from 'react'
-import MenuProps from './types&interfaces/MenuPropsInterface'
+import MenuProps from './interfaces/MenuPropsInterface'
 
 const Menu:React.FC<MenuProps>=(props)=>{
     const [popUp,setPopUp]= useState<Boolean>(false)

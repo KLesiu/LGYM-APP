@@ -1,4 +1,4 @@
-import Exercise from "../types&interfaces/ExerciseInterface"
+import Exercise from "../interfaces/ExerciseInterface"
 type Session={
     symbol:string,
     date:string,

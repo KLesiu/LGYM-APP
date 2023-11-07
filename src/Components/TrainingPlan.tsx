@@ -4,8 +4,8 @@ import CreatePlan from './CreatePlan';
 import CreateCurrentDay from './CreateCurrentDay';
 import uniqid from 'uniqid'
 import './styles/TrainingPlan.css'
-import Plan from './types&interfaces/PlanInterface';
-import Exercise from './types&interfaces/ExerciseInterface';
+import Plan from './interfaces/PlanInterface';
+import Exercise from './interfaces/ExerciseInterface';
 
 
 
