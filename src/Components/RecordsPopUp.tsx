@@ -1,16 +1,17 @@
 import {useState} from 'react'
 import './styles/RecordsPopUp.css'
 import RecordsPopUpProps from './interfaces/RecordsPopUpPropsInterface'
+import ErrorMsg from './types/ErrorType'
 
 const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
-    const [error,setError]= useState('')
-    const setRecords:any= async(event:Event)=>{
+    const [error,setError]= useState<ErrorMsg>()
+    const setRecords = async(event:React.FormEvent<HTMLFormElement>)=>{
         event.preventDefault()
        
         const BenchPress:string|undefined = document.querySelector<HTMLInputElement>("input[name='bp']")?.value
         const Squat:string|undefined = document.querySelector<HTMLInputElement>("input[name='sq']")?.value
         const DeadLift:string|undefined = document.querySelector<HTMLInputElement>("input[name='dl']")?.value
-        const id = localStorage.getItem('id')
+        const id:string = localStorage.getItem('id')!
         let BenchPressRecord:number
         let SquatRecord:number
         let DeadLifRecord:number
@@ -20,16 +21,16 @@ const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
                 SquatRecord = parseFloat(Squat)
                 DeadLifRecord = parseFloat(DeadLift)
                 
-                const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/userRecords`,{
+                const response:string = await fetch(`${process.env.REACT_APP_BACKEND}/api/userRecords`,{
                     method:"POST",
                     headers:{
                         'content-type': "application/json"
                     },
                     body:JSON.stringify({
                         id: id,
-                        sq: SquatRecord | 0,
-                        dl: DeadLifRecord | 0,
-                        bp: BenchPressRecord | 0
+                        sq: SquatRecord || 0,
+                        dl: DeadLifRecord || 0,
+                        bp: BenchPressRecord || 0
                               
                     })
         
@@ -45,7 +46,7 @@ const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
             
         }
         catch{
-            return setError('Your values need to be FLOAT type or NUMBER type. For example 1.00 OR 1')
+            return setError({msg:'Your values need to be FLOAT type or NUMBER type. For example 1.00 OR 1'})
         }
        
 
@@ -60,7 +61,7 @@ const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
             <label htmlFor="bp">Bench Press:</label>
             <input type="text" name="bp" id="" />
             <button type='submit' id='popUpButton'>ADD</button>
-            <p>{error?error:''}</p>
+            <p>{error?error.msg:''}</p>
         </form>
     )
 }
