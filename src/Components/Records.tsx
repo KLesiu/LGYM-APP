@@ -11,7 +11,7 @@ const Records:React.FC=()=>{
     const [benchPress,setBenchPress]=useState<number>(+localStorage.getItem("bp")!)
     const [total,setTotal]=useState<number>(deadLift+squat+benchPress)
     const [rankImg,setRankImg]=useState<string>()
-    const changeRank =async()=>{
+    const changeRank =async():Promise<void>=>{
         let rank:string 
         if(total>200 && total < 350){
             setRankImg(IntermediateRank)
@@ -47,13 +47,13 @@ const Records:React.FC=()=>{
         
     }
     useEffect(()=>{
-        setSquat(():any=>+localStorage.getItem("sq")!)
-        setDeadLift(():any=>+localStorage.getItem('dl')!)
-        setBenchPress(():any=>+localStorage.getItem('bp')!)
+        setSquat(():number=>+localStorage.getItem("sq")!)
+        setDeadLift(():number=>+localStorage.getItem('dl')!)
+        setBenchPress(():number=>+localStorage.getItem('bp')!)
     },[])
     useEffect(()=>{
         setTotal(():number=>{
-            const sum = deadLift + squat + benchPress
+            const sum:number = deadLift + squat + benchPress
             return sum
         })
     },[])
