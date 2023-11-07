@@ -1,10 +1,7 @@
 import './styles/Home.css'
 import Menu from './Menu'
 import TrainingPlan from './TrainingPlan'
-import Records from './Records'
 import {  useState } from 'react'
-
-
 
 const Home:React.FC=()=>{
     const [view,setView]=useState(<TrainingPlan/>)

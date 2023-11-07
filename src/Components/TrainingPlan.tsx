@@ -4,20 +4,13 @@ import CreatePlan from './CreatePlan';
 import CreateCurrentDay from './CreateCurrentDay';
 import uniqid from 'uniqid'
 import './styles/TrainingPlan.css'
+import Plan from './types&interfaces/PlanInterface';
+import Exercise from './types&interfaces/ExerciseInterface';
 
-export interface Plan{
-    days: PlanDay[]
-}
 
-export interface PlanDay{
-    trainingDay: string;
-    exercises:Array<Exercise>
-}
-export interface Exercise{
-    name:string;
-    series:number,
-    reps:string
-}
+
+
+
 
 const TrainingPlan:React.FC=()=>{
     

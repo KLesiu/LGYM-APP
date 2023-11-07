@@ -1,12 +1,10 @@
 import './styles/Login.css'
 import {useState} from 'react'
 import uniqid from "uniqid"
+import ErrorMsg from './types&interfaces/ErrorType'
 
-type Error={
-    msg:string
-}
 const Login:React.FC=()=>{
-    const [errors,setErrors]:any= useState<Error[]>([])
+    const [errors,setErrors]:any= useState<ErrorMsg[]>([])
     const login:any=async(event:Event)=>{
         event.preventDefault()
         const name:string|undefined = document.querySelector<HTMLInputElement>("input[name='username']")?.value
@@ -49,7 +47,7 @@ const Login:React.FC=()=>{
             <input type="password" name="password" id="" />
             <button>LOGIN</button>
             <a href='/register'>You dont have acc? Lets create it for FREE</a>
-            <ul>{errors?errors.map((ele:Error)=>{
+            <ul>{errors?errors.map((ele:ErrorMsg)=>{
                 return <li key={uniqid()}>{ele.msg}</li>
             }):''}</ul>
         </form>

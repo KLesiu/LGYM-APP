@@ -1,8 +1,6 @@
 import './styles/CreatePlan.css'
+import CreatePlanProps from './types&interfaces/CreatePlanPropsInterface'
 
-interface CreatePlanProps{
-    setDayAndName:(event:React.FormEvent)=>any
-}
 
 const CreateConfigPlan:React.FC<CreatePlanProps> = (props)=>{
     return(

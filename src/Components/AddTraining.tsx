@@ -1,16 +1,9 @@
 import { useState,useEffect } from 'react'
 import './styles/AddTraining.css'
 import uniqid from 'uniqid'
+import Exercise from './types&interfaces/ExerciseInterface'
+import ExerciseTraining from './types&interfaces/ExerciseTrainingInterface'
 
-export interface ExerciseTraining{
-    field:string,
-    score:string
-}
-export interface Exercise{
-    name:string;
-    series:number,
-    reps:string
-}
 
 const AddTraining=()=>{
     const [plan,setPlan]=useState(localStorage.getItem('plan')?localStorage.getItem('plan'):'')

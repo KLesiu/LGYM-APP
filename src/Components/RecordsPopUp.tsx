@@ -1,8 +1,7 @@
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import './styles/RecordsPopUp.css'
-interface RecordsPopUpProps {
-    offPopUp: ()=>void
-}
+import RecordsPopUpProps from './types&interfaces/RecordsPopUpProps'
+
 const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
     const [error,setError]= useState('')
     const setRecords:any= async(event:Event)=>{

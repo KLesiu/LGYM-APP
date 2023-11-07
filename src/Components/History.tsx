@@ -1,19 +1,8 @@
 import './styles/History.css'
 import { useState,useEffect } from 'react'
 import uniqid from 'uniqid'
-type Session={
-    symbol:string,
-    date:string,
-    time:string,
-    exercises:Exercise[],
-    notes: string
-}
-type Exercise={
-    name:string,
-    series:number,
-    rep:number,
-    weight:string
-}
+import Session from './types&interfaces/SessionType'
+
 const History:React.FC=()=>{
     const ses={
         symbol:"A",
@@ -57,27 +46,7 @@ const History:React.FC=()=>{
         exercises:[],
         notes:'Kozak'
     }
-    const ses6={
-        symbol:"G",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses7={
-        symbol:"H",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
-    const ses8={
-        symbol:"I",
-        date: '21-02-2022',
-        time:'2,5',
-        exercises:[],
-        notes:'Kozak'
-    }
+
     const [sessions,setSessions]=useState<Session[]>([ses,ses1,ses2,ses3,ses4,ses5])
     const [currentSessionsNumber,setcurrentSessionsNumber]=useState<number>(3)
     const [currentSessions,setCurrentSessions]=useState<Session[]>([])

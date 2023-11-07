@@ -2,12 +2,10 @@ import './styles/Register.css'
 import { useState} from 'react'
 import React from 'react'
 import uniqid from "uniqid"
+import ErrorMsg from './types&interfaces/ErrorType'
 
-type Error={
-    msg:string
-}
 const Register:React.FC=()=>{
-    const [errors,setErrors]:any= useState<Error[]>([])
+    const [errors,setErrors]:any= useState<ErrorMsg[]>([])
     const register:any = async(event:Event)=>{
         event.preventDefault()
         const name:string|undefined=document.querySelector<HTMLInputElement>("input[name='username']")?.value
@@ -54,7 +52,7 @@ const Register:React.FC=()=>{
             <label htmlFor="rpassword">Repeat password</label>
             <input type="password" name="rpassword"  />
             <button type='submit'>REGISTER</button>
-            <ul>{errors?errors.map((ele:Error)=>{
+            <ul>{errors?errors.map((ele:ErrorMsg)=>{
                 return <li key={uniqid()}>{ele.msg}</li>
             }):''}</ul>
            

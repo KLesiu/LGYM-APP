@@ -1,19 +1,9 @@
 import './styles/CreateCurrentDay.css'
 import {useState,useEffect} from 'react'
-import { Exercise } from './TrainingPlan'
 import uniqid from 'uniqid'
+import CreateCurrentDayProps from './types&interfaces/CreateCurrentDayPropsInterface'
 
-interface CreateCurrentDayProps{
-    day:string
-    setCurrentPlanDay:()=>void
-    planA: Array<Exercise> | null
-    planB: Array<Exercise> | null
-    planC: Array<Exercise> | null
-    planD: Array<Exercise> | null
-    planE: Array<Exercise> | null
-    planF: Array<Exercise> | null
-    planG: Array<Exercise> | null
-}
+
 
 
 const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
