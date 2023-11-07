@@ -4,8 +4,8 @@ import TrainingPlan from './TrainingPlan'
 import {  useState } from 'react'
 
 const Home:React.FC=()=>{
-    const [view,setView]=useState(<TrainingPlan/>)
-    const changeView=(view:any)=>{
+    const [view,setView]=useState<JSX.Element>(<TrainingPlan/>)
+    const changeView=(view:JSX.Element):void=>{
        setView(view)
     }
     return(
