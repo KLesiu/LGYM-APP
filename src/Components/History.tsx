@@ -2,28 +2,13 @@ import './styles/History.css'
 import { useState,useEffect } from 'react'
 import uniqid from 'uniqid'
 import Session from './types/SessionType'
+import TrainingHistory from './interfaces/TrainingHistoryInterface'
 
 const History:React.FC=()=>{
     const [sessions,setSessions]=useState<Session[]>([])
     const [currentSessionsNumber,setcurrentSessionsNumber]=useState<number>(3)
     const [currentSessions,setCurrentSessions]=useState<Session[]>([])
-    useEffect(()=>{
-        if(sessions.length>0){
-            if(sessions.length>3){
-                const arr = []
-                for(let i =0;i<4;i++){
-                    arr.push(sessions[i])
-                }
-                return setCurrentSessions(arr)
-            }else{
-                const arr = []
-                for(let i = 0;i<sessions.length;i++){
-                    arr.push(sessions[i])
-                }
-                return setCurrentSessions(arr)
-            }
-        }
-     },[])
+
     const showPrevSessions:VoidFunction=():void=>{
         if(currentSessionsNumber===3) return
         const arr:Array<Session> = sessions.slice(currentSessionsNumber-7,currentSessionsNumber-3)
@@ -41,6 +26,44 @@ const History:React.FC=()=>{
     setCurrentSessions(arr)
         
     }
+    const getTrainingHistory=async():Promise<void>=>{
+        const response:{msg:string} | TrainingHistory = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getTrainingHistory`).then(res=>res.json()).catch(err=>err).then(res=>res)
+        if('trainingHistory' in response){
+            
+            const sessions:Array<Session>= response.trainingHistory.map(ele=>{
+                let session:Session={
+                    date:ele.createdAt,
+                    symbol:ele.type,
+                    exercises:ele.exercises,
+                    id: ele._id
+                }
+                return session
+            })
+            setSessions(sessions)
+            
+        }
+    }
+    
+    useEffect(()=>{
+        getTrainingHistory()
+    },[])
+    useEffect(()=>{
+        if(sessions.length>0){
+            if(sessions.length>3){
+                const arr = []
+                for(let i =0;i<4;i++){
+                    arr.push(sessions[i])
+                }
+                return setCurrentSessions(arr)
+            }else{
+                const arr = []
+                for(let i = 0;i<sessions.length;i++){
+                    arr.push(sessions[i])
+                }
+                return setCurrentSessions(arr)
+            }
+        }
+     },[sessions])
     
     return(
         <section id='historyContainer'>
@@ -50,8 +73,9 @@ const History:React.FC=()=>{
                     <div className='session' key={uniqid()}>
                         <h3>Training symbol: {ele.symbol} </h3>
                         <p>Date: {ele.date} </p>
-                        <p>Time: {ele.time} </p>
                         <p>Notes: {ele.notes} </p>
+                        <p>Series:{ele.exercises.length}</p>
+                        <p>TrainingId: {ele.id}</p>
                     </div>
                 )
             }):''}

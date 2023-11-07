@@ -1,9 +1,8 @@
 import ExerciseTraining from "../interfaces/ExerciseTrainingInterface"
-type Session={
-    symbol:string,
-    date:string,
+export default interface Training{
+    user:string,
+    type:string,
     exercises:Array<ExerciseTraining>,
-    notes?: string,
-    id?:string
+    createdAt:string
+    _id:string
 }
-export default Session
