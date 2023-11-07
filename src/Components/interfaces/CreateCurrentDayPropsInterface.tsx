@@ -2,7 +2,7 @@ import Exercise from "./ExerciseInterface"
 export default interface CreateCurrentDayProps{
 
     day:string
-    setCurrentPlanDay:()=>void
+    setCurrentPlanDay:React.MouseEventHandler<HTMLButtonElement>
     planA: Array<Exercise> | null
     planB: Array<Exercise> | null
     planC: Array<Exercise> | null

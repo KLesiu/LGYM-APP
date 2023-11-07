@@ -6,6 +6,7 @@ import uniqid from 'uniqid'
 import './styles/TrainingPlan.css'
 import Plan from './interfaces/PlanInterface';
 import Exercise from './interfaces/ExerciseInterface';
+import Data from './interfaces/DataPlansArraysInterface';
 
 
 
@@ -15,7 +16,7 @@ import Exercise from './interfaces/ExerciseInterface';
 const TrainingPlan:React.FC=()=>{
     
     const [plan,setPlan]=useState<Plan>()
-    const [yourPlan,setYourPlan]=useState(<div id='withoutPlanContainer'>
+    const [yourPlan,setYourPlan]=useState<JSX.Element>(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
     </div>)
@@ -24,7 +25,7 @@ const TrainingPlan:React.FC=()=>{
     const [planCreateSection , setplanCreateSection ]= useState<boolean>(false)
     const [showedPlanDay,setShowedPlanDay]=useState<number>(0)
     const [arrows,setArrows]=useState<boolean>(true)
-    const [formElements,setFormElements]=useState(<form></form>)
+    const [formElements,setFormElements]=useState<JSX.Element>(<form></form>)
     const [currentDayCreateSection,setCurrentDayCreateSection]= useState<boolean>(false)
     const [currentDay,setCurrentDay]=useState<string>('')
     const [planACurrent,setPlanACurrent]=useState<Array<Exercise>>()
@@ -35,11 +36,13 @@ const TrainingPlan:React.FC=()=>{
     const [planFCurrent,setPlanFCurrent]=useState<Array<Exercise>>()
     const [planGCurrent,setPlanGCurrent]=useState<Array<Exercise>>()
     const [isPlanSet,setIsPlanSet]=useState<boolean>(false)
-    const setDayAndName:any = async(event:React.FormEvent)=>{
+
+
+    const setDayAndName = async(event:React.FormEvent):Promise<void>=>{
         event.preventDefault()
-        const name = document.querySelector<HTMLInputElement>("input[name='name']")?.value
-        const days = document.querySelector<HTMLInputElement>("input[name='days']")?.value
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`,{
+        const name:string = document.querySelector<HTMLInputElement>("input[name='name']")?.value!
+        const days:string = document.querySelector<HTMLInputElement>("input[name='days']")?.value!
+        const response:string = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`,{
             method:"POST",
             headers:{
                 "content-type": "application/json"
@@ -57,10 +60,10 @@ const TrainingPlan:React.FC=()=>{
         } 
 
     }
-    const submitPlan:any = async()=>{
+    const submitPlan = async():Promise<void>=>{
        
   
-        const countDivs = document.querySelectorAll('#formPlanCreate div')
+        const countDivs:NodeListOf<HTMLDivElement> = document.querySelectorAll('#formPlanCreate div')
         if(countDivs.length === 1) setPlan({days:[
             {trainingDay:'planA',exercises:planACurrent!}
         ]})
@@ -101,11 +104,11 @@ const TrainingPlan:React.FC=()=>{
     ]})
     
     }
-    const getPlanInfo = async()=>{
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`).then(res=>res.json()).catch(err=>err).then(res=>res.count)
+    const getPlanInfo = async():Promise<void>=>{
+        const response:number = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/configPlan`).then(res=>res.json()).catch(err=>err).then(res=>res.count)
         
         const planDays:Array<string> = []
-        const planDaysAll = ['planA','planB','planC','planD','planE','planF','planG']
+        const planDaysAll:Array<string> = ['planA','planB','planC','planD','planE','planF','planG']
         for(let i=0;i<response;i++){
             planDays.push(planDaysAll[i])
         }
@@ -131,8 +134,8 @@ const TrainingPlan:React.FC=()=>{
                 })}
                    
                     <button onClick={()=>{
-                        const inputs = document.querySelectorAll('input')
-                        let auth=true
+                        const inputs:NodeListOf<HTMLInputElement> = document.querySelectorAll('input')
+                        let auth:boolean=true
                         inputs.forEach(ele=>{
                             if(ele.value==='Uncompleted' || !ele.value) auth=false
                             
@@ -149,22 +152,22 @@ const TrainingPlan:React.FC=()=>{
 
     }
  
-    const setCurrentPlanDay:any=async(e:any)=>{
-        const elementsName:any = document.querySelectorAll(`.${currentDay}-name`)
-        const elementsSeries:any = document.querySelectorAll(`.${currentDay}-series`)
-        const elementReps:any = document.querySelectorAll(`.${currentDay}-reps`)
+    const setCurrentPlanDay:React.MouseEventHandler<HTMLButtonElement>=(e)=>{
+        const elementsName:NodeListOf<HTMLInputElement> = document.querySelectorAll(`.${currentDay}-name`)
+        const elementsSeries:NodeListOf<HTMLInputElement> = document.querySelectorAll(`.${currentDay}-series`)
+        const elementReps:NodeListOf<HTMLInputElement> = document.querySelectorAll(`.${currentDay}-reps`)
         const arr:Array<Exercise> = []
-        const day =e.target.parentElement.children[0].textContent
+        const day =(e.target as HTMLButtonElement).parentElement!.children[0].textContent
         
         for(let i=0;i<elementsName.length;i++){
-                if(elementsName[i].value !== '' && elementReps[i].value !=="" && elementsSeries[i].value !== "0" && elementsName[i].value !== undefined && elementReps[i].value !== undefined && elementsSeries[i].value > 0) {
+                if(elementsName[i].value !== '' && elementReps[i].value !=="" && elementsSeries[i].value !== "0" && elementsName[i].value !== undefined && elementReps[i].value !== undefined && +elementsSeries[i].value > 0) {
                     arr.push({
                         name:elementsName[i].value,
                         reps:elementReps[i].value,
                         series:parseInt(elementsSeries[i].value) 
                     })
                 }}
-       const currentInput:any = document.querySelector<HTMLInputElement>(`input[name='${day}']`)
+       const currentInput:HTMLInputElement = document.querySelector(`input[name='${day}']`)!
        currentInput.value= 'Completed'
        if(arr.length < 1) currentInput.value = "Uncompleted"
        
@@ -178,8 +181,8 @@ const TrainingPlan:React.FC=()=>{
        setCurrentDayCreateSection(false)
         
     }
-    const setCurrentPlan=async()=>{
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/setPlan`,{
+    const setCurrentPlan=async():Promise<void>=>{
+        const response: {msg:string} = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/setPlan`,{
             method:"POST",
             headers:{
                 "content-type":"application/json"
@@ -193,15 +196,15 @@ const TrainingPlan:React.FC=()=>{
             setplanCreateSection(false)
         }
     }
-    const showOnlyFirstPlanDay:VoidFunction=()=>{
-        const elements = document.querySelectorAll('.containerForAllExercises')
+    const showOnlyFirstPlanDay:VoidFunction=():void=>{
+        const elements:NodeListOf<HTMLDivElement> = document.querySelectorAll('.containerForAllExercises')
         
         for(let i=1;i<elements.length;i++){
             elements[i].classList.add('hidden')
         }
     }
-    const getUserPlan = async()=>{
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPlan`).then(res=>res.json()).catch(err=>err).then(res=>res)
+    const getUserPlan = async():Promise<void>=>{
+        const response:{data:Data|string}  = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPlan`).then(res=>res.json()).catch(err=>err).then(res=>res)
         if(response.data === 'Didnt find'){
             setYourPlan(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
@@ -211,103 +214,107 @@ const TrainingPlan:React.FC=()=>{
         } 
         else{
             const data = response.data
+            if(typeof data !== 'string'){
+                
+                const planA = data.planA.length > 0? data.planA.map((element:Exercise)=>(
+                    <div className="exercisesContainer" key={uniqid()}>
+                        <p key={uniqid()}>{element.name}</p>
+                        <p key={uniqid()}>{element.series} x {element.reps}</p>
+                    </div>
+                )): ''
+                const planB= data.planB.length >0? data.planB.map((element:Exercise)=>(
+                    <div className="exercisesContainer" key={uniqid()}>
+                        <p key={uniqid()}>{element.name}</p>
+                        <p key={uniqid()}>{element.series} x {element.reps}</p>
+                    </div>
+                )):''
+                const planC= data.planC.length >0? data.planC.map((element:Exercise)=>(
+                    <div className="exercisesContainer" key={uniqid()}>
+                        <p key={uniqid()}>{element.name}</p>
+                        <p key={uniqid()}>{element.series} x {element.reps}</p>
+                    </div>
+                )):''
+                const planD= data.planD.length >0? data.planD.map((element:Exercise)=>(
+                    <div className="exercisesContainer" key={uniqid()}>
+                        <p key={uniqid()}>{element.name}</p>
+                        <p key={uniqid()}>{element.series} x {element.reps}</p>
+                    </div>
+                )):''
+                const planE= data.planE.length >0? data.planE.map((element:Exercise)=>(
+                    <div className="exercisesContainer" key={uniqid()}>
+                        <p key={uniqid()}>{element.name}</p>
+                        <p key={uniqid()}>{element.series} x {element.reps}</p>
+                    </div>
+                )):''
+                const planF= data.planF.length >0? data.planF.map((element:Exercise)=>(
+                    <div className="exercisesContainer" key={uniqid()}>
+                        <p key={uniqid()}>{element.name}</p>
+                        <p key={uniqid()}>{element.series} x {element.reps}</p>
+                    </div>
+                )):''
+                const planG= data.planG.length >0? data.planG.map((element:Exercise)=>(
+                    <div className="exercisesContainer" key={uniqid()}>
+                        <p key={uniqid()}>{element.name}</p>
+                        <p key={uniqid()}>{element.series} x {element.reps}</p>
+                    </div>
+                )):''
+                setYourPlan(()=>{
+                    return(
+                        <section id='planSection'>
+                            {planA?<div key={uniqid()} className=" containerForAllExercises">
+                                <h3>Plan A</h3>
+                                {planA}
+                            </div>:''}
+                            {planB?<div key={uniqid()} className="hidden containerForAllExercises">
+                                <h3>Plan B</h3>
+                                {planB}
+                            </div>:''}
+                            {planC?<div key={uniqid()} className="hidden containerForAllExercises">
+                                <h3>Plan C</h3>
+                                {planC}
+                            </div>:''}
+                            {planD?<div key={uniqid()} className="hidden containerForAllExercises">
+                                <h3>Plan D</h3>
+                                {planD}
+                            </div>:''}
+                            {planE?<div key={uniqid()} className="hidden containerForAllExercises">
+                                <h3>Plan E</h3>
+                                {planE}
+                            </div>:''}
+                            {planF?<div key={uniqid()} className="hidden containerForAllExercises">
+                                <h3>Plan F</h3>
+                                {planF}
+                            </div>:''}
+                            {planG?<div key={uniqid()} className="hidden containerForAllExercises">
+                                <h3>Plan G</h3>
+                                {planG}
+                            </div>:''}
+                           
+                           
+                        </section>
+                    )
+                })
+                showOnlyFirstPlanDay()
+                localStorage.setItem('plan','completed')
+            }
             
-            const planA = data.planA.length > 0? data.planA.map((element:Exercise)=>(
-                <div className="exercisesContainer" key={uniqid()}>
-                    <p key={uniqid()}>{element.name}</p>
-                    <p key={uniqid()}>{element.series} x {element.reps}</p>
-                </div>
-            )): ''
-            const planB= data.planB.length >0? data.planB.map((element:Exercise)=>(
-                <div className="exercisesContainer" key={uniqid()}>
-                    <p key={uniqid()}>{element.name}</p>
-                    <p key={uniqid()}>{element.series} x {element.reps}</p>
-                </div>
-            )):''
-            const planC= data.planC.length >0? data.planC.map((element:Exercise)=>(
-                <div className="exercisesContainer" key={uniqid()}>
-                    <p key={uniqid()}>{element.name}</p>
-                    <p key={uniqid()}>{element.series} x {element.reps}</p>
-                </div>
-            )):''
-            const planD= data.planD.length >0? data.planD.map((element:Exercise)=>(
-                <div className="exercisesContainer" key={uniqid()}>
-                    <p key={uniqid()}>{element.name}</p>
-                    <p key={uniqid()}>{element.series} x {element.reps}</p>
-                </div>
-            )):''
-            const planE= data.planE.length >0? data.planE.map((element:Exercise)=>(
-                <div className="exercisesContainer" key={uniqid()}>
-                    <p key={uniqid()}>{element.name}</p>
-                    <p key={uniqid()}>{element.series} x {element.reps}</p>
-                </div>
-            )):''
-            const planF= data.planF.length >0? data.planF.map((element:Exercise)=>(
-                <div className="exercisesContainer" key={uniqid()}>
-                    <p key={uniqid()}>{element.name}</p>
-                    <p key={uniqid()}>{element.series} x {element.reps}</p>
-                </div>
-            )):''
-            const planG= data.planG.length >0? data.planG.map((element:Exercise)=>(
-                <div className="exercisesContainer" key={uniqid()}>
-                    <p key={uniqid()}>{element.name}</p>
-                    <p key={uniqid()}>{element.series} x {element.reps}</p>
-                </div>
-            )):''
             
-            setYourPlan(()=>{
-                return(
-                    <section id='planSection'>
-                        {planA?<div key={uniqid()} className=" containerForAllExercises">
-                            <h3>Plan A</h3>
-                            {planA}
-                        </div>:''}
-                        {planB?<div key={uniqid()} className="hidden containerForAllExercises">
-                            <h3>Plan B</h3>
-                            {planB}
-                        </div>:''}
-                        {planC?<div key={uniqid()} className="hidden containerForAllExercises">
-                            <h3>Plan C</h3>
-                            {planC}
-                        </div>:''}
-                        {planD?<div key={uniqid()} className="hidden containerForAllExercises">
-                            <h3>Plan D</h3>
-                            {planD}
-                        </div>:''}
-                        {planE?<div key={uniqid()} className="hidden containerForAllExercises">
-                            <h3>Plan E</h3>
-                            {planE}
-                        </div>:''}
-                        {planF?<div key={uniqid()} className="hidden containerForAllExercises">
-                            <h3>Plan F</h3>
-                            {planF}
-                        </div>:''}
-                        {planG?<div key={uniqid()} className="hidden containerForAllExercises">
-                            <h3>Plan G</h3>
-                            {planG}
-                        </div>:''}
-                       
-                       
-                    </section>
-                )
-            })
-            showOnlyFirstPlanDay()
-            localStorage.setItem('plan','completed')
+
             
         
         }
     }
-    const showNextPlanDay:VoidFunction=()=>{
+    const showNextPlanDay:VoidFunction=():void=>{
 
         if(showedPlanDay === document.querySelectorAll(".containerForAllExercises").length-1) return alert('You dont have more plan days!')
         setShowedPlanDay(showedPlanDay+1)
     }
-    const showPrevPlanDay:VoidFunction=()=>{
+    const showPrevPlanDay:VoidFunction=():void=>{
         if(showedPlanDay===0) return alert('You are looking at the first plan day')
         setShowedPlanDay(showedPlanDay-1)
     }
-    const showCurrentPlanDay=(showedPlanDay:number)=>{
-        const elements = document.querySelectorAll('.containerForAllExercises')
+    const showCurrentPlanDay=(showedPlanDay:number):void=>{
+        const elements:NodeListOf<HTMLDivElement> = document.querySelectorAll('.containerForAllExercises')
         
         for(let i=0;i<elements.length;i++){
             if(i===showedPlanDay)  elements[i].classList.remove('hidden')
