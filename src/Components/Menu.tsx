@@ -7,17 +7,18 @@ import AddTraining from './AddTraining'
 import RecordsPopUp from './RecordsPopUp';
 import {useState,useEffect} from 'react'
 import MenuProps from './interfaces/MenuPropsInterface'
+import UserInfo from './interfaces/UserInfoInterface'
 
 const Menu:React.FC<MenuProps>=(props)=>{
     const [popUp,setPopUp]= useState<Boolean>(false)
-    const chagePopUpValue=()=>{
+    const chagePopUpValue:VoidFunction=():void=>{
         setPopUp(true)
     }
 
-    const changeView=(e:React.MouseEvent)=>{
+    const changeView=(e:React.MouseEvent<HTMLButtonElement>):void=>{
         
-        const currentEvent:any = e.target
-        const viewName:string = currentEvent.textContent
+        
+        const viewName:string = (e.target as HTMLButtonElement).textContent!
         
         if(viewName=== 'note') props.viewChange(<TrainingPlan/>)
         else if(viewName==='trophy') props.viewChange(<Records/>)
@@ -31,19 +32,19 @@ const Menu:React.FC<MenuProps>=(props)=>{
        
     }
 
-    const checkUserRecords=async()=>{
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).then(res=>res)
+    const checkUserRecords=async():Promise<void>=>{
+        const response:'Didnt find'| UserInfo = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).then(res=>res)
         if(response !== "Didnt find"){
             if(response.Bp && response.Dl && response.Sq ){
-                localStorage.setItem('dl',response.Dl)
-                localStorage.setItem('sq',response.Sq)
-                localStorage.setItem('bp',response.Bp)
+                localStorage.setItem('dl',response.Dl.toString())
+                localStorage.setItem('sq',response.Sq.toString())
+                localStorage.setItem('bp',response.Bp.toString())
                 setPopUp(true)
             } 
         }
     }
     useEffect(()=>{
-        const buttons = document.querySelectorAll("button")
+        const buttons:NodeListOf<HTMLButtonElement> = document.querySelectorAll("button")
         if(!popUp){
             
             buttons.forEach(element => {
