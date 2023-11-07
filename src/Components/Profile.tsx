@@ -1,12 +1,13 @@
 import './styles/Profile.css'
 import { useState,useEffect } from 'react'
-
+import UserProfile from './types/UserProfileType'
+import UserInfo from './interfaces/UserInfoInterface'
 
 
 const Profile:React.FC=()=>{
-    const [yourProfile,setYourProfile]=useState({name:localStorage.getItem('username'),email:localStorage.getItem('email')})
-    const [rank,setRank]= useState('')
-    const logout:VoidFunction=()=>{
+    const [yourProfile,setYourProfile]=useState<UserProfile>({name:localStorage.getItem('username')!,email:localStorage.getItem('email')!})
+    const [rank,setRank]= useState<string>('')
+    const logout:VoidFunction=():void=>{
         localStorage.removeItem('username')
         localStorage.removeItem('email')
         localStorage.removeItem('id')
@@ -18,12 +19,11 @@ const Profile:React.FC=()=>{
         localStorage.removeItem('plan')
         window.location.href='/'
     }
-    const checkUserRank=async()=>{
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).then(res=>res)
-        if(response !== "Didnt find"){
-           setRank(response.rank)
-        }
-    }
+    const checkUserRank=async():Promise<void>=>{
+        const response: "Didnt find" | UserInfo = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).then(res=>res)
+        if(response !== "Didnt find")
+             if(response.rank) setRank(response.rank)
+     }
     useEffect(()=>{
         checkUserRank()
     },[])
