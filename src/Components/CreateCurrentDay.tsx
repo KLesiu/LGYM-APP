@@ -1,6 +1,7 @@
 import './styles/CreateCurrentDay.css'
-import {useState,useEffect} from 'react'
+import {useState,useEffect,MouseEvent} from 'react'
 import uniqid from 'uniqid'
+
 import CreateCurrentDayProps from './interfaces/CreateCurrentDayPropsInterface'
 
 
@@ -10,24 +11,30 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
     const [elements,setElements]=useState<Array<JSX.Element>>()
     const [countElements,setCountElements]=useState<number>(0)
     
-    const removeElement:any=(e:any)=>{
-        const parentOfElement=e.target.parentElement
-        parentOfElement.classList.add('hidden')
-        parentOfElement.children[0].value=null
-        parentOfElement.children[1].value=0
-        parentOfElement.children[2].value=null
-       
+    const removeElement=(e:MouseEvent<HTMLButtonElement>):void=>{
+        const parentOfElement: HTMLDivElement=(e.target as HTMLButtonElement).parentElement as HTMLDivElement
+        const inputElement1: HTMLInputElement = parentOfElement.children[0] as HTMLInputElement;
+        const inputElement2: HTMLInputElement = parentOfElement.children[1] as HTMLInputElement;
+        const inputElement3: HTMLInputElement = parentOfElement.children[2] as HTMLInputElement;
+        parentOfElement.classList.add('hidden');
+        inputElement1.value = '';
+        inputElement2.value = '0';
+        inputElement3.value = '';
+
+    
         
         
     }
-    const addElements=(day:string)=>{
+
+    
+    const addElements=(day:string):void=>{
         const Element:JSX.Element = <div className='exerciseConfig'>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} />
             <input type="number" placeholder='Series' name="" className={`${props.day}-series`} />
             <input type="text" placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
             <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
         </div>
-        const arr = []
+        const arr:Array<JSX.Element> = []
         if(day === 'planA'){
             if(props.planA) props.planA.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
                  <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
