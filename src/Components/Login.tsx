@@ -4,13 +4,13 @@ import uniqid from "uniqid"
 import ErrorMsg from './types/ErrorType'
 
 const Login:React.FC=()=>{
-    const [errors,setErrors]:any= useState<ErrorMsg[]>([])
-    const login:any=async(event:Event)=>{
+    const [errors,setErrors]:[ErrorMsg[], React.Dispatch<React.SetStateAction<ErrorMsg[]>>]= useState<ErrorMsg[]>([])
+    const login=async(event:React.FormEvent<HTMLFormElement>):Promise<string | void>=>{
         event.preventDefault()
         const name:string|undefined = document.querySelector<HTMLInputElement>("input[name='username']")?.value
         const password:string|undefined = document.querySelector<HTMLInputElement>("input[name='password']")?.value
         if(!name || !password) return setErrors([{msg:"All fields are required!"}])
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/login`,{
+        const response:'Authorized'|'Unauthorized' = await fetch(`${process.env.REACT_APP_BACKEND}/api/login`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
@@ -25,10 +25,11 @@ const Login:React.FC=()=>{
             }])
             else{
                 setErrors([])
-                 return res.json()
+                return res.json()
             }
         }).then(data=>{
-            const token = data.token
+            if(!data) return 'Unauthorized'
+            const token:string = data.token
             localStorage.setItem('username',data.req.name)
             localStorage.setItem('id',data.req._id)
             localStorage.setItem("token",token)
