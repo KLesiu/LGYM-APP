@@ -60,11 +60,12 @@ const Records:React.FC=()=>{
     },[])
     useEffect(()=>{
         changeRank()
+        setTimeout(()=>document.querySelector('#recordsSection')?.classList.remove('hidden'),100)
     },[])
 
 
     return(
-        <section id="recordsSection">
+        <section className="hidden recordsSectionDisplay" id="recordsSection">
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             <h2>Records in powerlifting:</h2>
             <h3><div id="deadLiftIcon"></div>  Dead Lift:</h3>

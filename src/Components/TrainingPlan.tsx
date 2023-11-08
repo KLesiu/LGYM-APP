@@ -328,13 +328,15 @@ const TrainingPlan:React.FC=()=>{
     },[plan])
     useEffect(()=>{
         getUserPlan()
+        setTimeout(()=>document.querySelector('#trainingPlanSection')?.classList.remove('hidden'),100)
+        
     },[])
    
     useEffect(()=>{
         showCurrentPlanDay(showedPlanDay)
     },[showedPlanDay])
     return(
-        <section id='trainingPlanSection'>
+        <section className='hidden' id='trainingPlanSection'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             {yourPlan}
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}

@@ -27,10 +27,11 @@ const Profile:React.FC=()=>{
      }
     useEffect(()=>{
         checkUserRank()
+        setTimeout(()=>document.querySelector('#profileContainer')?.classList.remove('hidden'),100)
     },[])
 
     return(
-        <section id='profileContainer'>
+        <section className='hidden profileContainerDisplay' id='profileContainer'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             <h1>Your profile</h1>
             <h2>Name: {yourProfile.name}</h2>

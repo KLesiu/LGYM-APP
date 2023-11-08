@@ -65,6 +65,7 @@ const History:React.FC=()=>{
 
     useEffect(()=>{
         getTrainingHistory()
+        setTimeout(()=>document.querySelector('#historyContainer')?.classList.remove('hidden'))
     },[])
     useEffect(()=>{
         if(sessions.length>0){
@@ -85,7 +86,7 @@ const History:React.FC=()=>{
      },[sessions])
     
     return(
-        <section id='historyContainer'>
+        <section className='hidden historyContainerDisplay' id='historyContainer'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             <h2>Training History</h2>
             {currentSessions.length>0? currentSessions.map(ele=>{

@@ -1,0 +1,49 @@
+@keyframes rotating {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+#loadingSection{
+    height: 80vh;
+    position: absolute;
+    top: 9.5%;
+    width: 100%;
+    z-index: 4;
+}
+#fakeSection{
+    align-items: center;
+    background: rgb(255,255,255);
+    background: -moz-linear-gradient(90deg, rgb(255, 255, 255) 0%, rgba(238,235,235,0.9192051820728291) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(255,255,255,0.8407738095238095) 0%, #eeebebea 100%);
+    background: linear-gradient(90deg, rgba(255,255,255,0.8407738095238095) 0%, rgba(238,235,235,0.9192051820728291) 100%);
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    margin-left: 1%;
+    margin-right: 1%;
+    text-align: center;
+    width: 98%;
+    z-index: 2;
+}
+.icon-dumbellLoading{
+    color: black;
+    font-size: 100px;
+
+}
+.animationRotate{
+    animation: rotating;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+#fakeSection p{
+    color: black;
+    font-size: 40px;
+    opacity: 1;
+    margin-bottom: 50px;
+}

@@ -8,7 +8,7 @@ const Preload:React.FC=()=>{
     const handleChange:VoidFunction=():void=>setQuote(true)
     const offLoading:VoidFunction=():void=>setComponentLoaded(true)
     useEffect(()=>{
-        setTimeout(handleChange,500)
+        setTimeout(()=>handleChange(),10000)
     },[])
     useEffect(()=>{
         if(quote===true){

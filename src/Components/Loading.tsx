@@ -14,6 +14,7 @@ const Loading:React.FC<LoadingProps>=(props)=>{
             props.offLoading()
     }, 9000)
     },[load])
+  
     return(
         <section id="loadingContainer">
             <img src={logo} alt="" />

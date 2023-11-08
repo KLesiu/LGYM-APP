@@ -157,11 +157,13 @@ const AddTraining=()=>{
     useEffect(()=>{
         if(showExercise) showCurrentExercise()
     },[showedCurrentExerciseNumber])
-   
+    useEffect(()=>{
+        setTimeout(()=>document.querySelector('#addTrainingContainer')?.classList.remove('hidden'),100)
+    },[])
 
     
     return(
-        <section id='addTrainingContainer'>
+        <section className='hidden addTrainingContainerDisplay' id='addTrainingContainer'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             {plan===''?<div id='withoutPlanTrainingDiv'>
             <h2>You cant add training!</h2>
