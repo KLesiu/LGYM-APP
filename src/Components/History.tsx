@@ -6,6 +6,7 @@ import TrainingHistory from './interfaces/TrainingHistoryInterface'
 import CurrentTrainingHistorySession from './CurrentTrainingHistorySession'
 import ErrorMsg from './types/ErrorType'
 import Training from './interfaces/TrainingInterface'
+import backgroundLGYM from './img/backgroundLGYMApp500.png'
 
 
 const History:React.FC=()=>{
@@ -85,6 +86,7 @@ const History:React.FC=()=>{
     
     return(
         <section id='historyContainer'>
+            <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             <h2>Training History</h2>
             {currentSessions.length>0? currentSessions.map(ele=>{
                 return(

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import logo from './img/logoLGYM.png'
 import './styles/Preload.css'
 const Preload:React.FC=()=>{
     const [quote,setQuote]=useState<boolean>(false)
@@ -12,7 +13,8 @@ const Preload:React.FC=()=>{
     return(
         <div id='preLoadDiv'>
             <div id='preLoadContainer'>
-                <h1>LGYM APP</h1>
+                
+                <img className='logoOfAPP' src={logo} alt="" />
                 <div id='loginAndRegisterPreLoadContainer'>
                     <a href='/login'><span>LOGIN</span></a>
                     <a href='/register'><span>REGISTER</span></a>

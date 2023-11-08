@@ -4,6 +4,7 @@ import React from 'react'
 import uniqid from "uniqid"
 import ErrorMsg from './types/ErrorType'
 import ErrorRegister from './interfaces/ErrorRegisterInterface'
+import logo from './img/logoLGYM.png'
 
 const Register:React.FC=()=>{
     const [errors,setErrors]= useState<ErrorMsg[]>([])
@@ -44,7 +45,7 @@ const Register:React.FC=()=>{
     }
     return(
         <form id="register" onSubmit={register}>
-            <h1>REGISTER TO LGYM APP</h1>
+            <img className='logoOfAPP' src={logo} alt="" />
             <label htmlFor="username">Username</label>
             <input type="text" name="username"  />
             <label htmlFor="email">Email</label>

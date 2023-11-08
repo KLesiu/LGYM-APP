@@ -2,6 +2,8 @@ import './styles/Home.css'
 import Menu from './Menu'
 import TrainingPlan from './TrainingPlan'
 import {  useState } from 'react'
+import logo from './img/logo300.png'
+
 
 const Home:React.FC=()=>{
     const [view,setView]=useState<JSX.Element>(<TrainingPlan/>)
@@ -10,7 +12,8 @@ const Home:React.FC=()=>{
     }
     return(
         <main>
-            <h1>LGYM APP</h1>
+            <span id='holderForLogo'><img className='logoOfHome' src={logo} alt="" /></span>
+            
             {view}
             <Menu viewChange={changeView}  />
         </main>

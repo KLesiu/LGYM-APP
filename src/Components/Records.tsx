@@ -5,6 +5,7 @@ import IntermediateRank from './img/intermediateRank.png'
 import AdvancedRank from './img/advanedRank.png'
 import GIGACHADRank from './img/chadRank.png'
 import ARNOLDRank from './img/arnoldRank.png'
+import backgroundLGYM from './img/backgroundLGYMApp500.png'
 const Records:React.FC=()=>{
     const [deadLift,setDeadLift]=useState<number>(+localStorage.getItem("dl")!)
     const [squat,setSquat]=useState<number>(+localStorage.getItem("sq")!)
@@ -64,6 +65,7 @@ const Records:React.FC=()=>{
 
     return(
         <section id="recordsSection">
+            <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             <h2>Records in powerlifting:</h2>
             <h3><div id="deadLiftIcon"></div>  Dead Lift:</h3>
             <span>{deadLift + ' kg' || "No data"}</span>

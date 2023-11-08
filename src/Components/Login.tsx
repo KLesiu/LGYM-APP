@@ -2,6 +2,7 @@ import './styles/Login.css'
 import {useState} from 'react'
 import uniqid from "uniqid"
 import ErrorMsg from './types/ErrorType'
+import logo from './img/logoLGYM.png'
 
 const Login:React.FC=()=>{
     const [errors,setErrors]:[ErrorMsg[], React.Dispatch<React.SetStateAction<ErrorMsg[]>>]= useState<ErrorMsg[]>([])
@@ -41,7 +42,7 @@ const Login:React.FC=()=>{
     }
     return(
         <form id='login' onSubmit={login}>
-            <h1>LOG IN TO LGYM APP</h1>
+            <img className='logoOfAPP' src={logo} alt="" />
             <label htmlFor="username">Username</label>
             <input type="text" name="username"></input>
             <label htmlFor="password">Password</label>

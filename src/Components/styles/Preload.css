@@ -20,6 +20,8 @@
 }
 #preLoadDiv{
     background: url('../img/arnoldPreLoad.jpg');
+    background-size: cover;
+    background-position: center;
     height: 100vh;
     width: 100%;
 }
@@ -113,4 +115,7 @@ p{
     animation-duration: 3s;
     animation-name: rotate;
     
+}
+.logoOfAPP{
+    width: 80%;
 }

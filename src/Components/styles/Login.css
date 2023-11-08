@@ -7,11 +7,7 @@
 }
 #login{
     align-items: center;
-    background: rgb(56,61,66);
-    background: -moz-radial-gradient(circle, rgba(56,61,66,0.8995973389355743) 0%, rgba(13,14,14,1) 100%);
-    background: -webkit-radial-gradient(circle, rgba(56,61,66,0.8995973389355743) 0%, rgba(13,14,14,1) 100%);
-    background: radial-gradient(circle, rgba(56,61,66,0.8995973389355743) 0%, rgba(13,14,14,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#383d42",endColorstr="#0d0e0e",GradientType=1);
+    background-color: rgb(24, 24, 24);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -44,11 +40,10 @@
 #login a{
     background: none;
     color: rgb(235, 233, 230);
-    font-size: 20px;
+    font-size: 25px;
     font-family: 'Teko', sans-serif;
     font-weight: 700;
     margin-top: 5vh;
-    text-shadow: 2px 2px 1px grey;
     text-decoration: none;
 }
 #login ul{

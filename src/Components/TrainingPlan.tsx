@@ -7,6 +7,7 @@ import './styles/TrainingPlan.css'
 import Plan from './interfaces/PlanInterface';
 import Exercise from './interfaces/ExerciseInterface';
 import Data from './interfaces/DataPlansArraysInterface';
+import backgroundLGYM from './img/backgroundLGYMApp500.png'
 
 
 
@@ -339,6 +340,7 @@ const TrainingPlan:React.FC=()=>{
     },[showedPlanDay])
     return(
         <section id='trainingPlanSection'>
+            <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             {yourPlan}
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}
             {planCreateSection?<CreatePlan formElements={formElements}/>:''}

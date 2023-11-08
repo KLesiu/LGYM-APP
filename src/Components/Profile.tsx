@@ -2,6 +2,7 @@ import './styles/Profile.css'
 import { useState,useEffect } from 'react'
 import UserProfile from './types/UserProfileType'
 import UserInfo from './interfaces/UserInfoInterface'
+import backgroundLGYM from './img/backgroundLGYMApp500.png'
 
 
 const Profile:React.FC=()=>{
@@ -30,6 +31,7 @@ const Profile:React.FC=()=>{
 
     return(
         <section id='profileContainer'>
+            <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             <h1>Your profile</h1>
             <h2>Name: {yourProfile.name}</h2>
             <h3>Email: {yourProfile.email}</h3>
