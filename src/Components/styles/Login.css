@@ -7,7 +7,11 @@
 }
 #login{
     align-items: center;
-    background-color: rgb(24, 24, 24);
+    background: rgb(22,22,22);
+    background: -moz-linear-gradient(333deg, rgba(22,22,22,1) 10%, rgba(85,85,85,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(22,22,22,1) 10%, rgba(85,85,85,1) 90%);
+    background: linear-gradient(333deg, rgba(22,22,22,1) 10%, rgba(85,85,85,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#161616",endColorstr="#555555",GradientType=1);
     display: flex;
     flex-direction: column;
     height: 100vh;
