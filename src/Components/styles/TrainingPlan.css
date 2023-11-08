@@ -30,6 +30,8 @@
     
 }
 .buttonsSection{
+    display: flex;
+    justify-content: space-around;
     bottom: 0%;
     left: 10%;
     width: 80%;
@@ -164,6 +166,9 @@
     border-bottom: 1px solid black;
     opacity: 1;
     text-align: center;
+}
+.ghostDiv{
+    width: 50%;
 }
 
 .hidden{

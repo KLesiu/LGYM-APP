@@ -345,12 +345,13 @@ const TrainingPlan:React.FC=()=>{
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}
             {planCreateSection?<CreatePlan formElements={formElements}/>:''}
             {currentDayCreateSection?<CreateCurrentDay setCurrentPlanDay ={setCurrentPlanDay} day={currentDay} planA={planACurrent || null} planB={planBCurrent || null} planC={planCCurrent || null} planD={planDCurrent || null} planE={planECurrent || null} planF={planFCurrent || null} planG={planGCurrent || null} />:''}
-            {arrows?<section className='buttonsSection'> <button onClick={showPrevPlanDay} id='prevDays'>
+            {arrows?<section className='buttonsSection'>{showedPlanDay===0?<div className='ghostDiv'></div>: <button onClick={showPrevPlanDay} id='prevDays'>
                                 <span className="material-symbols-outlined">chevron_left</span>
-                        </button>
-                        <button id='nextDays' onClick={showNextPlanDay} >
+                        </button>} 
+                        { document.querySelectorAll(".containerForAllExercises").length-1 === showedPlanDay?<div className='ghostDiv'></div>: <button id='nextDays' onClick={showNextPlanDay} >
                                 <span className="material-symbols-outlined">chevron_right</span>
-                        </button></section>:''}
+                        </button>}
+                       </section>:''}
         </section>
     )
 }
