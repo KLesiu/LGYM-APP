@@ -9,11 +9,6 @@ import Exercise from './interfaces/ExerciseInterface';
 import Data from './interfaces/DataPlansArraysInterface';
 import backgroundLGYM from './img/backgroundLGYMApp500.png'
 
-
-
-
-
-
 const TrainingPlan:React.FC=()=>{
     
     const [plan,setPlan]=useState<Plan>()
