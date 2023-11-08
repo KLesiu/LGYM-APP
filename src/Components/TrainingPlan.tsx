@@ -307,11 +307,11 @@ const TrainingPlan:React.FC=()=>{
     }
     const showNextPlanDay:VoidFunction=():void=>{
 
-        if(showedPlanDay === document.querySelectorAll(".containerForAllExercises").length-1) return alert('You dont have more plan days!')
+        if(showedPlanDay === document.querySelectorAll(".containerForAllExercises").length-1) return
         setShowedPlanDay(showedPlanDay+1)
     }
     const showPrevPlanDay:VoidFunction=():void=>{
-        if(showedPlanDay===0) return alert('You are looking at the first plan day')
+        if(showedPlanDay===0) return
         setShowedPlanDay(showedPlanDay-1)
     }
     const showCurrentPlanDay=(showedPlanDay:number):void=>{
