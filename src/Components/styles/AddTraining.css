@@ -262,7 +262,8 @@
     display: flex;
 }
 .lastTrainingSessionExerciseDiv span{
-    width: 100%;
+    width: 95%;
+    margin-left: 5%;
     border-bottom: 1px solid black;
     margin-bottom: 7%;
     font-size: 17px;
@@ -309,6 +310,7 @@
     border-left: 1px solid black;
     text-align: center;
 }
+
 .hidden{
     display: none;
 }

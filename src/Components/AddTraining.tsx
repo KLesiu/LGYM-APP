@@ -64,10 +64,6 @@ const AddTraining=()=>{
                 lastExercises=response.prevSession.exercises.map(ele=>ele)
                 
         }
-        
-
-        
-        
         setDaySection(<div id='daySection'>
             <h2 >Training <span className='currentDayOfTraining'>{day}</span> </h2>
 
@@ -82,9 +78,13 @@ const AddTraining=()=>{
                         {helpsArray.map((s)=>{
                             return(
                                 <div className='exerciseSeriesDiv' key={uniqid()}>
-                                    <label htmlFor={`${ele.name}-${s}-rep`}>{s}: Rep</label>
+                                    <label htmlFor={`${ele.name}-${s}-rep`}>
+                                        <p className='exerciseHolder'>{ele.name}</p> {s}: Rep
+                                    </label>
                                     <input type="number" name={`${ele.name}-${s}-rep`} />
-                                    <label htmlFor={`${ele.name}-${s}-weight`}>{s}: Weight (kg)</label>
+                                    <label htmlFor={`${ele.name}-${s}-weight`}>
+                                        <p className='exerciseHolder'>{ele.name}</p>{s}: Weight (kg)
+                                    </label>
                                     <input type="number" name={`${ele.name}-${s}-weigt`} />
                                 </div>
                             )
@@ -127,6 +127,7 @@ const AddTraining=()=>{
     const submitYourTraining:VoidFunction=():void=>{
         const inputs = document.querySelectorAll("input")
         const labels = document.querySelectorAll('label')
+        const ps = document.querySelectorAll('.exerciseHolder')
         const day = document.querySelector(".currentDayOfTraining")?.textContent!
         let completed = false
         inputs.forEach(ele=>{
@@ -140,7 +141,7 @@ const AddTraining=()=>{
         if(!completed) return alert('Complete all fields!')
         let array:Array<ExerciseTraining>=[]
         for(let i=0;i<inputs.length;i++){
-            array.push({field:labels[i].textContent!,score:inputs[i].value})
+            array.push({field:`${labels[i].textContent!}`,score:inputs[i].value})
         }
         
         addYourTrainingToDataBase(day,array)
@@ -182,6 +183,7 @@ const AddTraining=()=>{
                     </div>
                     <div className="containerForFields">
                     {lastTrainingSessionExercises.length>0?lastTrainingSessionExercises.map((ele,index)=>{
+                        
                         return(
                             <div className='lastTrainingSessionExerciseDiv' key={uniqid()}>
                                 {index===0||index%2==0?<span>{ele.field.slice(0,ele.field.length-4)}</span>:''}
