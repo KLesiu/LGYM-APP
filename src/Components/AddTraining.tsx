@@ -50,8 +50,9 @@ const AddTraining=()=>{
 
         
     }
-    const setCurrentDaySection=(exercises:Array<Exercise>,day:string):void=>{
-        
+    const setCurrentDaySection=async(exercises:Array<Exercise>,day:string):Promise<void>=>{
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPrevSessionTraining/${day}`).then(res=>res.json()).catch(err=>err).then(res=>res)
+        console.log(response)
         setDaySection(<div id='daySection'>
             <h2 >Training <span className='currentDayOfTraining'>{day}</span> </h2>
             {exercises.map((ele:Exercise)=>{
