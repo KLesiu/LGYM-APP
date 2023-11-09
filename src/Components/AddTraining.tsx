@@ -20,6 +20,7 @@ const AddTraining=()=>{
     const [lastTrainingSessionExercises,setLastTrainingSessionExercises]=useState<Array<ExerciseTraining>>()
     const [lastTrainingSection,setLastTrainingSection]=useState<JSX.Element>()
     const [showedCurrentExerciseNumber,setShowedCurrentExerciseNumber]=useState<number>(0)
+    const [showedCurrentLastTrainingExerciseNumber,setShowedCurrentLastTrainingExerciseNumber]=useState<number>(0)
     const [popUp,setPopUp]=useState<JSX.Element>(<div className='fromLeft popUpAddTraining'><span className="appear donePopUp material-symbols-outlined">
     done
     </span></div>)
@@ -186,7 +187,7 @@ const AddTraining=()=>{
                     {lastTrainingSessionExercises.length>0?lastTrainingSessionExercises.map((ele,index)=>{
                         
                         return(
-                            <div className='lastTrainingSessionExerciseDiv' key={uniqid()}>
+                            <div className='hidden lastTrainingSessionExerciseDiv' key={uniqid()}>
                                 {index===0||index%2==0?<span>{ele.field.slice(0,ele.field.length-4)}</span>:''}
                                 
                             </div>
@@ -198,7 +199,7 @@ const AddTraining=()=>{
                     <div className="containerForScores">
                     {lastTrainingSessionExercises.length>0?lastTrainingSessionExercises.map((ele)=>{
                         return(
-                            <p key={uniqid()}>{ele.score}</p>
+                            <p className='hidden scoresOfFields' key={uniqid()}>{ele.score}</p>
                         )
                     }):''}
                     </div>
@@ -216,8 +217,28 @@ const AddTraining=()=>{
         for(let i=0;i<allDivs.length;i++){
             if(i%2===0 || i===0)  helpsArray.push(allDivs[i])
         }
-        console.log(helpsArray)
+        if(showedCurrentLastTrainingExerciseNumber===0){
+            showFirstCurrentExercisesAtLastTrainingSection()
+            setShowedCurrentLastTrainingExerciseNumber(8)
+        } 
         
+        
+    }
+    const showFirstCurrentExercisesAtLastTrainingSection:VoidFunction=():void=>{
+        const allDivs:NodeListOf<HTMLDivElement> = document.querySelectorAll(".lastTrainingSessionExerciseDiv")
+        const helpsArray:Array<HTMLDivElement>=[]
+       
+        for(let i=0;i<allDivs.length;i++){
+            if(i%2===0 || i===0)  helpsArray.push(allDivs[i])
+        }
+        helpsArray.forEach((ele,index)=>{
+            if(index<9) ele.classList.remove('hidden')
+            
+        })
+        const scores:NodeListOf<HTMLParagraphElement>=document.querySelectorAll('.scoresOfFields')
+        scores.forEach((ele,index)=>{
+            if(index<18) ele.classList.remove('hidden')
+        })
     }
     useEffect(()=>{
         if(showExercise) showFirstExercise()
