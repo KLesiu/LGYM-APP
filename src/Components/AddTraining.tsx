@@ -16,6 +16,9 @@ const AddTraining=()=>{
     const [chooseDay,setChooseDay]=useState<JSX.Element>(<div></div>)
     const [daySection,setDaySection]=useState<JSX.Element>(<div></div>)
     const [showExercise,setShowExercise]=useState<boolean>()
+    const [lastTrainingSessionDate,setLastTrainingSessionDate]=useState<string>()
+    const [lastTrainingSessionExercises,setLastTrainingSessionExercises]=useState<Array<ExerciseTraining>>()
+    const [lastTrainingSection,setLastTrainingSection]=useState<JSX.Element>()
     const [showedCurrentExerciseNumber,setShowedCurrentExerciseNumber]=useState<number>(0)
     const [popUp,setPopUp]=useState<JSX.Element>(<div className='fromLeft popUpAddTraining'><span className="appear donePopUp material-symbols-outlined">
     done
@@ -64,6 +67,7 @@ const AddTraining=()=>{
         
         setDaySection(<div id='daySection'>
             <h2 >Training <span className='currentDayOfTraining'>{day}</span> </h2>
+
             {exercises.map((ele:Exercise)=>{
                 let helpsArray:Array<string> = []
                 for(let i=1;i<+ele.series+1;i++){
@@ -72,12 +76,12 @@ const AddTraining=()=>{
                 return(
                     <div key={uniqid()} className='hidden exerciseCurrentDiv'>
                         <h3>{ele.name}</h3>
-                        {helpsArray.map(s=>{
+                        {helpsArray.map((s)=>{
                             return(
                                 <div className='exerciseSeriesDiv' key={uniqid()}>
-                                    <label htmlFor={`${ele.name}-${s}-rep`}>{ele.name} {s}: Rep</label>
+                                    <label htmlFor={`${ele.name}-${s}-rep`}>{s}: Rep</label>
                                     <input type="number" name={`${ele.name}-${s}-rep`} />
-                                    <label htmlFor={`${ele.name}-${s}-weight`}>{ele.name} {s}: Weight (kg)</label>
+                                    <label htmlFor={`${ele.name}-${s}-weight`}>{s}: Weight (kg)</label>
                                     <input type="number" name={`${ele.name}-${s}-weigt`} />
                                 </div>
                             )
@@ -88,6 +92,8 @@ const AddTraining=()=>{
                
             })}
         </div>)
+        setLastTrainingSessionDate(lastTraining!)
+        setLastTrainingSessionExercises(lastExercises!)
         setShowExercise(true)
         
     }
@@ -161,6 +167,41 @@ const AddTraining=()=>{
     const popUpTurnOn:VoidFunction=():void=>{
         setTimeout(()=>setIsPopUpShowed(false),7000)
     }
+    const showLastTrainingSection:VoidFunction=():void=>{
+        if(!lastTrainingSessionDate || lastTrainingSessionExercises?.length!<1 || !lastTrainingSessionExercises) return alert('Error')
+        setLastTrainingSection(()=>{
+            return(
+                <div id='lastSessionTrainingSection'>
+                    <h2>Date: {lastTrainingSessionDate}</h2>
+                    <div className='legendForTabelDiv'>
+                        <p>Reps:</p>
+                        <p>Weight:(kg)</p>
+                    </div>
+                    <div className="containerForFields">
+                    {lastTrainingSessionExercises.length>0?lastTrainingSessionExercises.map((ele,index)=>{
+                        return(
+                            <div className='lastTrainingSessionExerciseDiv' key={uniqid()}>
+                                {index===0||index%2==0?<span>{ele.field.slice(0,ele.field.length-4)}</span>:''}
+                                
+                            </div>
+
+                        )
+                    }):''}
+                    </div>
+                    
+                    <div className="containerForScores">
+                    {lastTrainingSessionExercises.length>0?lastTrainingSessionExercises.map((ele)=>{
+                        return(
+                            <p>{ele.score}</p>
+                        )
+                    }):''}
+                    </div>
+                    
+                </div>
+            )
+        })
+
+    }
     useEffect(()=>{
         if(showExercise) showFirstExercise()
     },[showExercise])
@@ -189,6 +230,7 @@ const AddTraining=()=>{
                     </button>
                     {chooseDay}
                     {daySection}
+                    {lastTrainingSection}
                     {showExercise?<div id='buttonsTrainingDiv'>
                         <button onClick={showPrevExercise}>
                                 <span className="material-symbols-outlined">
@@ -196,6 +238,7 @@ const AddTraining=()=>{
                                 </span>
                         </button>
                         <button onClick={submitYourTraining} id='addCurrentTrainingButton'>ADD TRAINING</button>
+                        <button onClick={showLastTrainingSection} id='showPreviousSession'>SHOW PREVIOUS SESSION</button>
                         <button onClick={showNextExercise}>
                                 <span  className="material-symbols-outlined">
                                     navigate_next

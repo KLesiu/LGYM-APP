@@ -185,7 +185,7 @@
     background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
-   border-radius: 10%;
+   border-radius: 5%;
    border: none;
     font-weight: bold;
     font-family: 'Teko', sans-serif;
@@ -232,6 +232,82 @@
     width: 100vw;
     z-index: auto
     
+}
+#showPreviousSession{
+    font-size: 20px;
+}
+#lastSessionTrainingSection{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+#lastSessionTrainingSection h2{
+    font-size: 20px;
+    margin: 10px;
+}
+#lastSessionTrainingSection div p{
+    color: black;
+    font-size: 15px;
+    opacity: 1;
+}
+.lastTrainingSessionExerciseDiv{
+    display: flex;
+}
+.lastTrainingSessionExerciseDiv span{
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin-bottom: 7%;
+    font-size: 17px;
+}
+.lastTrainingSessionExerciseDiv p{
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 50%;
+}
+.containerForFields{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 50%;
+    height: 80%;
+}
+.containerForFields p{
+    width: 100%;
+}
+.containerForScores{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 80%;
+    width: 50%;
+}
+.containerForScores p{
+    text-align: center;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    height: 5%;
+    width: 49.5%;
+}
+.legendForTabelDiv{
+    display: flex;
+    justify-content: flex-end;
+    height: 5%;
+    text-align: center;
+    width: 100%;
+}
+.legendForTabelDiv p{
+    width: 25%;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    text-align: center;
 }
 .hidden{
     display: none;
