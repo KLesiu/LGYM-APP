@@ -4,6 +4,7 @@ export default interface UserInfo{
     admin?:boolean,
     email:string,
     rank?:string,
+    profileRank?:string,
     updatedAt?:string,
     createdAt:string,
     Bp?:number,

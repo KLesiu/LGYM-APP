@@ -3,11 +3,13 @@ import { useState,useEffect } from 'react'
 import UserProfile from './types/UserProfileType'
 import UserInfo from './interfaces/UserInfoInterface'
 import backgroundLGYM from './img/backgroundLGYMApp500.png'
+import Junior1 from './img/newRanks/Junior1.png'
+
 
 
 const Profile:React.FC=()=>{
     const [yourProfile,setYourProfile]=useState<UserProfile>({name:localStorage.getItem('username')!,email:localStorage.getItem('email')!})
-    const [rank,setRank]= useState<string>('')
+    const [profileRank,setProfileRank]=useState<string>('')
     const logout:VoidFunction=():void=>{
         localStorage.removeItem('username')
         localStorage.removeItem('email')
@@ -23,7 +25,10 @@ const Profile:React.FC=()=>{
     const checkUserRank=async():Promise<void>=>{
         const response: "Didnt find" | UserInfo = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).then(res=>res)
         if(response !== "Didnt find")
-             if(response.rank) setRank(response.rank)
+             if(response.profileRank){
+                setProfileRank(response.profileRank)
+             } 
+             
      }
     useEffect(()=>{
         checkUserRank()
@@ -36,7 +41,11 @@ const Profile:React.FC=()=>{
             <h1>Your profile</h1>
             <h2>Name: {yourProfile.name}</h2>
             <h3>Email: {yourProfile.email}</h3>
-            <h3>Rank: {rank}</h3>
+            <h3>Profile Rank: {profileRank}</h3>
+            
+            <img src={Junior1} id='profileRank' alt="" />
+           
+            
             <button onClick={logout} id='logout'>Logout</button>
         </section>
     )
