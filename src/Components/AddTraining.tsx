@@ -83,6 +83,7 @@ const AddTraining=()=>{
     }
     const showFirstExercise:VoidFunction=():void=>{
         const exercise: NodeListOf<Element> = document.querySelectorAll('.exerciseCurrentDiv')
+        exercise.forEach(ele=>ele.classList.add('hidden'))
         exercise[0].classList.remove('hidden')
         setShowedCurrentExerciseNumber(0)
     }
