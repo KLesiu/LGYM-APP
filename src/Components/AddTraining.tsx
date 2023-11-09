@@ -172,7 +172,8 @@ const AddTraining=()=>{
         setTimeout(()=>setIsPopUpShowed(false),7000)
     }
     const showLastTrainingSection:VoidFunction=():void=>{
-        if(!lastTrainingSessionDate || lastTrainingSessionExercises?.length!<1 || !lastTrainingSessionExercises) return alert('Error')
+        if(!lastTrainingSessionDate || lastTrainingSessionExercises?.length!<1 || !lastTrainingSessionExercises) return alert('You dont have training sessions!')
+
         setLastTrainingSection(()=>{
             return(
                 <div id='lastSessionTrainingSection'>
@@ -205,7 +206,18 @@ const AddTraining=()=>{
                 </div>
             )
         })
+        
 
+    }
+    const showCurrentExercisesAtLastTrainingSection:VoidFunction=():void=>{
+        const allDivs:NodeListOf<HTMLDivElement> = document.querySelectorAll(".lastTrainingSessionExerciseDiv")
+        const helpsArray:Array<HTMLDivElement>=[]
+       
+        for(let i=0;i<allDivs.length;i++){
+            if(i%2===0 || i===0)  helpsArray.push(allDivs[i])
+        }
+        console.log(helpsArray)
+        
     }
     useEffect(()=>{
         if(showExercise) showFirstExercise()
@@ -217,6 +229,10 @@ const AddTraining=()=>{
     useEffect(()=>{
         setTimeout(()=>document.querySelector('#addTrainingContainer')?.classList.remove('hidden'),100)
     },[])
+    useEffect(()=>{
+        if(!lastTrainingSection) return
+        showCurrentExercisesAtLastTrainingSection()
+    },[lastTrainingSection])
 
     
     return(
