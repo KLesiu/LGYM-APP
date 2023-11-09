@@ -29,6 +29,12 @@
     text-shadow: 3px 3px 2px grey;
 }
 #profileContainer h2{
+    color: rgb(223, 223, 223);
+    background: rgb(89,89,89);
+    background: -moz-linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
+    background: -webkit-linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
+    background: linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#595959",endColorstr="#404040",GradientType=1);
     border: 2px solid grey;
     border-radius: 5px;
     box-shadow: 1px 1px 0px black;
@@ -38,6 +44,12 @@
     width: 80%;
 }
 #profileContainer h3{
+    color: rgb(223, 223, 223);
+    background: rgb(89,89,89);
+    background: -moz-linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
+    background: -webkit-linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
+    background: linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#595959",endColorstr="#404040",GradientType=1);
     border: 2px solid grey;
     border-radius: 5px;
     box-shadow: 1px 1px 0px black;
@@ -56,6 +68,7 @@
     cursor: pointer;
     height: 7%;
     font-size: 25px;
+    margin-top: 100px;
     font-family: 'Teko', sans-serif;
     width: 50%;
     z-index: 3;
@@ -64,19 +77,18 @@
 #logout:hover{
     opacity: 0.8;
 }
-
-#profileRank{
+#profileRankh3{
+    align-items: center;
+    color: rgb(223, 223, 223);
     background: rgb(89,89,89);
     background: -moz-linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
     background: -webkit-linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
     background: linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#595959",endColorstr="#404040",GradientType=1);
-    border: 3px solid black;
-    border-radius: 10px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 60%;
+    display: flex;
+    justify-content: space-between;
 }
+
 .hidden{
     display: none;
 }
