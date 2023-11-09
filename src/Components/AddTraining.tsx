@@ -7,6 +7,7 @@ import {MouseEvent} from 'react'
 import Data from './interfaces/DataPlansArraysInterface'
 import addTrainingFetchType from './types/AddTrainingFetchResType'
 import backgroundLGYM from './img/backgroundLGYMApp500.png'
+import LastTrainingSession from './types/LastTrainingSessionType'
 
 
 
@@ -51,8 +52,16 @@ const AddTraining=()=>{
         
     }
     const setCurrentDaySection=async(exercises:Array<Exercise>,day:string):Promise<void>=>{
-        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPrevSessionTraining/${day}`).then(res=>res.json()).catch(err=>err).then(res=>res)
-        console.log(response)
+        const response:{prevSession:LastTrainingSession}|string = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPrevSessionTraining/${day}`).then(res=>res.json()).catch(err=>err).then(res=>res)
+        let lastTraining:string
+        let lastExercises:Array<ExerciseTraining>
+        if(typeof response !== 'string'){
+            lastTraining = response.prevSession.createdAt.slice(0,24)
+            lastExercises=response.prevSession.exercises.map(ele=>ele)
+            
+        }
+        
+        
         setDaySection(<div id='daySection'>
             <h2 >Training <span className='currentDayOfTraining'>{day}</span> </h2>
             {exercises.map((ele:Exercise)=>{
