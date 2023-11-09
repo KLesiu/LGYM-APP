@@ -112,7 +112,7 @@ const History:React.FC=()=>{
 chevron_left
 </span>
                 </button>}
-                {currentSessionsNumber>=sessions.length?<div className='ghostDiv'></div>:<button id='nextHistory' onClick={showNextSessions}><span className="material-symbols-outlined">
+                {currentSessionsNumber>=sessions.length-1?<div className='ghostDiv'></div>:<button id='nextHistory' onClick={showNextSessions}><span className="material-symbols-outlined">
 chevron_right
 </span></button>}
                 
