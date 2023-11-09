@@ -45,7 +45,7 @@ const Profile:React.FC=()=>{
             <h1>Your profile</h1>
             <h2>Name: {yourProfile.name}</h2>
             <h3>Email: {yourProfile.email}</h3>
-            <h3 id='profileRankh3'>Profile Rank :  {profileRank} {rankComponent}</h3>
+            <h3 className='profileRankh3'>Profile Rank :  {profileRank} {rankComponent}</h3>
             
             
             <button onClick={logout} id='logout'>Logout</button>
