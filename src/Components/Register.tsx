@@ -45,15 +45,15 @@ const Register:React.FC=()=>{
     }
     return(
         <form id="register" onSubmit={register}>
-            <img className='logoOfAPP' src={logo} alt="" />
-            <label htmlFor="username">Username</label>
-            <input type="text" name="username"  />
-            <label htmlFor="email">Email</label>
-            <input type="email" name='email' />
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password"  />
-            <label htmlFor="rpassword">Repeat password</label>
-            <input type="password" name="rpassword"  />
+            <img className='logoOfAPPRegister logoOfAPP' src={logo} alt="" />
+            <label htmlFor="usernameRegister">Username</label>
+            <input type="text" name="username" id='usernameRegister' autoComplete='given-name'  />
+            <label htmlFor="emailRegister">Email</label>
+            <input type="email" name='email' id='emailRegister' autoComplete='email' />
+            <label htmlFor="passwordRegister">Password</label>
+            <input type="password" name="password" id='passwordRegister' />
+            <label htmlFor="rpasswordRegister">Repeat password</label>
+            <input type="password" name="rpassword" id="rpasswordRegister"  />
             <button type='submit'>REGISTER</button>
             <ul>{errors?errors.map((ele:ErrorMsg)=>{
                 return <li key={uniqid()}>{ele.msg}</li>
