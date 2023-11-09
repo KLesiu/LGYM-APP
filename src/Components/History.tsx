@@ -107,14 +107,15 @@ const History:React.FC=()=>{
             }):''}
             {sessions.length>0?
             <div id='buttonHistoryContainer'>
-                <button onClick={showPrevSessions} id='prevHistory'>
+                {currentSessionsNumber===3?<div className='ghostDiv'></div>:<button onClick={showPrevSessions} id='prevHistory'>
                 <span className="material-symbols-outlined">
 chevron_left
 </span>
-                </button>
-                <button id='nextHistory' onClick={showNextSessions}><span className="material-symbols-outlined">
+                </button>}
+                {currentSessionsNumber>=sessions.length?<div className='ghostDiv'></div>:<button id='nextHistory' onClick={showNextSessions}><span className="material-symbols-outlined">
 chevron_right
-</span></button>
+</span></button>}
+                
             </div>
             :<button id='youDontHaveTrainingsButton'>You dont have trainings!<br/> Let's add</button>}
             {currentHistoryTrainingSession}
