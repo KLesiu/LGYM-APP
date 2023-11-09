@@ -62,10 +62,10 @@ const Login:React.FC=()=>{
     return(
         <form id='login' onSubmit={login}>
             <img className='logoOfAPP' src={logo} alt="" />
-            <label htmlFor="username">Username</label>
-            <input type="text" name="username"></input>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="" />
+            <label htmlFor="usernameLogin">Username</label>
+            <input type="text" name="username" id='usernameLogin' autoComplete='given-name'></input>
+            <label htmlFor="passwordLogin">Password</label>
+            <input type="password" name="password" id="passwordLogin" />
             <button>LOGIN</button>
             {loading?<LoadingPreloadForms/>:''}
             <a href='/register'>You dont have acc? Lets create it for FREE</a>

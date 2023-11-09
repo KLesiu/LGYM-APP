@@ -55,11 +55,11 @@ const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
         <form action="" id='recordsPopUp' onSubmit={setRecords}>
             <h2>Set Your Records!</h2>
             <label htmlFor="sq">Squat:</label>
-            <input type="text" name="sq" id="" />
+            <input type="text" name="sq"  />
             <label htmlFor="dl">Dead Lift:</label>
-            <input type="text" name="dl" id="" />
+            <input type="text" name="dl"  />
             <label htmlFor="bp">Bench Press:</label>
-            <input type="text" name="bp" id="" />
+            <input type="text" name="bp"  />
             <button type='submit' id='popUpButton'>ADD</button>
             <p>{error?error.msg:''}</p>
         </form>
