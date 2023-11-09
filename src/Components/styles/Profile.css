@@ -50,7 +50,7 @@
     width: 80%;
 }
 .profileRankh3{
-    align-items: center;
+    
     color: rgb(223, 223, 223);
     background: rgb(89,89,89);
     background: -moz-linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
@@ -58,8 +58,8 @@
     background: linear-gradient(0deg, rgba(89,89,89,1) 10%, rgba(64,64,64,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#595959",endColorstr="#404040",GradientType=1);
     display: flex;
+    width: 100%;
     
-    justify-content: space-between;
 }
 #logout{
     background-color: rgba(189, 18, 18, 0.884);
@@ -105,7 +105,21 @@
     background: linear-gradient(333deg, rgba(91,76,2,1) 10%, rgba(153,117,6,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5b4c02",endColorstr="#997506",GradientType=1);
 }
-
+.containerForInfoProfile{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 60%;
+    
+}
+.ColumnProfile{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
 .hidden{
     display: none;
 }

@@ -11,6 +11,7 @@ import ProfileRank from './ProfileRank'
 const Profile:React.FC=()=>{
     const [yourProfile,setYourProfile]=useState<UserProfile>({name:localStorage.getItem('username')!,email:localStorage.getItem('email')!})
     const [profileRank,setProfileRank]=useState<string>('')
+    const [memberSince,setMemberSince]=useState<string>('')
     const [rankComponent,setRankComponent]=useState<JSX.Element>()
     const logout:VoidFunction=():void=>{
         localStorage.removeItem('username')
@@ -24,16 +25,19 @@ const Profile:React.FC=()=>{
         localStorage.removeItem('plan')
         window.location.href='/'
     }
-    const checkUserRank=async():Promise<void>=>{
+    const checkMoreUserInfo=async():Promise<void>=>{
         const response: "Didnt find" | UserInfo = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).then(res=>res)
         if(response !== "Didnt find")
-             if(response.profileRank){
+             if(response.profileRank && response.createdAt){
                 setProfileRank(response.profileRank)
+                setMemberSince(response.createdAt.slice(0,10))
+                
              } 
+             
              
      }
     useEffect(()=>{
-        checkUserRank()
+        checkMoreUserInfo()
         setRankComponent(<ProfileRank />)
         setTimeout(()=>document.querySelector('#profileContainer')?.classList.remove('hidden'),100)
     },[])
@@ -43,9 +47,22 @@ const Profile:React.FC=()=>{
         <section className='hidden profileContainerDisplay' id='profileContainer'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             <h1>Your profile</h1>
+            <div className='containerForInfoProfile'>
             <h2>Name: {yourProfile.name}</h2>
-            <h3>Email: {yourProfile.email}</h3>
-            <h3 className='profileRankh3'>Profile Rank :  {profileRank} {rankComponent}</h3>
+                <div className='ColumnProfile'>
+                    
+                    <h3 className='profileRankh3'>Profile Rank :  {profileRank}
+                    {rankComponent} 
+                    </h3>
+                    <h3>Email: {yourProfile.email}</h3>
+                    <h3>Member Since: {memberSince}</h3>
+                    
+                </div>
+           
+                
+                
+            </div>
+            
             
             
             <button onClick={logout} id='logout'>Logout</button>
