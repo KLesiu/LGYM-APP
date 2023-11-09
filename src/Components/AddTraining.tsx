@@ -55,14 +55,17 @@ const AddTraining=()=>{
         
     }
     const setCurrentDaySection=async(exercises:Array<Exercise>,day:string):Promise<void>=>{
-        const response:{prevSession:LastTrainingSession}|string = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPrevSessionTraining/${day}`).then(res=>res.json()).catch(err=>err).then(res=>res)
+        const response:{prevSession:LastTrainingSession}|null = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPrevSessionTraining/${day}`).then(res=>res.json()).catch(err=>err).then(res=>res)
         let lastTraining:string
         let lastExercises:Array<ExerciseTraining>
-        if(typeof response !== 'string'){
-            lastTraining = response.prevSession.createdAt.slice(0,24)
-            lastExercises=response.prevSession.exercises.map(ele=>ele)
-            
+        
+        if('prevSession' in response!){
+                lastTraining = response.prevSession.createdAt.slice(0,24) 
+                lastExercises=response.prevSession.exercises.map(ele=>ele)
+                
         }
+        
+
         
         
         setDaySection(<div id='daySection'>
@@ -192,7 +195,7 @@ const AddTraining=()=>{
                     <div className="containerForScores">
                     {lastTrainingSessionExercises.length>0?lastTrainingSessionExercises.map((ele)=>{
                         return(
-                            <p>{ele.score}</p>
+                            <p key={uniqid()}>{ele.score}</p>
                         )
                     }):''}
                     </div>
