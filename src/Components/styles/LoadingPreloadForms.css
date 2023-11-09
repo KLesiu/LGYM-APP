@@ -1,0 +1,30 @@
+@keyframes rotating {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+#loadingPreloadFormsDiv{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 60%;
+}
+.icon-dumbellLoadingForms{
+    color: white;
+    margin-top: 10px;
+    font-size: 40px;
+}
+.pLoadingForms{
+    font-size: 30px;
+    opacity: 1;
+}
+.animationRotateForms{
+    animation: rotating;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
