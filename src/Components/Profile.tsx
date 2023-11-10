@@ -51,7 +51,7 @@ const Profile:React.FC=()=>{
             <h2>Name: {yourProfile.name}</h2>
                 <div className='ColumnProfile'>
                     
-                    <h3 className='profileRankh3'>Profile Rank :  {profileRank}
+                    <h3 className='profileRankh3'>Profile Rank : <br /> {profileRank}
                     {rankComponent} 
                     </h3>
                     <h3>Email: {yourProfile.email}</h3>
