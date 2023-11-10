@@ -179,6 +179,9 @@ const AddTraining=()=>{
         setLastTrainingSection(()=>{
             return(
                 <div id='lastSessionTrainingSection'>
+                    <button onClick={hideLastTrainingSection} id='closeLastTrainingSession'><span className="closeSymbol material-symbols-outlined">
+close
+</span></button>
                     <h2>Date: {lastTrainingSessionDate}</h2>
                     <div className='legendForTabelDiv'>
                         <p>Reps:</p>
@@ -264,6 +267,12 @@ const AddTraining=()=>{
             if(index<18) ele.classList.remove('hidden')
             else ele.classList.add('hidden')
         })
+    }
+    const hideLastTrainingSection:VoidFunction=():void=>{
+        setShowButtonsSectionAtLastTrainingExercise(false)
+        setShowedCurrentLastTrainingExerciseScores(0)
+        setShowedCurrentLastTrainingExerciseNumber(0)
+        setLastTrainingSection(<div></div>)
     }
     useEffect(()=>{
         if(showExercise) showFirstExercise()

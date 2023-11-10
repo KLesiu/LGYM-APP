@@ -330,9 +330,9 @@
     background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
     opacity: 1;
-   border-radius: 50%;
+   border-radius: 20%;
    height: 100%;
-   width: 15%;
+   width: 12%;
 }
 .scoresOfFields{
     align-items: center;
@@ -340,7 +340,16 @@
     justify-content: center;
     
 }
-
+#closeLastTrainingSession{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    position: absolute;
+    border-radius: 10%;
+    right: 0;
+}
 
 .hidden{
     display: none;
