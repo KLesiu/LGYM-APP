@@ -93,7 +93,7 @@ const History:React.FC=()=>{
                 return(
                     <div className='session' key={uniqid()}>
                         <h3>Training symbol: {ele.symbol} </h3>
-                        <p>Date: <span>{ele.date}</span>  </p>
+                        <p>Date: <span>{ele.date.slice(0,25)}</span>  </p>
                         <p>Series: {ele.exercises.length}</p>
                         <p>Id: <span>{ele.id}</span></p>
                         {/* <p>Notes: {ele.notes || 'none'} </p> */}
