@@ -21,6 +21,7 @@ const AddTraining=()=>{
     const [lastTrainingSection,setLastTrainingSection]=useState<JSX.Element>()
     const [showedCurrentExerciseNumber,setShowedCurrentExerciseNumber]=useState<number>(0)
     const [showedCurrentLastTrainingExerciseNumber,setShowedCurrentLastTrainingExerciseNumber]=useState<number>(0)
+    const [showButtonsSectionAtLastTrainingExercise,setShowButtonsSectionAtLastTrainingExercise]=useState<boolean>(false)
     const [popUp,setPopUp]=useState<JSX.Element>(<div className='fromLeft popUpAddTraining'><span className="appear donePopUp material-symbols-outlined">
     done
     </span></div>)
@@ -128,7 +129,6 @@ const AddTraining=()=>{
     const submitYourTraining:VoidFunction=():void=>{
         const inputs = document.querySelectorAll("input")
         const labels = document.querySelectorAll('label')
-        const ps = document.querySelectorAll('.exerciseHolder')
         const day = document.querySelector(".currentDayOfTraining")?.textContent!
         let completed = false
         inputs.forEach(ele=>{
@@ -174,7 +174,7 @@ const AddTraining=()=>{
     }
     const showLastTrainingSection:VoidFunction=():void=>{
         if(!lastTrainingSessionDate || lastTrainingSessionExercises?.length!<1 || !lastTrainingSessionExercises) return alert('You dont have training sessions!')
-
+        setShowButtonsSectionAtLastTrainingExercise(true)
         setLastTrainingSection(()=>{
             return(
                 <div id='lastSessionTrainingSection'>
@@ -194,6 +194,7 @@ const AddTraining=()=>{
 
                         )
                     }):''}
+
                     </div>
                     
                     <div className="containerForScores">
@@ -203,7 +204,7 @@ const AddTraining=()=>{
                         )
                     }):''}
                     </div>
-                    
+
                 </div>
             )
         })
@@ -213,6 +214,7 @@ const AddTraining=()=>{
     const showCurrentExercisesAtLastTrainingSection:VoidFunction=():void=>{
         const allDivs:NodeListOf<HTMLDivElement> = document.querySelectorAll(".lastTrainingSessionExerciseDiv")
         const helpsArray:Array<HTMLDivElement>=[]
+        
        
         for(let i=0;i<allDivs.length;i++){
             if(i%2===0 || i===0)  helpsArray.push(allDivs[i])
@@ -254,6 +256,11 @@ const AddTraining=()=>{
         if(!lastTrainingSection) return
         showCurrentExercisesAtLastTrainingSection()
     },[lastTrainingSection])
+    useEffect(()=>{
+        console.log(showedCurrentLastTrainingExerciseNumber)
+        
+    },[showedCurrentLastTrainingExerciseNumber])
+   
 
     
     return(
@@ -273,6 +280,20 @@ const AddTraining=()=>{
                     {chooseDay}
                     {daySection}
                     {lastTrainingSection}
+                    {showButtonsSectionAtLastTrainingExercise?<div className='buttonsDivAtLastTreningSection'>
+                        <button onClick={()=>{
+                            
+                            setShowedCurrentLastTrainingExerciseNumber(showedCurrentLastTrainingExerciseNumber-1)
+                        }}><span className="material-symbols-outlined">
+chevron_left
+</span></button>
+                        <button onClick={()=>{
+                            
+                            setShowedCurrentLastTrainingExerciseNumber(showedCurrentLastTrainingExerciseNumber+1)
+                        }}><span className="material-symbols-outlined">
+chevron_right
+</span></button>
+                    </div>:''}
                     {showExercise?<div id='buttonsTrainingDiv'>
                         <button onClick={showPrevExercise}>
                                 <span className="material-symbols-outlined">
