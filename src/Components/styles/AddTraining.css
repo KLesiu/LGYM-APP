@@ -260,13 +260,17 @@
 }
 .lastTrainingSessionExerciseDiv{
     display: flex;
+    height: 11%;
 }
 .lastTrainingSessionExerciseDiv span{
+    align-items: center;
+    display: flex;
+    justify-content: center;
     width: 95%;
     margin-left: 5%;
-    border-bottom: 1px solid black;
-    margin-bottom: 14%;
-    font-size: 17px;
+    border-top: 1px solid black;
+    text-align: center;
+    font-size: 15px;
 }
 .lastTrainingSessionExerciseDiv p{
     border-left: 2px solid black;
@@ -276,7 +280,7 @@
 .containerForFields{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 50%;
     height: 80%;
 }
@@ -312,10 +316,11 @@
 }
 .buttonsDivAtLastTreningSection{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     position: absolute;
+    height: 5%;
     width: 100%;
-    bottom:1%;
+    bottom:0%;
     z-index: 8;
 }
 .currentLastTrainingExerciseButton{
@@ -324,9 +329,18 @@
     background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
-   border-radius: 5%;
-   width: 25%;
+    opacity: 1;
+   border-radius: 50%;
+   height: 100%;
+   width: 15%;
 }
+.scoresOfFields{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    
+}
+
 
 .hidden{
     display: none;

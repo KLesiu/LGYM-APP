@@ -200,8 +200,14 @@ const AddTraining=()=>{
                     
                     <div className="containerForScores">
                     {lastTrainingSessionExercises.length>0?lastTrainingSessionExercises.map((ele)=>{
+                        const style={
+                            height:11+'%',
+                            fontSize:30+'px'
+                            
+
+                        }
                         return(
-                            <p className='hidden scoresOfFields' key={uniqid()}>{ele.score}</p>
+                            <p style={style} className='hidden scoresOfFields' key={uniqid()}>{ele.score}</p>
                         )
                     }):''}
                     </div>
@@ -216,10 +222,6 @@ const AddTraining=()=>{
         const allDivs:NodeListOf<HTMLDivElement> = document.querySelectorAll(".lastTrainingSessionExerciseDiv")
         const helpsArray:Array<HTMLDivElement>=[]
         const scores:NodeListOf<HTMLParagraphElement>=document.querySelectorAll('.scoresOfFields')
-
-
-        console.log(showedCurrentLastTrainingExerciseScores)
-       
         for(let i=0;i<allDivs.length;i++){
             if(i%2===0 || i===0)  helpsArray.push(allDivs[i])
         }
@@ -233,17 +235,14 @@ const AddTraining=()=>{
                 if(index<showedCurrentLastTrainingExerciseScores && index>=showedCurrentLastTrainingExerciseScores -18 )ele.classList.remove('hidden')
                 else ele.classList.add('hidden')
             })
-            console.log(scores)
-            console.log(helpsArray) 
+           
             
         }
        
         else{
             showFirstCurrentExercisesAtLastTrainingSection()
             setShowedCurrentLastTrainingExerciseNumber(9)
-            setShowedCurrentLastTrainingExerciseScores(18)
-            console.log(scores)
-            console.log(helpsArray) 
+            setShowedCurrentLastTrainingExerciseScores(18) 
         }
 
         
