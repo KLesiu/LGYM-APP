@@ -20,6 +20,7 @@ const AddTraining=()=>{
     const [lastTrainingSessionExercises,setLastTrainingSessionExercises]=useState<Array<ExerciseTraining>>()
     const [lastTrainingSection,setLastTrainingSection]=useState<JSX.Element>()
     const [showedCurrentExerciseNumber,setShowedCurrentExerciseNumber]=useState<number>(0)
+    const [showedCurrentLastTrainingExerciseScores,setShowedCurrentLastTrainingExerciseScores]=useState<number>(0)
     const [showedCurrentLastTrainingExerciseNumber,setShowedCurrentLastTrainingExerciseNumber]=useState<number>(0)
     const [showButtonsSectionAtLastTrainingExercise,setShowButtonsSectionAtLastTrainingExercise]=useState<boolean>(false)
     const [popUp,setPopUp]=useState<JSX.Element>(<div className='fromLeft popUpAddTraining'><span className="appear donePopUp material-symbols-outlined">
@@ -214,32 +215,55 @@ const AddTraining=()=>{
     const showCurrentExercisesAtLastTrainingSection:VoidFunction=():void=>{
         const allDivs:NodeListOf<HTMLDivElement> = document.querySelectorAll(".lastTrainingSessionExerciseDiv")
         const helpsArray:Array<HTMLDivElement>=[]
-        
+        const scores:NodeListOf<HTMLParagraphElement>=document.querySelectorAll('.scoresOfFields')
+
+
+        console.log(showedCurrentLastTrainingExerciseScores)
        
         for(let i=0;i<allDivs.length;i++){
             if(i%2===0 || i===0)  helpsArray.push(allDivs[i])
         }
-        if(showedCurrentLastTrainingExerciseNumber===0){
+        
+         if (showedCurrentLastTrainingExerciseNumber>9 && showedCurrentLastTrainingExerciseNumber <= helpsArray.length){
+            helpsArray.forEach((ele,index:number)=>{
+                if(index<showedCurrentLastTrainingExerciseNumber && index>=showedCurrentLastTrainingExerciseNumber-9) return ele.classList.remove('hidden')
+                ele.classList.add('hidden')
+            })
+            scores.forEach((ele,index:number)=>{
+                if(index<showedCurrentLastTrainingExerciseScores && index>=showedCurrentLastTrainingExerciseScores -18 )ele.classList.remove('hidden')
+                else ele.classList.add('hidden')
+            })
+            console.log(scores)
+            console.log(helpsArray) 
+            
+        }
+       
+        else{
             showFirstCurrentExercisesAtLastTrainingSection()
-            setShowedCurrentLastTrainingExerciseNumber(8)
-        } 
+            setShowedCurrentLastTrainingExerciseNumber(9)
+            setShowedCurrentLastTrainingExerciseScores(18)
+            console.log(scores)
+            console.log(helpsArray) 
+        }
+
         
         
     }
     const showFirstCurrentExercisesAtLastTrainingSection:VoidFunction=():void=>{
         const allDivs:NodeListOf<HTMLDivElement> = document.querySelectorAll(".lastTrainingSessionExerciseDiv")
         const helpsArray:Array<HTMLDivElement>=[]
-       
         for(let i=0;i<allDivs.length;i++){
             if(i%2===0 || i===0)  helpsArray.push(allDivs[i])
         }
         helpsArray.forEach((ele,index)=>{
             if(index<9) ele.classList.remove('hidden')
+            else ele.classList.add('hidden')
             
         })
         const scores:NodeListOf<HTMLParagraphElement>=document.querySelectorAll('.scoresOfFields')
         scores.forEach((ele,index)=>{
             if(index<18) ele.classList.remove('hidden')
+            else ele.classList.add('hidden')
         })
     }
     useEffect(()=>{
@@ -253,13 +277,14 @@ const AddTraining=()=>{
         setTimeout(()=>document.querySelector('#addTrainingContainer')?.classList.remove('hidden'),100)
     },[])
     useEffect(()=>{
+        
+        showCurrentExercisesAtLastTrainingSection()
+    },[showedCurrentLastTrainingExerciseNumber])
+    useEffect(()=>{
         if(!lastTrainingSection) return
         showCurrentExercisesAtLastTrainingSection()
     },[lastTrainingSection])
-    useEffect(()=>{
-        console.log(showedCurrentLastTrainingExerciseNumber)
-        
-    },[showedCurrentLastTrainingExerciseNumber])
+
    
 
     
@@ -281,15 +306,17 @@ const AddTraining=()=>{
                     {daySection}
                     {lastTrainingSection}
                     {showButtonsSectionAtLastTrainingExercise?<div className='buttonsDivAtLastTreningSection'>
-                        <button onClick={()=>{
+                        <button className='currentLastTrainingExerciseButton' onClick={()=>{
                             
-                            setShowedCurrentLastTrainingExerciseNumber(showedCurrentLastTrainingExerciseNumber-1)
+                            setShowedCurrentLastTrainingExerciseNumber(showedCurrentLastTrainingExerciseNumber-9)
+                            setShowedCurrentLastTrainingExerciseScores(showedCurrentLastTrainingExerciseScores-18)
                         }}><span className="material-symbols-outlined">
 chevron_left
 </span></button>
-                        <button onClick={()=>{
+                        <button className='currentLastTrainingExerciseButton' onClick={()=>{
                             
-                            setShowedCurrentLastTrainingExerciseNumber(showedCurrentLastTrainingExerciseNumber+1)
+                            setShowedCurrentLastTrainingExerciseNumber(showedCurrentLastTrainingExerciseNumber+9)
+                            setShowedCurrentLastTrainingExerciseScores(showedCurrentLastTrainingExerciseScores+18)
                         }}><span className="material-symbols-outlined">
 chevron_right
 </span></button>
