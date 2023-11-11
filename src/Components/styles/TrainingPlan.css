@@ -109,6 +109,7 @@
     text-shadow: 1px 1px 1px rgba(34, 34, 34, 0.89);
     letter-spacing: 4px;
     width: 60%;
+    z-index: 1;
 }
 
 #formPlanCreate{
@@ -124,6 +125,7 @@
     position: absolute;
     top: 0;
     width: 100%;
+    z-index: 2;
 }
 #formPlanCreate h2{
     border-bottom: 4px solid whitesmoke;
@@ -151,6 +153,7 @@
     background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
     border-radius: 5px;
+    font-family: 'Young Serif', serif;
     height: 40px;
     width: 90%;
 }
@@ -167,6 +170,7 @@
     background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
     border-radius: 10px;
+    font-family: 'Young Serif', serif;
     height: 50px;
     width: 70%;
 }

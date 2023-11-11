@@ -342,6 +342,8 @@ const TrainingPlan:React.FC=()=>{
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
     </div>)
         setPopUpDelete(<div></div>)
+        setIsPlan(false)
+        setPlan(undefined)
         return alert(response.msg)
     }
     useEffect(()=>{

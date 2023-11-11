@@ -7,6 +7,7 @@
     position: absolute;
     top: 0;
     width: 100%;
+    z-index: 3;
 }
 #createCurrentDaySection h2{
     color: white;
@@ -15,7 +16,7 @@
     width: 100%;
 }
 #addExerciseCurrentDayButton{
-    
+    font-family: 'Young Serif', serif;
     margin-top: 20px;
     width: 10%;
 }
@@ -36,6 +37,7 @@
 }
 #readyButton{
     height: 5%;
+    font-family: 'Young Serif', serif;
     margin-top: 50px;
     width: 60%;
 }
