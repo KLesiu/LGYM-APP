@@ -19,7 +19,6 @@ const TrainingPlan:React.FC=()=>{
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
     </div>)
     const [namePlan,setNamePlan]=useState<string>()
-    const [isPlan,setIsPlan]=useState<boolean>(false)
     const [planConfigSection,setplanConfigSection]=useState<boolean>(false)
     const [planCreateSection , setplanCreateSection ]= useState<boolean>(false)
     const [showedPlanDay,setShowedPlanDay]=useState<number>(0)
@@ -206,7 +205,7 @@ const TrainingPlan:React.FC=()=>{
     const getUserPlan = async():Promise<void>=>{
         const response:{data:Data|string}  = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPlan`).then(res=>res.json()).catch(err=>err).then(res=>res)
         if(response.data === 'Didnt find'){
-            setIsPlan(false)
+            setIsPlanSet(false)
             setYourPlan(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
@@ -214,7 +213,7 @@ const TrainingPlan:React.FC=()=>{
             setArrows(false)
         } 
         else{
-            setIsPlan(true)
+            setIsPlanSet(true)
             const data = response.data
             if(typeof data !== 'string'){
                 
@@ -342,8 +341,9 @@ const TrainingPlan:React.FC=()=>{
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
     </div>)
         setPopUpDelete(<div></div>)
-        setIsPlan(false)
+        setIsPlanSet(false)
         setPlan(undefined)
+        setArrows(false)
         return alert(response.msg)
     }
     useEffect(()=>{
@@ -367,7 +367,7 @@ const TrainingPlan:React.FC=()=>{
         <section className='hidden' id='trainingPlanSection'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             {yourPlan}
-            {isPlan? <button id='removePlanButton' onClick={showPopUpAboutDelete}><span className="bin material-symbols-outlined">
+            {isPlanSet? <button id='removePlanButton' onClick={showPopUpAboutDelete}><span className="bin material-symbols-outlined">
 delete
 </span></button>:''}
             {popUpDelete}
