@@ -265,6 +265,10 @@
     animation-delay: 1s;
     animation-fill-mode: forwards;
 }
+#trainingPlanSection #loadingSection{
+    top: 0;
+    
+}
 .hidden{
     display: none;
 }
