@@ -8,6 +8,7 @@ import Plan from './interfaces/PlanInterface';
 import Exercise from './interfaces/ExerciseInterface';
 import Data from './interfaces/DataPlansArraysInterface';
 import backgroundLGYM from './img/backgroundLGYMApp500.png'
+import LoadingSection from './LoadingSection';
 import ErrorMsg from './types/ErrorType';
 import Msg from './types/MsgType';
 
@@ -19,6 +20,7 @@ const TrainingPlan:React.FC=()=>{
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
     </div>)
     const [namePlan,setNamePlan]=useState<string>()
+    const [isPlan,setIsPlan]=useState<boolean>()
     const [planConfigSection,setplanConfigSection]=useState<boolean>(false)
     const [planCreateSection , setplanCreateSection ]= useState<boolean>(false)
     const [showedPlanDay,setShowedPlanDay]=useState<number>(0)
@@ -35,6 +37,7 @@ const TrainingPlan:React.FC=()=>{
     const [planGCurrent,setPlanGCurrent]=useState<Array<Exercise>>()
     const [isPlanSet,setIsPlanSet]=useState<boolean>(false)
     const [popUpDelete,setPopUpDelete]=useState<JSX.Element>()
+    const [loading,setLoading]=useState<boolean>(false)
 
 
     const setDayAndName = async(event:React.FormEvent):Promise<void>=>{
@@ -60,8 +63,8 @@ const TrainingPlan:React.FC=()=>{
 
     }
     const submitPlan = async():Promise<void>=>{
-       
-  
+        
+        
         const countDivs:NodeListOf<HTMLDivElement> = document.querySelectorAll('#formPlanCreate div')
         if(countDivs.length === 1) setPlan({days:[
             {trainingDay:'planA',exercises:planACurrent!}
@@ -193,6 +196,8 @@ const TrainingPlan:React.FC=()=>{
         }).then(res=>res.json()).catch(err=>err).then(res=>res)
         if(response.msg === 'Updated'){
             setplanCreateSection(false)
+            setIsPlan(true)
+            setLoading(true)
         }
     }
     const showOnlyFirstPlanDay:VoidFunction=():void=>{
@@ -213,7 +218,7 @@ const TrainingPlan:React.FC=()=>{
             setArrows(false)
         } 
         else{
-            setIsPlanSet(true)
+            
             const data = response.data
             if(typeof data !== 'string'){
                 
@@ -297,6 +302,7 @@ const TrainingPlan:React.FC=()=>{
                 })
                 showOnlyFirstPlanDay()
                 localStorage.setItem('plan','completed')
+                setIsPlanSet(true)
             }
             
             
@@ -341,9 +347,10 @@ const TrainingPlan:React.FC=()=>{
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
     </div>)
         setPopUpDelete(<div></div>)
-        setIsPlanSet(false)
         setPlan(undefined)
         setArrows(false)
+        setIsPlan(false)
+        setLoading(false)
         return alert(response.msg)
     }
     useEffect(()=>{
@@ -359,6 +366,11 @@ const TrainingPlan:React.FC=()=>{
         setTimeout(()=>document.querySelector('#trainingPlanSection')?.classList.remove('hidden'),100)
         
     },[])
+    useEffect(()=>{
+        setTimeout(()=>setLoading(false),5000)
+        getUserPlan()
+        
+    },[isPlan])
    
     useEffect(()=>{
         showCurrentPlanDay(showedPlanDay)
@@ -371,6 +383,7 @@ const TrainingPlan:React.FC=()=>{
 delete
 </span></button>:''}
             {popUpDelete}
+            {loading?<LoadingSection></LoadingSection>:''}
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}
             {planCreateSection?<CreatePlan formElements={formElements}/>:''}
             {currentDayCreateSection?<CreateCurrentDay setCurrentPlanDay ={setCurrentPlanDay} day={currentDay} planA={planACurrent || null} planB={planBCurrent || null} planC={planCCurrent || null} planD={planDCurrent || null} planE={planECurrent || null} planF={planFCurrent || null} planG={planGCurrent || null} />:''}
