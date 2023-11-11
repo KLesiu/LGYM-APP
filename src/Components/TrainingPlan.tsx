@@ -32,6 +32,7 @@ const TrainingPlan:React.FC=()=>{
     const [planFCurrent,setPlanFCurrent]=useState<Array<Exercise>>()
     const [planGCurrent,setPlanGCurrent]=useState<Array<Exercise>>()
     const [isPlanSet,setIsPlanSet]=useState<boolean>(false)
+    const [popUpDelete,setPopUpDelete]=useState<JSX.Element>()
 
 
     const setDayAndName = async(event:React.FormEvent):Promise<void>=>{
@@ -318,7 +319,15 @@ const TrainingPlan:React.FC=()=>{
 
         }
     }
-
+    const showPopUpAboutDelete:VoidFunction=():void=>{
+        setPopUpDelete(()=><div className='rightToLeft' id='popUpDelete'>
+            <button className='show'  id='popUpYesButton'>Yes</button>
+            <button onClick={()=>setPopUpDelete(<div></div>)} className='show' id='popUpNoButton'>No</button>
+            <p className='show'>Are you sure to delete your Plan?</p>
+            
+            
+        </div>)
+    }
     useEffect(()=>{
         submitPlan()
         
@@ -339,6 +348,10 @@ const TrainingPlan:React.FC=()=>{
         <section className='hidden' id='trainingPlanSection'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             {yourPlan}
+            {yourPlan? <button id='removePlanButton' onClick={showPopUpAboutDelete}><span className="bin material-symbols-outlined">
+delete
+</span></button>:''}
+            {popUpDelete}
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}
             {planCreateSection?<CreatePlan formElements={formElements}/>:''}
             {currentDayCreateSection?<CreateCurrentDay setCurrentPlanDay ={setCurrentPlanDay} day={currentDay} planA={planACurrent || null} planB={planBCurrent || null} planC={planCCurrent || null} planD={planDCurrent || null} planE={planECurrent || null} planF={planFCurrent || null} planG={planGCurrent || null} />:''}

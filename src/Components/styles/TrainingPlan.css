@@ -1,4 +1,19 @@
-
+@keyframes rightToLeft {
+    from{
+        width: 0px;
+    }
+    to{
+        width: 200px;
+    }
+}
+@keyframes show {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 #trainingPlanSection{
     height: 80vh;
     position: relative;
@@ -170,7 +185,82 @@
 .ghostDiv{
     width: 50%;
 }
-
+#removePlanButton{
+    background: rgb(186,87,87);
+    background: -moz-linear-gradient(333deg, rgba(186,87,87,1) 10%, rgba(204,37,16,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(186,87,87,1) 10%, rgba(204,37,16,1) 90%);
+    background: linear-gradient(333deg, rgba(186,87,87,1) 10%, rgba(204,37,16,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ba5757",endColorstr="#cc2510",GradientType=1);
+    border-radius: 10px;
+    height: 40px;
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    width: 40px;
+    z-index: 2;
+}
+.bin{
+    color: rgb(235, 235, 235);
+    z-index: 1;
+}
+#popUpDelete{
+    background: rgb(186,87,87);
+    background: -moz-linear-gradient(333deg, rgba(186,87,87,1) 10%, rgba(204,37,16,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(186,87,87,1) 10%, rgba(204,37,16,1) 90%);
+    background: linear-gradient(333deg, rgba(186,87,87,1) 10%, rgba(204,37,16,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ba5757",endColorstr="#cc2510",GradientType=1);
+    border-radius: 10px;
+    display: flex;
+    position: absolute;
+    flex-wrap: wrap;
+    height: 40px;
+    width: 200px;
+    top: 1%;
+    right: 12%;
+}
+#popUpDelete p{
+    font-size: 14px;
+    opacity: 1;
+    height: 100%;
+    width: 50%;
+    opacity: 0;
+}
+#popUpDelete button{
+    border: 0;
+    padding: 0;
+    height: 100%;
+    width: 25%;
+    color: white;
+    opacity: 0;
+    font-size: 20px;
+}
+#popUpYesButton{
+    background: rgb(29,199,69);
+    background: -moz-linear-gradient(333deg, rgba(29,199,69,1) 10%, rgba(89,209,55,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(29,199,69,1) 10%, rgba(89,209,55,1) 90%);
+    background: linear-gradient(333deg, rgba(29,199,69,1) 10%, rgba(89,209,55,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1dc745",endColorstr="#59d137",GradientType=1); 
+}
+#popUpNoButton{
+    background: rgb(83,5,5);
+    background: -moz-linear-gradient(333deg, rgba(83,5,5,1) 10%, rgba(113,35,25,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(83,5,5,1) 10%, rgba(113,35,25,1) 90%);
+    background: linear-gradient(333deg, rgba(83,5,5,1) 10%, rgba(113,35,25,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#530505",endColorstr="#712319",GradientType=1);
+    
+}
+.rightToLeft{
+    animation-name: rightToLeft;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}
+.show{
+    animation-name: show;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+}
 .hidden{
     display: none;
 }
