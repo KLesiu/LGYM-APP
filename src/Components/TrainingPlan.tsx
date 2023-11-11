@@ -8,6 +8,8 @@ import Plan from './interfaces/PlanInterface';
 import Exercise from './interfaces/ExerciseInterface';
 import Data from './interfaces/DataPlansArraysInterface';
 import backgroundLGYM from './img/backgroundLGYMApp500.png'
+import ErrorMsg from './types/ErrorType';
+import Msg from './types/MsgType';
 
 const TrainingPlan:React.FC=()=>{
     
@@ -17,6 +19,7 @@ const TrainingPlan:React.FC=()=>{
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
     </div>)
     const [namePlan,setNamePlan]=useState<string>()
+    const [isPlan,setIsPlan]=useState<boolean>(false)
     const [planConfigSection,setplanConfigSection]=useState<boolean>(false)
     const [planCreateSection , setplanCreateSection ]= useState<boolean>(false)
     const [showedPlanDay,setShowedPlanDay]=useState<number>(0)
@@ -203,6 +206,7 @@ const TrainingPlan:React.FC=()=>{
     const getUserPlan = async():Promise<void>=>{
         const response:{data:Data|string}  = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/getPlan`).then(res=>res.json()).catch(err=>err).then(res=>res)
         if(response.data === 'Didnt find'){
+            setIsPlan(false)
             setYourPlan(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
@@ -210,6 +214,7 @@ const TrainingPlan:React.FC=()=>{
             setArrows(false)
         } 
         else{
+            setIsPlan(true)
             const data = response.data
             if(typeof data !== 'string'){
                 
@@ -321,12 +326,23 @@ const TrainingPlan:React.FC=()=>{
     }
     const showPopUpAboutDelete:VoidFunction=():void=>{
         setPopUpDelete(()=><div className='rightToLeft' id='popUpDelete'>
-            <button className='show'  id='popUpYesButton'>Yes</button>
+            <button onClick={deletePlan} className='show'  id='popUpYesButton'>Yes</button>
             <button onClick={()=>setPopUpDelete(<div></div>)} className='show' id='popUpNoButton'>No</button>
             <p className='show'>Are you sure to delete your Plan?</p>
             
             
         </div>)
+    }
+    const deletePlan=async():Promise<void>=>{
+        const response:ErrorMsg | Msg = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/deletePlan`,{
+            method:'DELETE'
+        }).then(res=>res.json()).catch(err=>err).then(res=>res)
+        setYourPlan(<div id='withoutPlanContainer'>
+        <h2>You dont have any plans!</h2>
+        <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
+    </div>)
+        setPopUpDelete(<div></div>)
+        return alert(response.msg)
     }
     useEffect(()=>{
         submitPlan()
@@ -334,6 +350,7 @@ const TrainingPlan:React.FC=()=>{
     },[isPlanSet])
     useEffect(()=>{
        if(plan) setCurrentPlan()
+       
     },[plan])
     useEffect(()=>{
         getUserPlan()
@@ -348,7 +365,7 @@ const TrainingPlan:React.FC=()=>{
         <section className='hidden' id='trainingPlanSection'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             {yourPlan}
-            {yourPlan? <button id='removePlanButton' onClick={showPopUpAboutDelete}><span className="bin material-symbols-outlined">
+            {isPlan? <button id='removePlanButton' onClick={showPopUpAboutDelete}><span className="bin material-symbols-outlined">
 delete
 </span></button>:''}
             {popUpDelete}
