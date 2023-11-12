@@ -241,11 +241,11 @@ close
         const allDivs:NodeListOf<HTMLDivElement> = document.querySelectorAll(".lastTrainingSessionExerciseDiv")
         const helpsArray:Array<HTMLDivElement>=[]
         const scores:NodeListOf<HTMLParagraphElement>=document.querySelectorAll('.scoresOfFields')
+        
         for(let i=0;i<allDivs.length;i++){
             if(i%2===0 || i===0)  helpsArray.push(allDivs[i])
         }
-        
-         if (showedCurrentLastTrainingExerciseNumber>9 && showedCurrentLastTrainingExerciseNumber <= helpsArray.length){
+         if (showedCurrentLastTrainingExerciseNumber>9 && showedCurrentLastTrainingExerciseNumber <= helpsArray.length+8){
             helpsArray.forEach((ele,index:number)=>{
                 if(index<showedCurrentLastTrainingExerciseNumber && index>=showedCurrentLastTrainingExerciseNumber-9) return ele.classList.remove('hidden')
                 ele.classList.add('hidden')
