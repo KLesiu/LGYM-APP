@@ -109,7 +109,7 @@ p{
     margin: 0;
     opacity: 0;
     text-align: center;
-    width: 70%;
+    width: 90%;
 }
 .appearance{
     animation-name: appearance;
@@ -124,5 +124,5 @@ p{
     
 }
 .logoOfAPP{
-    width: 75%;
+    width: 60%;
 }
