@@ -88,7 +88,7 @@ const AddTraining=()=>{
                                     </label>
                                     <input type="number" name={`${ele.name}-${s}-rep`} />
                                     <label htmlFor={`${ele.name}-${s}-weight`}>
-                                        <p className='exerciseHolder'>{ele.name}</p>{s}: Weight (kg)
+                                        <p className='exerciseHolder'>{ele.name}</p> {s}: Weight (kg)
                                     </label>
                                     <input type="number" name={`${ele.name}-${s}-weigt`} />
                                 </div>
@@ -178,11 +178,15 @@ const AddTraining=()=>{
     const showLastTrainingSection:VoidFunction=():void=>{
         if(!lastTrainingSessionDate || lastTrainingSessionExercises?.length!<1 || !lastTrainingSessionExercises) return alert('You dont have training sessions!')
         
+        
         let count:number=0
         pickedDay?.map(ele=>{
             count+=ele.series
+            
         })
+        
         let scoreAndFieldsCount = count*2
+        console.log(lastTrainingSessionExercises,scoreAndFieldsCount)
         if(lastTrainingSessionExercises.length !== scoreAndFieldsCount) return alert('You dont have training sessions!')
         
         setShowButtonsSectionAtLastTrainingExercise(true)

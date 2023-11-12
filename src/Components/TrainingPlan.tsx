@@ -351,6 +351,7 @@ const TrainingPlan:React.FC=()=>{
         setArrows(false)
         setIsPlan(false)
         setLoading(false)
+        localStorage.setItem('plan','uncompleted')
         return alert(response.msg)
     }
     useEffect(()=>{
