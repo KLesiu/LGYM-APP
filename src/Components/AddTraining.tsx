@@ -189,7 +189,6 @@ const AddTraining=()=>{
         })
         
         let scoreAndFieldsCount = count*2
-        console.log(lastTrainingSessionExercises,scoreAndFieldsCount)
         if(lastTrainingSessionExercises.length !== scoreAndFieldsCount) return alert('You dont have training sessions!')
         
         setShowButtonsSectionAtLastTrainingExercise(true)
