@@ -1,4 +1,4 @@
-import CurrentTrainingHistorySessionProps from "./interfaces/CurrentTrainingHistorySessionPropsInterface"
+import CurrentTrainingHistorySessionProps from "./props/CurrentTrainingHistorySessionPropsInterface"
 import './styles/CurrentTrainingHistorySession.css'
 import {useEffect,useState} from 'react'
 import Training from "./interfaces/TrainingInterface"

@@ -1,5 +1,5 @@
 import './styles/CreatePlan.css'
-import CreatePlanProps from './interfaces/CreatePlanPropsInterface'
+import CreatePlanProps from './props/CreatePlanPropsInterface'
 
 
 const CreateConfigPlan:React.FC<CreatePlanProps> = (props)=>{

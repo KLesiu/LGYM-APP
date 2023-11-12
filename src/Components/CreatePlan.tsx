@@ -1,4 +1,4 @@
-import CreatePlanProps from "./interfaces/CreatePlanPropsInterface"
+import CreatePlanProps from "./props/CreatePlanPropsInterface"
 const CreatePlan:React.FC<CreatePlanProps> = (props)=>
     <section>
         {props.formElements}

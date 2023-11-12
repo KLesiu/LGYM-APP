@@ -6,7 +6,7 @@ import History from './History'
 import AddTraining from './AddTraining'
 import RecordsPopUp from './RecordsPopUp';
 import {useState,useEffect} from 'react'
-import MenuProps from './interfaces/MenuPropsInterface'
+import MenuProps from './props/MenuPropsInterface'
 import UserInfo from './interfaces/UserInfoInterface'
 
 const Menu:React.FC<MenuProps>=(props)=>{

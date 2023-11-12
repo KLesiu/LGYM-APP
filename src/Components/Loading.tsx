@@ -1,7 +1,7 @@
 import logo from './img/logoLGYM.png'
 import './styles/Loading.css'
 import {useEffect,useState} from 'react'
-import LoadingProps from './interfaces/LoadingPropsInterface'
+import LoadingProps from './props/LoadingPropsInterface'
 const Loading:React.FC<LoadingProps>=(props)=>{
     const [load,setLoad]=useState<boolean>(false)
     const changeLoad:VoidFunction=():void=>setLoad(true)

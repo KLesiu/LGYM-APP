@@ -1,4 +1,4 @@
-import Exercise from "./ExerciseInterface"
+import Exercise from "../interfaces/ExerciseInterface"
 export default interface CreateCurrentDayProps{
 
     day:string
