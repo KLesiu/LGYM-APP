@@ -303,6 +303,7 @@ const TrainingPlan:React.FC=()=>{
                 showOnlyFirstPlanDay()
                 localStorage.setItem('plan','completed')
                 setIsPlanSet(true)
+                setArrows(true)
             }
             
             
@@ -351,7 +352,7 @@ const TrainingPlan:React.FC=()=>{
         setArrows(false)
         setIsPlan(false)
         setLoading(false)
-        localStorage.setItem('plan','uncompleted')
+        localStorage.removeItem('plan')
         return alert(response.msg)
     }
     useEffect(()=>{
@@ -376,6 +377,7 @@ const TrainingPlan:React.FC=()=>{
     useEffect(()=>{
         showCurrentPlanDay(showedPlanDay)
     },[showedPlanDay])
+    
     return(
         <section className='hidden' id='trainingPlanSection'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
