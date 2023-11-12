@@ -76,16 +76,16 @@ const Records:React.FC=()=>{
             <span>{benchPress + ' kg' || 'No data'}</span>
             <h2>Your total is: {total} kg</h2>
             
-            <div id="strengthScale">
+            {/* <div id="strengthScale">
                 <h3>STRENGTH RANK: <span className="chart material-symbols-outlined">analytics</span>
-                </h3>
+                </h3> */}
                 {/* <span id="scaleJunior">{`Junior (<200)`}</span>
                 <span id="scaleInter">{'Intermediate (200-350)'}</span>
                 <span id="scaleAdvanced">{'Advanced (350-450)'}</span>
                 <span id="scaleGiga">{'GIGACHAD (450-500)'}</span>
                 <span id="scaleArnold">{'ARNOLD (>500)'}</span> */}
-                <img id="juniorRank" src={rankImg} alt="" />
-            </div>
+                {/* <img id="juniorRank" src={rankImg} alt="" />
+            </div> */}
         </section>
     )
 }
