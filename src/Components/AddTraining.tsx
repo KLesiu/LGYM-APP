@@ -8,6 +8,7 @@ import Data from './interfaces/DataPlansArraysInterface'
 import addTrainingFetchType from './types/AddTrainingFetchResType'
 import backgroundLGYM from './img/backgroundLGYMApp500.png'
 import LastTrainingSession from './types/LastTrainingSessionType'
+import Msg from './types/MsgType'
 
 
 
@@ -18,6 +19,7 @@ const AddTraining=()=>{
     const [showExercise,setShowExercise]=useState<boolean>()
     const [lastTrainingSessionDate,setLastTrainingSessionDate]=useState<string>()
     const [lastTrainingSessionExercises,setLastTrainingSessionExercises]=useState<Array<ExerciseTraining>>()
+    const [dayToCheck,setDayToCheck]=useState<string>()
     const [pickedDay,setPickedDay]=useState<Array<Exercise>>()
     const [lastTrainingSection,setLastTrainingSection]=useState<JSX.Element>()
     const [showedCurrentExerciseNumber,setShowedCurrentExerciseNumber]=useState<number>(0)
@@ -54,6 +56,7 @@ const AddTraining=()=>{
             else if(day ==='G') return data.planG
         })
         setCurrentDaySection(planOfTheDay!,day)
+        setDayToCheck(day)
         setChooseDay(<div></div>)
         setPickedDay(planOfTheDay)
 
@@ -175,9 +178,9 @@ const AddTraining=()=>{
     const popUpTurnOn:VoidFunction=():void=>{
         setTimeout(()=>setIsPopUpShowed(false),7000)
     }
-    const showLastTrainingSection:VoidFunction=():void=>{
+    const showLastTrainingSection:VoidFunction=async():Promise<void>=>{
         if(!lastTrainingSessionDate || lastTrainingSessionExercises?.length!<1 || !lastTrainingSessionExercises) return alert('You dont have training sessions!')
-        
+        if(! await checkLastTrainingSession(dayToCheck!)) return alert('You dont have training sessions!')
         
         let count:number=0
         pickedDay?.map(ele=>{
@@ -287,6 +290,12 @@ close
         setShowedCurrentLastTrainingExerciseScores(0)
         setShowedCurrentLastTrainingExerciseNumber(0)
         setLastTrainingSection(<div></div>)
+    }
+    const checkLastTrainingSession=async(day:string):Promise<boolean>=>{
+        const response:Msg = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/checkPrevSessionTraining/${day}`).then(res=>res.json()).catch(err=>err).then(res=>res)
+        if(response.msg === 'Yes') return true
+        return false
+        
     }
 
     useEffect(()=>{
