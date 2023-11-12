@@ -18,6 +18,7 @@ const AddTraining=()=>{
     const [showExercise,setShowExercise]=useState<boolean>()
     const [lastTrainingSessionDate,setLastTrainingSessionDate]=useState<string>()
     const [lastTrainingSessionExercises,setLastTrainingSessionExercises]=useState<Array<ExerciseTraining>>()
+    const [pickedDay,setPickedDay]=useState<Array<Exercise>>()
     const [lastTrainingSection,setLastTrainingSection]=useState<JSX.Element>()
     const [showedCurrentExerciseNumber,setShowedCurrentExerciseNumber]=useState<number>(0)
     const [showedCurrentLastTrainingExerciseScores,setShowedCurrentLastTrainingExerciseScores]=useState<number>(0)
@@ -54,6 +55,7 @@ const AddTraining=()=>{
         })
         setCurrentDaySection(planOfTheDay!,day)
         setChooseDay(<div></div>)
+        setPickedDay(planOfTheDay)
 
         
     }
@@ -175,6 +177,14 @@ const AddTraining=()=>{
     }
     const showLastTrainingSection:VoidFunction=():void=>{
         if(!lastTrainingSessionDate || lastTrainingSessionExercises?.length!<1 || !lastTrainingSessionExercises) return alert('You dont have training sessions!')
+        
+        let count:number=0
+        pickedDay?.map(ele=>{
+            count+=ele.series
+        })
+        let scoreAndFieldsCount = count*2
+        if(lastTrainingSessionExercises.length !== scoreAndFieldsCount) return alert('You dont have training sessions!')
+        
         setShowButtonsSectionAtLastTrainingExercise(true)
         setLastTrainingSection(()=>{
             return(
@@ -274,6 +284,7 @@ close
         setShowedCurrentLastTrainingExerciseNumber(0)
         setLastTrainingSection(<div></div>)
     }
+
     useEffect(()=>{
         if(showExercise) showFirstExercise()
     },[showExercise])
