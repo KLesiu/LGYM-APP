@@ -11,11 +11,13 @@
     color: white;
     text-shadow: none;
     font-family: 'Teko', sans-serif;
-    margin: 20px;
+    margin: 0;
     font-size: 25px;
+    height: 3%;
 }
+
 #currentTrainingHistorySession p{
-    font-size: 18px;
+    font-size: 15px;
     font-family: 'Teko', sans-serif;
     opacity: 1;
 }
@@ -30,6 +32,8 @@
     display: flex;
     justify-content: flex-end;
     text-align: center;
+    height: 10%;
+    
     width: 49%;
 }
 .exerciseDiv span{
@@ -52,6 +56,7 @@
     border-radius: 5px;
     margin-bottom: 2%;
     margin-top: 5%;
+    height: 10%;
     color: white;
     display: flex;
     flex-wrap: wrap;
@@ -73,4 +78,30 @@
     padding-left: 7%;
     margin-right: 23%;
     font-size: 12px;
+}
+.buttonsSectionHistorySession{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 5%;
+    width: 100%;
+}
+.buttonsSectionHistorySession button{
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    border-radius: 10px;
+}
+.closeCurrentTrainingHistorySession{
+    position: absolute;
+    background: rgba(255, 255, 255, 0.918);
+    background: -moz-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: -webkit-linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
+    border-radius: 10px;
+    right: 1%;
 }

@@ -53,7 +53,7 @@ const History:React.FC=()=>{
        const sessionId:string= (e.target as HTMLButtonElement).parentElement?.parentElement?.children[3].children[0].textContent!
        const date:string=(e.target as HTMLButtonElement).parentElement?.parentElement?.children[1].children[0].textContent!
        if(sessionId=== 'chevron_left') return
-       setCurrentHistoryTrainingSession(<CurrentTrainingHistorySession getInformationAboutHistorySession={getInformationAboutHistorySession} id={sessionId} date={date}/>)
+       setCurrentHistoryTrainingSession(<CurrentTrainingHistorySession getInformationAboutHistorySession={getInformationAboutHistorySession} offCurrentTrainingHistorySession={offCurrentTrainingHistorySession} id={sessionId} date={date}/>)
        
     }
     const getInformationAboutHistorySession=async(id:string):Promise<Training|string>=>{
@@ -61,6 +61,9 @@ const History:React.FC=()=>{
         const response:ErrorMsg|{training:Training}= await fetch(`${process.env.REACT_APP_BACKEND}/api/${id}/getTrainingSession`).then(res=>res.json()).catch(err=>err).then(res=>res)
         if('msg' in response) return response.msg
         else return response.training
+    }
+    const offCurrentTrainingHistorySession:VoidFunction=():void=>{
+        setCurrentHistoryTrainingSession(<div></div>)
     }
 
     useEffect(()=>{

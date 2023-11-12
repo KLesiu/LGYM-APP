@@ -15,31 +15,51 @@ const CurrentTrainingHistorySession:React.FC<CurrentTrainingHistorySessionProps>
                 <h3>TrainingDay: {response.type}</h3>
                 <div><span>Rep</span><span>Weight</span></div>
             </div>)
+            showFirstExercises()
         }
     }
-    const showCurrentExercises:VoidFunction=():void=>{
-
+    const showCurrentExercises=(number:number):void=>{
+        if(number===14) return showFirstExercises()
+        
+        const divs = document.querySelectorAll('.exerciseDiv')
+        if(number>divs.length+14) return setCurrentExercisesNumberAtPage(number-14)
+       
+        for(let i:number=0;i<divs.length;i++){
+            if(i>=number-14&&i<number) divs[i].classList.remove('hidden')
+            else divs[i].classList.add('hidden')
+        }
     }
     const showFirstExercises:VoidFunction=():void=>{
         const divs = document.querySelectorAll('.exerciseDiv')
-        divs.forEach((ele,index)=>index<14?ele.classList.remove('hidden'):'')
+        divs.forEach((ele,index:number)=>index<14?ele.classList.remove('hidden'):ele.classList.add('hidden'))
         setCurrentExercisesNumberAtPage(14)
     }
     useEffect(()=>{
      getInformationAboutSession()
-     if(exercises) showFirstExercises()
+     
      
     },[])
+    useEffect(()=>{
+        showCurrentExercises(currentExercisesNumberAtPage)
+    },[currentExercisesNumberAtPage])
   
     return(
         <div id="currentTrainingHistorySession">
-            <h2>SessionId: {props.id}</h2>
-            <p>Date: {props.date}</p>
+            {/* <h2>SessionId: {props.id}</h2> */}
+            <button onClick={props.offCurrentTrainingHistorySession} className="closeCurrentTrainingHistorySession"><span className="material-symbols-outlined">close</span></button>
+            <h2 id="dateHistorySection">Date : {props.date}</h2>
             {infoAboutSession}
             {exercises?.map((ele,index)=><div key={index} className="exerciseDiv bottomBorderP hidden">
                 
                 <span>{index%2?<p className="hidden">{ele.field}</p>:<p>{ele.field.slice(0,ele.field.length-3)}</p>}  {index%2?<span >{ele.score}kg</span>:<span className="rightBorder">{ele.score}</span>}</span>
+                
             </div>)}
+            {exercises?<div className="buttonsSectionHistorySession">
+                <button onClick={()=>{
+                    if(currentExercisesNumberAtPage===14) return
+                    setCurrentExercisesNumberAtPage(currentExercisesNumberAtPage-14)}}><span className="material-symbols-outlined">chevron_left</span></button>
+                <button onClick={()=>setCurrentExercisesNumberAtPage(currentExercisesNumberAtPage+14)}><span className="material-symbols-outlined">chevron_right</span></button>
+            </div>:''}
         </div>
 
     )
