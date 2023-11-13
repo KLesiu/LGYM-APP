@@ -49,6 +49,9 @@
     display: flex;
     width: 100%;
 }
+#withoutPlanTrainingDiv h2{
+    text-align: center;
+}
 
 .addPlanTrainigSection{
     align-items: center;

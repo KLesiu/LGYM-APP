@@ -10,5 +10,6 @@ export default interface UserInfo{
     Bp?:number,
     Dl?:number,
     Sq?:number,
-    _v:number
+    _v:number,
+    plan?:string
 }

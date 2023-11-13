@@ -9,6 +9,7 @@ import addTrainingFetchType from './types/AddTrainingFetchResType'
 import backgroundLGYM from './img/backgroundLGYMApp500.png'
 import LastTrainingSession from './types/LastTrainingSessionType'
 import Msg from './types/MsgType'
+import UserInfo from './interfaces/UserInfoInterface'
 
 
 
@@ -296,6 +297,17 @@ close
         return false
         
     }
+    const checkIsUserHavingPlan=async():Promise<void>=>{
+        const response:string|UserInfo = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).catch(err=>err).then(res=>res)
+        if(typeof response === 'string') return localStorage.removeItem('plan')
+        else{
+            if(!response.plan) return localStorage.removeItem('plan')
+        }
+    }
+
+    useEffect(()=>{
+            checkIsUserHavingPlan()
+    },[])
 
     useEffect(()=>{
         if(showExercise) showFirstExercise()
@@ -323,8 +335,8 @@ close
         <section className='hidden addTrainingContainerDisplay' id='addTrainingContainer'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             {plan===''?<div id='withoutPlanTrainingDiv'>
-            <h2>You cant add training!</h2>
-            <button className='addPlanTrainigSection'><span>You have to create plan first!</span></button>
+            <h2>You cant add training, because you dont have plan!</h2>
+            
             </div>:''}
             {plan ==='completed'?<div id='addTrainingSection'>
                     <h2>Add Training!</h2>
