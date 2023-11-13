@@ -32,7 +32,7 @@
     border: 1px solid black;
     box-shadow: 2px 2px 1px rgb(48, 48, 48);
     display: flex;
-    height: 18%;
+    height: 16%;
     flex-direction: column;
     font-family: 'Teko', sans-serif;
     justify-content: flex-start;
@@ -112,6 +112,13 @@
 @media screen and (max-height:700px){
     .trainingHistorySessionButton{
         height: 40%;
+    }
+    #historyContainer h2{
+        font-size: 20px;
+        margin: 5px;
+    }
+    .session h3{
+        font-size: 18px;
     }
 }
 
