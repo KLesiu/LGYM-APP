@@ -105,3 +105,18 @@
     margin-top: 5%;
     width: 50%;
 }
+#setRecordsButton{
+    background: rgb(170,180,189);
+    background: -moz-radial-gradient(circle, rgba(170,180,189,0.8855917366946778) 0%, rgba(71,74,77,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(170,180,189,0.8855917366946778) 0%, rgba(71,74,77,1) 100%);
+    background: radial-gradient(circle, rgba(170,180,189,0.8855917366946778) 0%, rgba(71,74,77,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#aab4bd",endColorstr="#474a4d",GradientType=1);
+    border-radius: 10px;
+    position: absolute;
+    bottom: 5%;
+    height: 10%;
+    width: 50%;
+    font-size: 30px;
+    font-family: 'Teko', sans-serif;
+
+}

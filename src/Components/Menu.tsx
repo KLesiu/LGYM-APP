@@ -4,17 +4,9 @@ import Records from './Records'
 import Profile from './Profile'
 import History from './History'
 import AddTraining from './AddTraining'
-import RecordsPopUp from './RecordsPopUp';
-import {useState,useEffect} from 'react'
 import MenuProps from './props/MenuPropsInterface'
-import UserInfo from './interfaces/UserInfoInterface'
 
 const Menu:React.FC<MenuProps>=(props)=>{
-    const [popUp,setPopUp]= useState<Boolean>(false)
-    const chagePopUpValue:VoidFunction=():void=>{
-        setPopUp(true)
-    }
-
     const changeView=(e:React.MouseEvent<HTMLButtonElement>):void=>{
         
         
@@ -31,44 +23,9 @@ const Menu:React.FC<MenuProps>=(props)=>{
         
        
     }
-
-    const checkUserRecords=async():Promise<void>=>{
-        const response:'Didnt find'| UserInfo = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).then(res=>res)
-        if(response !== "Didnt find"){
-            if(response.Bp && response.Dl && response.Sq ){
-                localStorage.setItem('dl',response.Dl.toString())
-                localStorage.setItem('sq',response.Sq.toString())
-                localStorage.setItem('bp',response.Bp.toString())
-                setPopUp(true)
-            } 
-        }
-    }
-    useEffect(()=>{
-        const buttons:NodeListOf<HTMLButtonElement> = document.querySelectorAll("button")
-        if(!popUp){
-            
-            buttons.forEach(element => {
-                if(element.id==="popUpButton") return
-                else element.disabled = true
-            });
-        }
-        else{
-            buttons.forEach(element=>{
-                element.disabled = false
-            })
-        }
-        },[popUp])
-    useEffect(()=>{
-        checkUserRecords()
-    },[])
-    
-
-    
-    return(
-        
-        <nav>
-            {!popUp?<RecordsPopUp offPopUp={chagePopUpValue}></RecordsPopUp>:''}
-            <div>
+return(
+    <nav>
+        <div>
             
                 <button onClick={changeView}><span className=" iconNav material-symbols-outlined">
             note
@@ -97,10 +54,10 @@ const Menu:React.FC<MenuProps>=(props)=>{
                 <button onClick={changeView}><span className="iconNav material-symbols-outlined">
             account_circle
             </span></button>
-            </div>
+        </div>
             
             
-        </nav>
+    </nav>
     )
 }
 export default Menu

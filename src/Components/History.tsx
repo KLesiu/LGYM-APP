@@ -120,7 +120,7 @@ chevron_right
 </span></button>}
                 
             </div>
-            :<button id='youDontHaveTrainingsButton'>You dont have trainings!<br/> Let's add</button>}
+            :<p id='infoYouDontHaveTrainings'>You dont have training history!</p>}
             {currentHistoryTrainingSession}
         </section>
     )
