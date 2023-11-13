@@ -268,6 +268,7 @@
 .lastTrainingSessionExerciseDiv{
     display: flex;
     height: 11%;
+    width: 100%;
 }
 .lastTrainingSessionExerciseDiv span{
     align-items: center;
@@ -284,10 +285,13 @@
     border-bottom: 2px solid black;
     width: 50%;
 }
-.containerForFields{
+
+.containerForFields {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    row-gap: 0.95px;
     width: 50%;
     height: 80%;
 }
@@ -298,6 +302,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: flex-start;
     height: 80%;
     width: 50%;
 }
@@ -354,7 +359,7 @@
     background: linear-gradient(333deg, rgba(179,179,179,1) 10%, rgba(255,255,255,1) 90%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b3b3b3",endColorstr="#ffffff",GradientType=1);
     position: absolute;
-    border-radius: 10%;
+    border:0;
     right: 0;
 }
 
