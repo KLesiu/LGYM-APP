@@ -5,6 +5,8 @@ import Profile from './Profile'
 import History from './History'
 import AddTraining from './AddTraining'
 import MenuProps from './props/MenuPropsInterface'
+import UserInfo from './interfaces/UserInfoInterface'
+import { useEffect } from 'react'
 
 const Menu:React.FC<MenuProps>=(props)=>{
     const changeView=(e:React.MouseEvent<HTMLButtonElement>):void=>{
@@ -23,6 +25,18 @@ const Menu:React.FC<MenuProps>=(props)=>{
         
        
     }
+    const checkUserRecords=async():Promise<void>=>{
+        const response:'Didnt find'| UserInfo = await fetch(`${process.env.REACT_APP_BACKEND}/api/userInfo/${localStorage.getItem("id")}`).then(res=>res.json()).then(res=>res)
+        if(response !== "Didnt find"){
+            if(response.Bp && response.Dl && response.Sq ){
+                localStorage.setItem('dl',response.Dl.toString())
+                localStorage.setItem('sq',response.Sq.toString())
+                localStorage.setItem('bp',response.Bp.toString())
+                
+            } 
+        }
+    }
+    useEffect(()=>{checkUserRecords()},[])
 return(
     <nav>
         <div>
