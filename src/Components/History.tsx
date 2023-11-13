@@ -120,7 +120,7 @@ chevron_right
 </span></button>}
                 
             </div>
-            :<p id='infoYouDontHaveTrainings'>You dont have training history!</p>}
+            :<h2 id='infoYouDontHaveTrainings'>You dont have training history!</h2>}
             {currentHistoryTrainingSession}
         </section>
     )
