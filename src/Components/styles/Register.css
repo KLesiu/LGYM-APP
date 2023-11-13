@@ -51,3 +51,14 @@
 .logoOfAPPRegister{
     width: 42%;
 }
+
+
+@media screen and (max-height:700px){
+    #register label{
+        font-size: 30px;
+        margin-top: 1px;
+    }
+    #register button{
+        height: 8vh;
+    }
+}

@@ -354,6 +354,44 @@
     right: 0;
 }
 
+@media screen and (max-height:700px){
+    .chooseDaySectionButton{
+        font-size: 40px;
+    }
+    #addTrainingSection h2{
+        font-size: 20px;
+        margin: 5px;
+    }
+    .exerciseCurrentDiv h3{
+        font-size: 17px;
+        margin: 3px;
+    }
+    .exerciseSeriesDiv label{
+        font-size: 15px;
+    }
+    .exerciseSeriesDiv{
+        margin-top: 5px;
+    }
+    #addCurrentTrainingButton{
+        font-size: 15px;
+    }
+    #showPreviousSession{
+        font-size: 13px;
+    }
+    #buttonsTrainingDiv{
+        bottom: 1%;
+    }
+    .containerForScores p{
+        width: 48%;
+    }
+    #lastSessionTrainingSection h2{
+        font-size: 18px;
+    }
+}
+
+
+
+
 .hidden{
     display: none;
 }

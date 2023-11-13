@@ -126,3 +126,15 @@ p{
 .logoOfAPP{
     width: 60%;
 }
+
+
+@media screen and (max-height:700px) {
+    .logoOfAPP{
+        width: 50%;
+    }
+    #loginAndRegisterPreLoadContainer a {
+        height: 8vh;
+        font-size: 40px;
+
+    }
+}

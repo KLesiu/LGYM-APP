@@ -121,6 +121,27 @@
     height: 100%;
     width: 100%;
 }
+
+@media screen and (max-height:700px){
+    #profileContainer h1{
+        font-size: 30px;
+    }
+    #profileContainer h2{
+        font-size: 25px;
+    }
+    #profileContainer h3{
+        font-size: 20px;
+    }
+    #logout{
+        margin-top: 5%;
+    }
+    .containerForInfoProfile{
+        height: 70%;
+    }
+}
+
+
+
 .hidden{
     display: none;
 }

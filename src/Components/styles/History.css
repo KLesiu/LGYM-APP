@@ -108,6 +108,19 @@
     height: 10%;
     width: 60%;
 }
+
+@media screen and (max-height:700px){
+    .trainingHistorySessionButton{
+        height: 40%;
+    }
+}
+
+
+
+
+
+
+
 .hidden{
     display: none;
 }
