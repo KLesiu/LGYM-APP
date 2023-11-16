@@ -8,10 +8,10 @@ import ARNOLDRank from './img/arnoldRank.png'
 import backgroundLGYM from './img/backgroundLGYMApp500.png'
 import RecordsPopUp from "./RecordsPopUp"
 const Records:React.FC=()=>{
-    const [deadLift,setDeadLift]=useState<number>(+localStorage.getItem("dl")!)
-    const [squat,setSquat]=useState<number>(+localStorage.getItem("sq")!)
-    const [benchPress,setBenchPress]=useState<number>(+localStorage.getItem("bp")!)
-    const [total,setTotal]=useState<number>(deadLift+squat+benchPress)
+    const [deadLift,setDeadLift]=useState<number>(+localStorage.getItem("dl")! | 0)
+    const [squat,setSquat]=useState<number>(+localStorage.getItem("sq")! | 0)
+    const [benchPress,setBenchPress]=useState<number>(+localStorage.getItem("bp")! | 0)
+    const [total,setTotal]=useState<number>(deadLift+squat+benchPress | 0)
     const [popUp,setPopUp]=useState<boolean>(false)
     // const [rankImg,setRankImg]=useState<string>()
     // const changeRank =async():Promise<void>=>{
