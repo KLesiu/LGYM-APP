@@ -75,7 +75,7 @@ const Records:React.FC=()=>{
             <span>{deadLift + ' kg' || 0}</span>
             <h3><div id="squatIcon"></div>Squat:</h3>
             <span>{squat + ' kg' || 0}</span>
-            <h3><div id="benchPIcon"></div>Bench press:</h3>
+            <h3><div id="benchPIcon"></div>Bench Press:</h3>
             <span>{benchPress + ' kg' || 0}</span>
             <h2>Your total is: {total} kg</h2>
             <button id="setRecordsButton" onClick={()=>setPopUp(true)}>Update Records</button>
