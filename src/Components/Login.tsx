@@ -60,8 +60,8 @@ const Login:React.FC=()=>{
         } 
     }
     return(
-        <form id='login' onSubmit={login}>
-            <img className='logoOfAPP' src={logo} alt="" />
+        <form data-testid="login" id='login' onSubmit={login}>
+            <img className='logoOfAPP' src={logo} alt="logo" />
             <label htmlFor="usernameLogin">Username</label>
             <input type="text" name="username" id='usernameLogin' autoComplete='given-name'></input>
             <label htmlFor="passwordLogin">Password</label>
@@ -69,8 +69,8 @@ const Login:React.FC=()=>{
             <button>LOGIN</button>
             {loading?<LoadingPreloadForms/>:''}
             <a href='/register'>You dont have acc? Lets create it for FREE</a>
-            <ul>{errors?errors.map((ele:ErrorMsg)=>{
-                return <li key={uniqid()}>{ele.msg}</li>
+            <ul role="list" >{errors?errors.map((ele:ErrorMsg)=>{
+                return <li role="listitem"  key={uniqid()}>{ele.msg}</li>
             }):''}</ul>
         </form>
     )

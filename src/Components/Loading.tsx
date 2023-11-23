@@ -17,13 +17,13 @@ const Loading:React.FC<LoadingProps>=(props)=>{
   
     return(
         <section id="loadingContainer">
-            <img src={logo} alt="" />
-            <div className="loadingDiv">
+            <img src={logo} alt="logoLoading" />
+            <div data-testid="loadingDiv" className="loadingDiv">
                 <div id='loadingHolder'>
-                    <div id='loading'></div>
+                    <div data-testid="loading" id='loading'></div>
                 </div>
                 
-                <p>Loading...</p>
+                <p data-testid="loadingText">Loading...</p>
             </div>
         </section>
     )

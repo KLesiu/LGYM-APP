@@ -5,11 +5,11 @@ const LoadingPreloadForms:React.FC=()=>{
         document.querySelector('.icon-dumbellLoadingForms')?.classList.add('animationRotateForms')
     })
     return(
-        <div id='loadingPreloadFormsDiv'>
-            <span  className="icon-dumbellLoadingForms material-symbols-outlined">
+        <div data-testid="loadingPreloadFormsDiv" id='loadingPreloadFormsDiv'>
+            <span data-testid="loadingPreloadFormsIcon"  className="icon-dumbellLoadingForms material-symbols-outlined">
                     exercise
             </span>
-            <p className='pLoadingForms'>Loading...</p>
+            <p data-testid="loadingPreloadFormsText" className='pLoadingForms'>Loading...</p>
         </div>
     )
 }

@@ -25,7 +25,7 @@ const Home:React.FC=()=>{
     },[])
     return(
         <main>
-            <span id='holderForLogo'><img className='logoOfHome' src={logo} alt="" /></span>
+            <span id='holderForLogo'><img className='logoOfHome' src={logo} alt="logo" /></span>
             {sectionLoading?<LoadingSection/>:''}
             {view}
             {componentLoaded?'':<Loading offLoading={offLoading} />}

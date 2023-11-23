@@ -6,10 +6,10 @@ const LoadingSection:React.FC=()=>{
         document.querySelector(".icon-dumbellLoading")?.classList.add("animationRotate")
     },[])
     return(
-        <div id="loadingSection">
-            <img src={background} className="backgroundLGYM" />
-            <div id='fakeSection'>
-            <span  className="icon-dumbellLoading material-symbols-outlined">
+        <div data-testid="loadingSection" id="loadingSection">
+            <img src={background} className="backgroundLGYM" alt="backgroundLGYM" />
+            <div data-testid="fakeSection" id='fakeSection'>
+            <span data-testid="loadingIcon"  className="icon-dumbellLoading material-symbols-outlined">
                     exercise
                     </span>
                 <p>Loading...</p>
