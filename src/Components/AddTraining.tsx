@@ -334,13 +334,13 @@ close
     return(
         <section className='hidden addTrainingContainerDisplay' id='addTrainingContainer'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
-            {plan===''?<div id='withoutPlanTrainingDiv'>
-            <h2>You cant add training, because you dont have plan!</h2>
+            {plan===''?<div data-testid="withoutPlanTrainingDiv" id='withoutPlanTrainingDiv'>
+            <h2 data-testid="cantAddTrainingText">You cant add training, because you dont have plan!</h2>
             
             </div>:''}
             {plan ==='completed'?<div id='addTrainingSection'>
                     <h2>Add Training!</h2>
-                    <button onClick={getInformationsAboutPlanDays} id='addTrainingButton'>
+                    <button onClick={getInformationsAboutPlanDays} data-testid="addTrainingButton" id='addTrainingButton'>
                         <span className="plusTraining material-symbols-outlined">
                             add
                         </span>
@@ -370,7 +370,7 @@ chevron_right
                                     navigate_before
                                 </span>
                         </button>
-                        <button onClick={submitYourTraining} id='addCurrentTrainingButton'>ADD TRAINING</button>
+                        <button onClick={submitYourTraining}  id='addCurrentTrainingButton'>ADD TRAINING</button>
                         <button onClick={showLastTrainingSection} id='showPreviousSession'>SHOW PREVIOUS SESSION</button>
                         <button onClick={showNextExercise}>
                                 <span  className="material-symbols-outlined">

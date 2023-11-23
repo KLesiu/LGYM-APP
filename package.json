@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --detectOpenHandles",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,6 +43,8 @@
     ]
   },
   "devDependencies": {
-    "@types/uniqid": "^5.3.3"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/uniqid": "^5.3.3",
+    "jest-fetch-mock": "^3.0.3"
   }
 }

@@ -91,16 +91,16 @@ const History:React.FC=()=>{
     return(
         <section className='hidden historyContainerDisplay' id='historyContainer'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
-            <h2>Training History</h2>
+            <h2 data-testid="historyH2">Training History</h2>
             {currentSessions.length>0? currentSessions.map(ele=>{
                 return(
                     <div className='session' key={uniqid()}>
-                        <h3>Training symbol: {ele.symbol} </h3>
+                        <h3 data-testid="historyH3">Training symbol: {ele.symbol} </h3>
                         <p>Date: <span>{ele.date.slice(0,25)}</span>  </p>
                         <p>Series: {ele.exercises.length}</p>
                         <p>Id: <span>{ele.id}</span></p>
                         {/* <p>Notes: {ele.notes || 'none'} </p> */}
-                        <button onClick={showCurrentTrainingHistorySession} className='trainingHistorySessionButton'>
+                        <button onClick={showCurrentTrainingHistorySession} data-testid="trainingHistorySessionButton" className='trainingHistorySessionButton'>
                             <span className="read_more material-symbols-outlined">
                                 read_more
                             </span>
