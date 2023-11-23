@@ -266,7 +266,7 @@ const TrainingPlan:React.FC=()=>{
                 )):''
                 setYourPlan(()=>{
                     return(
-                        <section id='planSection'>
+                        <section data-testid="planSection" id='planSection'>
                             {planA?<div key={uniqid()} className=" containerForAllExercises">
                                 <h3>Plan A</h3>
                                 {planA}
