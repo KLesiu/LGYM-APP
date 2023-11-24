@@ -8,6 +8,7 @@ import logo from './img/logoLGYM.png'
 
 const Register:React.FC=()=>{
     const [errors,setErrors]= useState<ErrorMsg[]>([])
+    
     const register = async(event:React.FormEvent<HTMLFormElement>):Promise<void>=>{
         event.preventDefault()
         const name:string|undefined=document.querySelector<HTMLInputElement>("input[name='username']")?.value

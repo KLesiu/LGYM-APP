@@ -7,6 +7,7 @@ const CurrentTrainingHistorySession:React.FC<CurrentTrainingHistorySessionProps>
     const [infoAboutSession,setInfoAboutSession]=useState<JSX.Element>()
     const [exercises,setExercises]=useState<ExerciseTraining[]>()
     const [currentExercisesNumberAtPage,setCurrentExercisesNumberAtPage]=useState<number>(0)
+
     const getInformationAboutSession = async (): Promise<void> => {
         try {
           const response: string | Training = await props.getInformationAboutHistorySession(props.id);
@@ -26,7 +27,6 @@ const CurrentTrainingHistorySession:React.FC<CurrentTrainingHistorySessionProps>
           }
         } catch (error) {
           console.error('Error fetching information about history session:', error);
-          // Handle the error as needed, e.g., show an error message to the user
         }
       };
     const showCurrentExercises=(number:number):void=>{
@@ -45,10 +45,9 @@ const CurrentTrainingHistorySession:React.FC<CurrentTrainingHistorySessionProps>
         divs.forEach((ele,index:number)=>index<14?ele.classList.remove('hidden'):ele.classList.add('hidden'))
         setCurrentExercisesNumberAtPage(14)
     }
+
     useEffect(()=>{
      getInformationAboutSession()
-     
-     
     },[])
     useEffect(()=>{
         showCurrentExercises(currentExercisesNumberAtPage)
@@ -56,14 +55,12 @@ const CurrentTrainingHistorySession:React.FC<CurrentTrainingHistorySessionProps>
   
     return(
         <div data-testid="currentTrainingHistorySession" id="currentTrainingHistorySession">
-            {/* <h2>SessionId: {props.id}</h2> */}
             <button onClick={props.offCurrentTrainingHistorySession} className="closeCurrentTrainingHistorySession"><span className="material-symbols-outlined">close</span></button>
             <h2 id="dateHistorySection">Date : {props.date}</h2>
             {infoAboutSession}
             {exercises?.map((ele,index)=><div key={index} className="exerciseDiv bottomBorderP hidden">
-                
                 <span>{index%2?<p className="hidden">{ele.field}</p>:<p>{ele.field.slice(0,ele.field.length-3)}</p>}  {index%2?<span >{ele.score}kg</span>:<span className="rightBorder">{ele.score}</span>}</span>
-                
+
             </div>)}
             {exercises?<div className="buttonsSectionHistorySession">
                 <button onClick={()=>{

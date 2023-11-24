@@ -13,7 +13,6 @@ import ErrorMsg from './types/ErrorType';
 import Msg from './types/MsgType';
 
 const TrainingPlan:React.FC=()=>{
-    
     const [plan,setPlan]=useState<Plan>()
     const [yourPlan,setYourPlan]=useState<JSX.Element>(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
@@ -153,7 +152,6 @@ const TrainingPlan:React.FC=()=>{
         )
 
     }
- 
     const setCurrentPlanDay:React.MouseEventHandler<HTMLButtonElement>=(e)=>{
         const elementsName:NodeListOf<HTMLInputElement> = document.querySelectorAll(`.${currentDay}-name`)
         const elementsSeries:NodeListOf<HTMLInputElement> = document.querySelectorAll(`.${currentDay}-series`)
@@ -356,8 +354,7 @@ const TrainingPlan:React.FC=()=>{
         return alert(response.msg)
     }
     useEffect(()=>{
-        submitPlan()
-        
+        submitPlan()   
     },[isPlanSet])
     useEffect(()=>{
        if(plan) setCurrentPlan()
@@ -366,14 +363,12 @@ const TrainingPlan:React.FC=()=>{
     useEffect(()=>{
         getUserPlan()
         setTimeout(()=>document.querySelector('#trainingPlanSection')?.classList.remove('hidden'),100)
-        
     },[])
     useEffect(()=>{
         setTimeout(()=>setLoading(false),5000)
         getUserPlan()
         
     },[isPlan])
-   
     useEffect(()=>{
         showCurrentPlanDay(showedPlanDay)
     },[showedPlanDay])
@@ -382,21 +377,27 @@ const TrainingPlan:React.FC=()=>{
         <section className='hidden' id='trainingPlanSection'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
             {yourPlan}
-            {isPlanSet? <button id='removePlanButton' onClick={showPopUpAboutDelete}><span className="bin material-symbols-outlined">
-delete
-</span></button>:''}
+            {isPlanSet? <button id='removePlanButton' onClick={showPopUpAboutDelete}>
+                            <span className="bin material-symbols-outlined">
+                                    delete
+                            </span>
+                        </button>:''}
             {popUpDelete}
             {loading?<LoadingSection></LoadingSection>:''}
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}
             {planCreateSection?<CreatePlan formElements={formElements}/>:''}
             {currentDayCreateSection?<CreateCurrentDay setCurrentPlanDay ={setCurrentPlanDay} day={currentDay} planA={planACurrent || null} planB={planBCurrent || null} planC={planCCurrent || null} planD={planDCurrent || null} planE={planECurrent || null} planF={planFCurrent || null} planG={planGCurrent || null} />:''}
-            {arrows?<section className='buttonsSection'>{showedPlanDay===0?<div className='ghostDiv'></div>: <button onClick={showPrevPlanDay} id='prevDays'>
+            {arrows?<section className='buttonsSection'>{showedPlanDay===0?
+                    <div className='ghostDiv'></div>:
+                    <button onClick={showPrevPlanDay} id='prevDays'>
                                 <span className="material-symbols-outlined">chevron_left</span>
-                        </button>} 
-                        { document.querySelectorAll(".containerForAllExercises").length-1 === showedPlanDay?<div className='ghostDiv'></div>: <button id='nextDays' onClick={showNextPlanDay} >
+                    </button>} 
+            {document.querySelectorAll(".containerForAllExercises").length-1 === showedPlanDay?
+                    <div className='ghostDiv'></div>:
+                    <button id='nextDays' onClick={showNextPlanDay} >
                                 <span className="material-symbols-outlined">chevron_right</span>
-                        </button>}
-                       </section>:''}
+                    </button>}
+                    </section>:''}
         </section>
     )
 }

@@ -5,6 +5,7 @@ const LoadingSection:React.FC=()=>{
     useEffect(()=>{
         document.querySelector(".icon-dumbellLoading")?.classList.add("animationRotate")
     },[])
+    
     return(
         <div data-testid="loadingSection" id="loadingSection">
             <img src={background} className="backgroundLGYM" alt="backgroundLGYM" />

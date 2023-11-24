@@ -6,11 +6,9 @@ import LoadingSection from './LoadingSection'
 import Loading from './Loading'
 import logo from './img/logo300.png'
 
-
 const Home:React.FC=()=>{
     const [view,setView]=useState<JSX.Element>(<TrainingPlan/>)
     const [sectionLoading,setSectionLoading]=useState<boolean>(true)
-    const [mainSectionLoading,setMainSectionLoading]=useState<boolean>(true)
     const [componentLoaded,setComponentLoaded]=useState<boolean>(false)
     const offLoading:VoidFunction=():void=>setComponentLoaded(true)
     const changeView=(view:JSX.Element):void=>{

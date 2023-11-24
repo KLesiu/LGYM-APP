@@ -5,9 +5,9 @@ import ErrorMsg from './types/ErrorType'
 
 const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
     const [error,setError]= useState<ErrorMsg>()
+    
     const setRecords = async(event:React.FormEvent<HTMLFormElement>)=>{
         event.preventDefault()
-       
         const BenchPress:string|undefined = document.querySelector<HTMLInputElement>("input[name='bp']")?.value
         const Squat:string|undefined = document.querySelector<HTMLInputElement>("input[name='sq']")?.value
         const DeadLift:string|undefined = document.querySelector<HTMLInputElement>("input[name='dl']")?.value
@@ -51,6 +51,7 @@ const RecordsPopUp:React.FC<RecordsPopUpProps> =(props)=>{
        
 
     }
+
     return(
         <form action="" id='recordsPopUp' onSubmit={setRecords}>
             <h2>Set Your Records!</h2>

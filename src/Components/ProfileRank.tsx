@@ -11,7 +11,7 @@ import Champ from './img/newRanks/champRank.png'
 import './styles/ProfileRank.css'
 const ProfileRank:React.FC=()=>{
     return(
-        <img src={Junior1} className='profileRank' alt="" />
+        <img src={Junior1} className='profileRank' alt="juniorRankOne" />
     )
 }
 export default ProfileRank

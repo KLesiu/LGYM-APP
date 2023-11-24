@@ -5,6 +5,7 @@ import LoadingProps from './props/LoadingPropsInterface'
 const Loading:React.FC<LoadingProps>=(props)=>{
     const [load,setLoad]=useState<boolean>(false)
     const changeLoad:VoidFunction=():void=>setLoad(true)
+
     useEffect(()=>{
         setTimeout(changeLoad,500)
     },[])
@@ -14,7 +15,7 @@ const Loading:React.FC<LoadingProps>=(props)=>{
             props.offLoading()
     }, 9000)
     },[load])
-  
+
     return(
         <section id="loadingContainer">
             <img src={logo} alt="logoLoading" />
@@ -22,7 +23,6 @@ const Loading:React.FC<LoadingProps>=(props)=>{
                 <div id='loadingHolder'>
                     <div data-testid="loading" id='loading'></div>
                 </div>
-                
                 <p data-testid="loadingText">Loading...</p>
             </div>
         </section>

@@ -10,9 +10,6 @@ import backgroundLGYM from './img/backgroundLGYMApp500.png'
 import LastTrainingSession from './types/LastTrainingSessionType'
 import Msg from './types/MsgType'
 import UserInfo from './interfaces/UserInfoInterface'
-
-
-
 const AddTraining=()=>{
     const [plan,setPlan]=useState<string | null>(localStorage.getItem('plan')?localStorage.getItem('plan'):'')
     const [chooseDay,setChooseDay]=useState<JSX.Element>(<div></div>)
@@ -308,11 +305,9 @@ close
     useEffect(()=>{
             checkIsUserHavingPlan()
     },[])
-
     useEffect(()=>{
         if(showExercise) showFirstExercise()
     },[showExercise])
-
     useEffect(()=>{
         if(showExercise) showCurrentExercise()
     },[showedCurrentExerciseNumber])
@@ -328,9 +323,6 @@ close
         showCurrentExercisesAtLastTrainingSection()
     },[lastTrainingSection])
 
-   
-
-    
     return(
         <section className='hidden addTrainingContainerDisplay' id='addTrainingContainer'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
@@ -350,19 +342,20 @@ close
                     {lastTrainingSection}
                     {showButtonsSectionAtLastTrainingExercise?<div className='buttonsDivAtLastTreningSection'>
                         <button className='currentLastTrainingExerciseButton' onClick={()=>{
-                            
                             setShowedCurrentLastTrainingExerciseNumber(showedCurrentLastTrainingExerciseNumber-9)
                             setShowedCurrentLastTrainingExerciseScores(showedCurrentLastTrainingExerciseScores-18)
                         }}><span className="material-symbols-outlined">
-chevron_left
-</span></button>
+                                chevron_left
+                            </span>
+                        </button>
                         <button className='currentLastTrainingExerciseButton' onClick={()=>{
                             
                             setShowedCurrentLastTrainingExerciseNumber(showedCurrentLastTrainingExerciseNumber+9)
                             setShowedCurrentLastTrainingExerciseScores(showedCurrentLastTrainingExerciseScores+18)
                         }}><span className="material-symbols-outlined">
-chevron_right
-</span></button>
+                                chevron_right
+                            </span>
+                        </button>
                     </div>:''}
                     {showExercise?<div id='buttonsTrainingDiv'>
                         <button onClick={showPrevExercise}>

@@ -1,7 +1,6 @@
 import './styles/CreatePlan.css'
 import CreatePlanProps from './props/CreatePlanPropsInterface'
 
-
 const CreateConfigPlan:React.FC<CreatePlanProps> = (props)=>{
     return(
         <form data-testid="createPlan" id="createPlan" onSubmit={props.setDayAndName} action="">
@@ -18,7 +17,6 @@ const CreateConfigPlan:React.FC<CreatePlanProps> = (props)=>{
                 <option value={5}></option>
                 <option value={6}></option>
                 <option value={7}></option>
-
             </datalist>
             <button id='nextCreatePlanButton'>NEXT</button>
         </form>

@@ -1,11 +1,7 @@
 import './styles/CreateCurrentDay.css'
 import {useState,useEffect,MouseEvent} from 'react'
 import uniqid from 'uniqid'
-
 import CreateCurrentDayProps from './props/CreateCurrentDayPropsInterface'
-
-
-
 
 const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
     const [elements,setElements]=useState<Array<JSX.Element>>()
@@ -25,8 +21,6 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
         
         
     }
-
-    
     const addElements=(day:string):void=>{
         const Element:JSX.Element = <div className='exerciseConfig'>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} />
@@ -36,7 +30,8 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
         </div>
         const arr:Array<JSX.Element> = []
         if(day === 'planA'){
-            if(props.planA) props.planA.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
+            if(props.planA) 
+            props.planA.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
                  <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
             <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
             <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
@@ -44,58 +39,65 @@ const CreateCurrentDay:React.FC<CreateCurrentDayProps> =(props)=>{
             </div>))
         }
         else if(day === 'planB'){
-            if(props.planB) props.planB.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
+            if(props.planB) 
+            props.planB.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
-       <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
-       <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
-       <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
-       </div>))
+            <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
+            <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
+            <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
+            </div>))
         }
         else if(day === 'planC'){
-            if(props.planC) props.planC.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
+            if(props.planC) 
+            props.planC.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
-       <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
-       <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
-       <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
-       </div>))
+            <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
+            <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
+            <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
+            </div>))
         }
         else if(day === 'planD'){
-            if(props.planD) props.planD.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
+            if(props.planD) 
+            props.planD.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
-       <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
-       <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
-       <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
-       </div>))
+            <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
+            <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
+            <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
+            </div>))
         }
         else if(day === 'planE'){
-            if(props.planE) props.planE.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
+            if(props.planE) 
+            props.planE.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
-       <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
-       <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
-       <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
-       </div>))
+            <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
+            <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
+            <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
+            </div>))
         }
         else if(day === 'planF'){
-            if(props.planF) props.planF.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
+            if(props.planF) 
+            props.planF.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
-       <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
-       <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
-       <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
-       </div>))
+            <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
+            <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
+            <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
+            </div>))
         }
         else if(day === 'planG'){
-            if(props.planG) props.planG.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
+            if(props.planG) 
+            props.planG.map(ele=>arr.push(<div className='exerciseConfig' key={uniqid()}>
             <input type="text" placeholder='Exercise name' name="" className={`${props.day}-name`} defaultValue={ele.name} />
-       <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
-       <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
-       <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
-       </div>))
+            <input type="number" placeholder='Series' defaultValue={ele.series} name="" className={`${props.day}-series`} />
+            <input type="text" defaultValue={ele.reps} placeholder='Repetitions interval' name=""className={`${props.day}-reps`} />
+            <span onClick={removeElement} className="deleteCurrent material-symbols-outlined">delete</span>
+            </div>))
         }      
         for(let i=0;i<countElements;i++)arr.push(Element)
         setElements(arr)
 
         
     }
+    
     useEffect(()=>{
         addElements(props.day)
     },[countElements])

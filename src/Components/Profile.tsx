@@ -5,14 +5,12 @@ import UserInfo from './interfaces/UserInfoInterface'
 import backgroundLGYM from './img/backgroundLGYMApp500.png'
 import ProfileRank from './ProfileRank'
 
-
-
-
 const Profile:React.FC=()=>{
     const [yourProfile,setYourProfile]=useState<UserProfile>({name:localStorage.getItem('username')!,email:localStorage.getItem('email')!})
     const [profileRank,setProfileRank]=useState<string>('')
     const [memberSince,setMemberSince]=useState<string>('')
     const [rankComponent,setRankComponent]=useState<JSX.Element>()
+
     const logout:VoidFunction=():void=>{
         localStorage.removeItem('username')
         localStorage.removeItem('email')
@@ -36,13 +34,13 @@ const Profile:React.FC=()=>{
              
              
      }
+
     useEffect(()=>{
         checkMoreUserInfo()
         setRankComponent(<ProfileRank />)
         setTimeout(()=>document.querySelector('#profileContainer')?.classList.remove('hidden'),100)
     },[])
     
-
     return(
         <section className='hidden profileContainerDisplay' id='profileContainer'>
             <img className='backgroundLGYM' src={backgroundLGYM} alt="" />
@@ -50,21 +48,13 @@ const Profile:React.FC=()=>{
             <div className='containerForInfoProfile'>
             <h2>Name: {yourProfile.name}</h2>
                 <div className='ColumnProfile'>
-                    
                     <h3 className='profileRankh3'>Profile Rank : <br /> {profileRank}
                     {rankComponent} 
                     </h3>
                     <h3>Email: {yourProfile.email}</h3>
-                    <h3>Member Since: {memberSince}</h3>
-                    
+                    <h3>Member Since: {memberSince}</h3> 
                 </div>
-           
-                
-                
             </div>
-            
-            
-            
             <button onClick={logout} id='logout'>Logout</button>
         </section>
     )

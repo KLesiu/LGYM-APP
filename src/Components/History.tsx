@@ -99,7 +99,6 @@ const History:React.FC=()=>{
                         <p>Date: <span>{ele.date.slice(0,25)}</span>  </p>
                         <p>Series: {ele.exercises.length}</p>
                         <p>Id: <span>{ele.id}</span></p>
-                        {/* <p>Notes: {ele.notes || 'none'} </p> */}
                         <button onClick={showCurrentTrainingHistorySession} data-testid="trainingHistorySessionButton" className='trainingHistorySessionButton'>
                             <span className="read_more material-symbols-outlined">
                                 read_more
@@ -110,14 +109,20 @@ const History:React.FC=()=>{
             }):''}
             {sessions.length>0?
             <div id='buttonHistoryContainer'>
-                {currentSessionsNumber===3?<div className='ghostDiv'></div>:<button onClick={showPrevSessions} id='prevHistory'>
-                <span className="material-symbols-outlined">
-chevron_left
-</span>
+                {currentSessionsNumber===3?
+                <div className='ghostDiv'></div>:
+                <button onClick={showPrevSessions} id='prevHistory'>
+                    <span className="material-symbols-outlined">
+                        chevron_left
+                    </span>
                 </button>}
-                {currentSessionsNumber>=sessions.length-1?<div className='ghostDiv'></div>:<button id='nextHistory' onClick={showNextSessions}><span className="material-symbols-outlined">
-chevron_right
-</span></button>}
+                {currentSessionsNumber>=sessions.length-1?
+                <div className='ghostDiv'></div>:
+                <button id='nextHistory' onClick={showNextSessions}>
+                    <span className="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                </button>}
                 
             </div>
             :<h2 id='infoYouDontHaveTrainings'>You dont have training history!</h2>}
