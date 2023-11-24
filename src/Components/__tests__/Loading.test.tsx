@@ -1,6 +1,13 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor,cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Loading from '../Loading';
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+afterEach(() => {
+  cleanup(); 
+});
 
 jest.useFakeTimers();
 

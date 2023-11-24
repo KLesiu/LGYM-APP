@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor,cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import CurrentTrainingHistorySession from '../CurrentTrainingHistorySession';
 
@@ -15,6 +14,9 @@ const mockProps = {
 
 beforeEach(() => {
   jest.clearAllMocks();
+});
+afterEach(() => {
+  cleanup(); 
 });
 
 test('renders CurrentTrainingHistorySession component', async () => {
@@ -36,21 +38,14 @@ test('shows correct information about the session', async () => {
       exercises: [
         { field: 'Exercise1', score: '10kg' },
         { field: 'Exercise2', score: '20kg' },
-        // Add more exercises as needed
       ],
     };
     mockGetInformationAboutHistorySession.mockResolvedValueOnce(mockResponse);
-  
     render(<CurrentTrainingHistorySession {...mockProps} />);
-  
     await waitFor(() => {
       expect(screen.getByText(/TrainingDay:/)).toBeInTheDocument();
       expect(screen.getByText(`Date : ${mockProps.date}`)).toBeInTheDocument();
-      
-      // Use a regular expression to match '20kg' within the span
       expect(screen.getByText(/20kg/)).toBeInTheDocument();
-  
-      // Add more assertions for other exercise information
     });
   });
 
