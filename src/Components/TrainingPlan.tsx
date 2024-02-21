@@ -11,12 +11,14 @@ import backgroundLGYM from './img/backgroundLGYMApp500.png'
 import LoadingSection from './LoadingSection';
 import ErrorMsg from './types/ErrorType';
 import Msg from './types/MsgType';
+import ImportPlanPopUp from './ImportPlanPopUp';
 
 const TrainingPlan:React.FC=()=>{
     const [plan,setPlan]=useState<Plan>()
     const [yourPlan,setYourPlan]=useState<JSX.Element>(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
+        <button onClick={()=>showImportPlanPopUpFn()}>Import plan!</button>
     </div>)
     const [namePlan,setNamePlan]=useState<string>()
     const [isPlan,setIsPlan]=useState<boolean>()
@@ -37,6 +39,7 @@ const TrainingPlan:React.FC=()=>{
     const [isPlanSet,setIsPlanSet]=useState<boolean>(false)
     const [popUpDelete,setPopUpDelete]=useState<JSX.Element>()
     const [loading,setLoading]=useState<boolean>(false)
+    const [showImportPlanPopUp,setShowImportPlanPopUp]=useState<boolean>(false)
 
 
     const setDayAndName = async(event:React.FormEvent):Promise<void>=>{
@@ -181,6 +184,24 @@ const TrainingPlan:React.FC=()=>{
        setCurrentDayCreateSection(false)
         
     }
+    const showImportPlanPopUpFn=():void=>{
+        setShowImportPlanPopUp(true)
+    }
+    const setImportPlan=async():Promise<void>=>{
+        const inputValue:string | undefined = document.querySelector<HTMLInputElement>("#importPlanInput")?.value
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem('id')}/setSharedPlan`,{
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({
+                userId:inputValue
+            })
+        }).then(res=>res).catch(err=>console.log(err))
+        setShowImportPlanPopUp(false)
+
+
+    }
     const setCurrentPlan=async():Promise<void>=>{
         const response: {msg:string} = await fetch(`${process.env.REACT_APP_BACKEND}/api/${localStorage.getItem("id")}/setPlan`,{
             method:"POST",
@@ -212,6 +233,7 @@ const TrainingPlan:React.FC=()=>{
             setYourPlan(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
+        <button onClick={showImportPlanPopUpFn}>Import plan!</button>
     </div>)
             setArrows(false)
         } 
@@ -344,6 +366,7 @@ const TrainingPlan:React.FC=()=>{
         setYourPlan(<div id='withoutPlanContainer'>
         <h2>You dont have any plans!</h2>
         <button onClick={()=>setplanConfigSection(true)}>Create your plan now!</button>
+        <button onClick={showImportPlanPopUpFn}>Import plan!</button>
     </div>)
         setPopUpDelete(<div></div>)
         setPlan(undefined)
@@ -353,6 +376,7 @@ const TrainingPlan:React.FC=()=>{
         localStorage.removeItem('plan')
         return alert(response.msg)
     }
+
     useEffect(()=>{
         submitPlan()   
     },[isPlanSet])
@@ -383,6 +407,7 @@ const TrainingPlan:React.FC=()=>{
                             </span>
                         </button>:''}
             {popUpDelete}
+            {showImportPlanPopUp?<ImportPlanPopUp setImportPlan={setImportPlan} />:''}
             {loading?<LoadingSection></LoadingSection>:''}
             {planConfigSection?<CreateConfigPlan setDayAndName={setDayAndName}/>:''}
             {planCreateSection?<CreatePlan formElements={formElements}/>:''}
